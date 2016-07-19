@@ -1556,69 +1556,75 @@ contentLoaded(window,function(){
                                 <h1 id="virtual-dom-apis">Virtual DOM APIs</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
-<h3 id="document"><code>Document</code></h3>
-<p>Each instance has a corresponding document with the same id. A document has many nodes which compose a node tree.</p>
-<ul>
-<li><code>new Document(id)</code></li>
-<li><code>createBody(type, props)</code> Create body with a certian type and props. The <code>type</code> is one of <code>container</code>, <code>list</code> or <code>scroller</code>, and the <code>props</code> may contain <code>attr</code> and <code>style</code>.</li>
-<li><code>createElement(tagName, props)</code> Create a certain type element with props.</li>
-<li><code>createComment(text)</code> Create a comment node with a certain comment text.</li>
-<li><code>setListener(listener)</code> Set a dom listener which listens each dom updates and tells the rendering engine</li>
-<li><code>open()</code> Set a flag which means init rendering start, so each dom update will be called immediately</li>
-<li><code>close()</code> Set a flag which means init rendering finished, so the dom updates later will be batched in each task.</li>
-<li><code>addRef(el)</code> Add a new ref to the internal node map for a <code>el</code></li>
-<li><code>getRef(ref)</code> Get node by <code>ref</code> from the internal node map</li>
-<li><code>removeRef(ref)</code> Removes the <code>ref</code> record from the internal node map</li>
-<li><code>id</code> document id (also the instance id)</li>
-<li><code>listener</code> dom listener</li>
-<li><code>closed</code> flag which means rendering finished</li>
-<li><code>body</code> document body element</li>
-<li><code>eventManager</code> document event manager</li>
-</ul>
-<h3 id="node"><code>Node</code></h3>
-<ul>
-<li><code>create(instanceId)</code></li>
-<li><code>destroy()</code></li>
-<li><code>getRenderer()</code> Get dom listener of the owner document</li>
-<li><code>next()</code> Returns the next sibling or null</li>
-<li><code>prev()</code> Returns the previous sibling or null</li>
-<li><code>ref</code></li>
-</ul>
-<h3 id="element"><code>Element</code></h3>
-<p>extends from <code>Node</code></p>
-<ul>
-<li><code>new Element(type, props, ownerDocument)</code> Create an element and the <code>props</code> may contain <code>attr</code> and <code>style</code>.</li>
-<li><code>appendChild(node)</code></li>
-<li><code>insertBefore(node, before)</code></li>
-<li><code>insertAfter(node, after)</code></li>
-<li><code>removeChild(node, preserved)</code> Removes a child. The parameter <code>preserved</code> means whether destroy the removed node immediately or preserve it.</li>
-<li><code>clear()</code></li>
-<li><code>setAttr(key, value)</code></li>
-<li><code>setStyle(key, value)</code></li>
-<li><code>setClassStyle(classStyle)</code></li>
-<li><code>addEvent(type, handler)</code></li>
-<li><code>removeEvent(type)</code></li>
-<li><code>toJSON()</code> Format of <code>{ref, type, attr{string}, style{string}, event[string], children[Element]}</code></li>
-<li><code>type</code> Element type</li>
-<li><code>attr</code> Several attribuets for this element</li>
-<li><code>style</code> Several style rules for this element</li>
-<li><code>classStyle</code> Class style map, each class has several style rules</li>
-<li><code>event</code> Event type list</li>
-</ul>
-<h3 id="comment"><code>Comment</code></h3>
-<p>extends from <code>Node</code> and will not passed to rendering engine</p>
-<ul>
-<li><code>new Comment(value, ownerDocument)</code></li>
-<li><code>type</code> Returns &apos;comment&apos;</li>
-<li><code>value</code></li>
-</ul>
-<h3 id="eventmanager"><code>EventManager</code></h3>
-<p>Document event manager</p>
-<ul>
-<li><code>add(el, type, handler)</code> Adds an event <code>handler</code> for certain <code>type</code> to a certain <code>el</code> element</li>
-<li><code>remove(el, type)</code> Removes event handler for certain <code>type</code> to a certain <code>el</code> element</li>
-<li><code>fire(el, type, e)</code> Fires a certain event to <code>el</code> with <code>type</code> and event object <code>e</code></li>
-</ul>
+<h2 id="document"><code>Document</code></h2>
+<p>Each instance has a corresponding document with the instance id. A document has many nodes which compose a node tree.</p>
+<h3 id="constructor">Constructor</h3>
+<h5 id="new-documentid-string-url-string"><code>new Document(id: string, url: string?)</code></h5>
+<h3 id="members">Members</h3>
+<h5 id="createelementtagname-string-props-object-element"><code>createElement(tagName: string, props: Object?): Element</code></h5>
+<p>Create a certain type <code>Element</code>. And the <code>props</code> may contain <code>attr</code> object and <code>style</code> object. e.g. <code>createBody(&apos;div&apos;, {style: {backgroundColor: &apos;#ffffff&apos;}})</code></p>
+<h5 id="createcommenttext-string-comment"><code>createComment(text: string): Comment</code></h5>
+<p>Create a <code>Comment</code> with a certain comment text.</p>
+<h5 id="open"><code>open()</code></h5>
+<p>Set a flag which means init rendering start, so each dom update will be called immediately</p>
+<h5 id="close"><code>close()</code></h5>
+<p>Set a flag which means init rendering finished, so the dom updates later will be batched in each task.</p>
+<h5 id="fireeventel-element-type-string-e-object-domchanges-object"><code>fireEvent(el: Element, type: string, e: Object?, domChanges: Object?)</code></h5>
+<p>Fire an certain type of event on a certain element with an event object. When the event leads to some dom changes, the fourth parameter will describe the change just like <code>props</code> parameter in <code>createElement</code> method.</p>
+<h4 id="read-only--getters">Read-only &amp; Getters</h4>
+<h5 id="id-string"><code>id: string</code></h5>
+<h5 id="url-string"><code>URL: string?</code></h5>
+<h5 id="body-element"><code>body: Element</code></h5>
+<p>body element</p>
+<h5 id="documentelement-element"><code>documentElement: Element</code></h5>
+<p>document element</p>
+<h5 id="getrefref-string-node"><code>getRef(ref: string): Node?</code></h5>
+<p>Get node by <code>ref</code> from the internal node map</p>
+<p><strong>Note</strong>: the <code>documentElement</code> will be generated automatically when a document created, and the <code>body</code> should to be created manually and appended to <code>documentElement</code> to work. The <code>type</code> of a <code>body</code> must be one of <code>div</code>, <code>list</code> or <code>scroller</code>.</p>
+<h2 id="node"><code>Node</code></h2>
+<h3 id="constructor">Constructor</h3>
+<h5 id="new-node"><code>new Node()</code></h5>
+<h3 id="members">Members</h3>
+<h5 id="destroy"><code>destroy()</code></h5>
+<h4 id="read-only--getters">Read-only &amp; Getters</h4>
+<h5 id="ref-string"><code>ref: string</code></h5>
+<h5 id="nextsibling-node"><code>nextSibling: Node?</code></h5>
+<h5 id="previoussibling-node"><code>previousSibling: Node?</code></h5>
+<h5 id="parentnode-node"><code>parentNode: Node?</code></h5>
+<h2 id="element-extends-node"><code>Element</code> extends <code>Node</code></h2>
+<h3 id="constructor">Constructor</h3>
+<h5 id="new-elementtype-string-props-object-ownerdocument-document"><code>new Element(type: string, props: Object?, ownerDocument: Document)</code></h5>
+<p>Create an element and the <code>props</code> may contain <code>attr</code> object and <code>style</code> object.</p>
+<h3 id="members">Members</h3>
+<h4 id="dom-tree">DOM Tree</h4>
+<h5 id="appendchildnode-node"><code>appendChild(node: Node)</code></h5>
+<h5 id="insertbeforenode-node-before-node"><code>insertBefore(node: Node, before: Node?)</code></h5>
+<h5 id="insertafternode-node-after-node"><code>insertAfter(node: Node, after: Node?)</code></h5>
+<h5 id="removechildnode-node-preserved-boolean"><code>removeChild(node: Node, preserved: boolean?)</code></h5>
+<p>Removes a child. The parameter <code>preserved</code> means whether destroy the removed node immediately or preserve it.</p>
+<h5 id="clear"><code>clear()</code></h5>
+<h4 id="dom-props">DOM props</h4>
+<h5 id="setattrkey-string-value-string-silent-boolean"><code>setAttr(key: string, value: string, silent: boolean?)</code></h5>
+<p>If <code>slient</code> is truthy, it won&apos;t cause native calls. Used for handling event with virtual-DOM changes.</p>
+<h5 id="setstylekey-string-value-string-silent-boolean"><code>setStyle(key: string, value: string, silent: boolean?)</code></h5>
+<p>The <code>slient</code> parameter is just same as <code>setAttr</code> method.</p>
+<h5 id="setclassstyleclassstyle-object"><code>setClassStyle(classStyle: Object)</code></h5>
+<p>The specificity of class style is lower than normal style. In another way the normal style will override the same name value in class style.</p>
+<h5 id="addeventtype-string-handler-function"><code>addEvent(type: string, handler: Function)</code></h5>
+<h5 id="removeeventtype-string"><code>removeEvent(type: string)</code></h5>
+<h5 id="fireeventtype-string-e-any"><code>fireEvent(type: string, e: any)</code></h5>
+<h4 id="read-only--getters">Read-only &amp; Getters</h4>
+<h5 id="tojson-object"><code>toJSON(): Object</code></h5>
+<p>Format of <code>{ref: string, type: string, attr: Object, style: Object, event: Array(string), children: Array}</code></p>
+<h2 id="comment-extends-node"><code>Comment</code> extends <code>Node</code></h2>
+<p><code>Comment</code> won&apos;t be passed to the rendering engine. So it&apos;s very useful as a assistant placeholder sometimes.</p>
+<h3 id="constructor">Constructor</h3>
+<h5 id="new-commentvalue-string"><code>new Comment(value: string)</code></h5>
+<h3 id="members">Members</h3>
+<h4 id="read-only--getters">Read-only &amp; Getters</h4>
+<h5 id="type-string"><code>type: string</code></h5>
+<p>Returns <code>&apos;comment&apos;</code></p>
+<h5 id="value-string"><code>value: string</code></h5>
 
                                 
                                 </section>
@@ -1658,7 +1664,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Virtual DOM APIs","level":"1.3.6.3","depth":3,"next":{"title":"Examples","level":"1.4","depth":1,"ref":"","articles":[{"title":"Hello World","level":"1.4.1","depth":2,"path":"demo/hello-world.md","ref":"demo/hello-world.md","articles":[]},{"title":"Modal","level":"1.4.2","depth":2,"path":"demo/modal.md","ref":"demo/modal.md","articles":[]},{"title":"List","level":"1.4.3","depth":2,"path":"demo/list.md","ref":"demo/list.md","articles":[]},{"title":"Slider","level":"1.4.4","depth":2,"path":"demo/slider.md","ref":"demo/slider.md","articles":[]},{"title":"Animation","level":"1.4.5","depth":2,"path":"demo/animation.md","ref":"demo/animation.md","articles":[]},{"title":"More","level":"1.4.6","depth":2,"url":"https://github.com/alibaba/weex/tree/dev/examples","ref":"https://github.com/alibaba/weex/tree/dev/examples","articles":[]}]},"previous":{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"specs/virtual-dom-apis.md","mtime":"2016-07-18T02:50:49.058Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T02:51:03.779Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Virtual DOM APIs","level":"1.3.6.3","depth":3,"next":{"title":"Examples","level":"1.4","depth":1,"ref":"","articles":[{"title":"Hello World","level":"1.4.1","depth":2,"path":"demo/hello-world.md","ref":"demo/hello-world.md","articles":[]},{"title":"Modal","level":"1.4.2","depth":2,"path":"demo/modal.md","ref":"demo/modal.md","articles":[]},{"title":"List","level":"1.4.3","depth":2,"path":"demo/list.md","ref":"demo/list.md","articles":[]},{"title":"Slider","level":"1.4.4","depth":2,"path":"demo/slider.md","ref":"demo/slider.md","articles":[]},{"title":"Animation","level":"1.4.5","depth":2,"path":"demo/animation.md","ref":"demo/animation.md","articles":[]},{"title":"More","level":"1.4.6","depth":2,"url":"https://github.com/alibaba/weex/tree/dev/examples","ref":"https://github.com/alibaba/weex/tree/dev/examples","articles":[]}]},"previous":{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"specs/virtual-dom-apis.md","mtime":"2016-07-19T09:30:35.260Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-19T09:30:43.140Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
