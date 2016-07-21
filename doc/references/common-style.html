@@ -1564,43 +1564,43 @@ contentLoaded(window,function(){
 <p>Weex box model based on the CSS box model, all of weex elements can be considered as boxes.  The term &quot;box model&quot; is used when talking about design and layout. The box model is essentially a box that wraps around every HTML element. It consists of margins, borders, paddings, and the actual content.</p>
 <p>you can use the definition below in weex box model.</p>
 <ul>
-<li>width</li>
-<li>height</li>
-<li>padding (space around content, between element content and the element border)<ul>
-<li>padding-left</li>
-<li>padding-right</li>
-<li>padding-top</li>
-<li>padding-bottom</li>
+<li><code>width</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>height</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>padding</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code>, (space around content, between element content and the element border)<ul>
+<li><code>padding-left</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>padding-right</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>padding-top</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>padding-bottom</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
 </ul>
 </li>
-<li>margin (space around elements, outside the border)<ul>
-<li>margin-left</li>
-<li>margin-right</li>
-<li>margin-top</li>
-<li>margin-bottom</li>
+<li><code>margin</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code>, (space around elements, outside the border)<ul>
+<li><code>margin-left</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>margin-right</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>margin-top</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>margin-bottom</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
 </ul>
 </li>
-<li>border<ul>
-<li>border-style(solid,dashed,dotted)</li>
-<li>border-width<ul>
-<li>border-left-width</li>
-<li>border-top-width</li>
-<li>border-right-width</li>
-<li>border-bottom-width</li>
+<li><code>border</code><ul>
+<li><code>border-style</code>: values <code>solid</code> | <code>dashed</code> | <code>dotted</code>, default value <code>solid</code></li>
+<li><code>border-width</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code><ul>
+<li><code>border-left-width</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>border-top-width</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>border-right-width</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>border-bottom-width</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
 </ul>
 </li>
-<li>border-color<ul>
-<li>border-left-color</li>
-<li>border-top-color</li>
-<li>border-right-color</li>
-<li>border-bottom-color</li>
+<li><code>border-color</code>: <a href="styles/units/color.md">color</a> type, default value <code>#000000</code><ul>
+<li><code>border-left-color</code>: <a href="styles/units/color.md">color</a> type, default value <code>#000000</code></li>
+<li><code>border-top-color</code>: <a href="styles/units/color.md">color</a> type, default value <code>#000000</code></li>
+<li><code>border-right-color</code>: <a href="styles/units/color.md">color</a> type, default value <code>#000000</code></li>
+<li><code>border-bottom-color</code>: <a href="styles/units/color.md">color</a> type, default value <code>#000000</code></li>
 </ul>
 </li>
-<li>border-radius  ( rounded borders to elements , default value is 0 meaning right angle )<ul>
-<li>border-bottom-left-radius</li>
-<li>border-bottom-right-radius</li>
-<li>border-top-left-radius</li>
-<li>border-top-right-radius</li>
+<li><code>border-radius</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code>, (rounded borders to elements , default value is 0 meaning right angle )<ul>
+<li><code>border-bottom-left-radius</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>border-bottom-right-radius</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>border-top-left-radius</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
+<li><code>border-top-right-radius</code>: <a href="styles/units/length.md">length</a> type, default value <code>0</code></li>
 </ul>
 </li>
 </ul>
@@ -1622,22 +1622,22 @@ contentLoaded(window,function(){
 <h3 id="flex-container">Flex container</h3>
 <p>Flexbox is the default and only style model in Weex, so you don&apos;t have to add <code>display: flex;</code> in a container.</p>
 <ul>
-<li><code>flex-direction</code>: <code>row</code> | <code>column</code></li>
+<li><code>flex-direction</code>: values <code>row</code> | <code>column</code>, default value <code>column</code></li>
 </ul>
 <p>The flex-direction property specifies the direction of the flexible items inside the flex container. Default value is <code>column</code> (top-to-bottom).</p>
 <ul>
-<li><code>justify-content</code>: <code>flex-start</code> | <code>flex-end</code> | <code>center</code> | <code>space-between</code></li>
+<li><code>justify-content</code>: values <code>flex-start</code> | <code>flex-end</code> | <code>center</code> | <code>space-between</code>, default value <code>flex-start</code></li>
 </ul>
 <p>The justify-content property horizontally aligns the flexible container&apos;s items when the items do not use all available space on the main-axis. Default value is <code>flex-start</code> meaning the flex items are positioned at the beginning of the container. <code>flex-end</code> means the items are positioned at the end of the container. <code>center</code> means the items are positioned at the center of the container. <code>space-between</code> means the items are positioned with space between the lines.</p>
 <p><img src="../images/css-flexbox-justify.svg" alt="justify-content"></p>
 <ul>
-<li><code>align-items</code>: <code>stretch</code> | <code>flex-start</code> | <code>center</code> | <code>flex-end</code></li>
+<li><code>align-items</code>: values <code>stretch</code> | <code>flex-start</code> | <code>center</code> | <code>flex-end</code>, default value <code>stretch</code></li>
 </ul>
 <p>The align-items property vertically aligns the flexible container&apos;s items when the items do not use all available space on the cross-axis. Default value is <code>stretch</code> meaning the items are stretched to fit the container. <code>flex-start</code> means the items are positioned at the top of the container; <code>flex-end</code> means the items are positioned at the bottom of the container; <code>center</code> means items are positioned at the center of the container (vertically).</p>
 <p><img src="../images/css-flexbox-align.jpg" alt="align-items"></p>
 <h3 id="flex-item">Flex item</h3>
 <ul>
-<li>flex : &lt;number&gt;</li>
+<li><code>flex</code>: <a href="styles/units/number.md">number</a> type, default value <code>0</code></li>
 </ul>
 <p>the flex property specifies the length of the flex item, relative to the rest of the flex items inside the same container.  If all of the flex items set <code>flex: 1</code>, they will have equal width or height on direction of flex container&apos;s <code>flex-direction</code>. If there are two flex items, with one setting <code>flex: 1</code>, and the other setting <code>flex: 2</code>, the first one will take 1/3 container space, and the second one will take 2/3 container space. If all of flex items don&apos;t set <code>flex</code>, they will be aligned depending on the container&apos;s <code>justify-content</code> property.</p>
 <h2 id="examples">Examples</h2>
@@ -1681,14 +1681,14 @@ contentLoaded(window,function(){
 <h2 id="position">Position</h2>
 <p>we can use properties below to control placement of weex tag</p>
 <ul>
-<li><code>position</code>: <code>relative</code> | <code>absolute</code> | <code>fixed</code> | <code>sticky</code>, default value is <code>relative</code>. </li>
+<li><code>position</code>: values <code>relative</code> | <code>absolute</code> | <code>fixed</code> | <code>sticky</code>, default value <code>relative</code></li>
 </ul>
 <p><code>relative</code> means the item is positioned relative to its normal position. <code>absolute</code> means the item is positioned relative to its container. <code>fixed</code> keeps the elements position fixed when the page is scrolling. <code>sticky</code> keeps elements positioned inside the viewport as &quot;stuck&quot; at the top or &quot;relative&quot; at its original place depending on whether does it about to scroll out of the view.</p>
 <ul>
-<li><code>top</code>:  &lt;number&gt;, upward offset value, default value is  <code>0</code></li>
-<li><code>bottom</code>: &lt;number&gt;, downward offset value, default value is  <code>0</code></li>
-<li><code>left</code>: &lt;number&gt;, leftward offset value, default value is  <code>0</code></li>
-<li><code>right</code>: &lt;number&gt;, rightward offset value, default value is  <code>0</code></li>
+<li><code>top</code>: <a href="styles/units/number.md">number</a> type, default value <code>0</code>, upward offset value</li>
+<li><code>bottom</code>: <a href="styles/units/number.md">number</a> type, default value <code>0</code>, downward offset value</li>
+<li><code>left</code>: <a href="styles/units/number.md">number</a> type, default value <code>0</code>, leftward offset value</li>
+<li><code>right</code>: <a href="styles/units/number.md">number</a> type, default value <code>0</code>, rightward offset value</li>
 </ul>
 <h3 id="examples">Examples</h3>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
@@ -1707,23 +1707,23 @@ contentLoaded(window,function(){
 </code></pre>
 <h2 id="other-common-style">Other Common Style</h2>
 <ul>
-<li><code>opacity</code>:  &lt;number&gt;, value within range 0 to 1. 1 is not transparent at all, 0.5 is 50% see-through, and 0 is completely transparent, default value is 1.</li>
-<li><code>background-color</code>: &lt;colors&gt; sets the background color of an element, default value is <code>transparent</code>.</li>
+<li><a href="styles/opacity.md"><code>opacity</code></a></li>
+<li><a href="styles/background-color.md"><code>background-color</code></a></li>
 </ul>
 <h2 id="type-of-style-value">Type of Style Value</h2>
 <ul>
-<li>length: number followed by length unit <code>px</code>, <code>px</code> can be omitted.</li>
-<li>colors: support multiple formats of values, including rgb (<code>rgb(255, 0, 0)</code>), rgba (<code>rgba(255, 0, 0, 0.5)</code>), hexadecimal (<code>#ff0000</code>), short hexadecimal (<code>#f00</code>), named color (<code>red</code>).</li>
-<li>enumerated values: a limited number of string values.</li>
+<li><a href="styles/units/length.md">length</a> type</li>
+<li><a href="styles/units/number.md">number</a> type</li>
+<li><a href="styles/units/color.md">color</a> type (<em><a href="color-names.html">The list of color keywords.</a></em>)</li>
+<li>enumerated type</li>
 </ul>
-<p><strong>Note:</strong> <a href="color-names.html">The list of color keywords.</a></p>
 <h2 id="simple-step">Simple Step</h2>
 <p>These up-to-down steps may help you to plan the whole style of weex pages.</p>
 <ol>
 <li>overall style: divide the whole page to different parts</li>
 <li>flex alignment: align boxes in every part of page</li>
 <li>position box: place box, set offset</li>
-<li>special style: add special styles if needed</li>
+<li>element specific style: set styles for certain element if needed</li>
 </ol>
 
                                 
@@ -1768,7 +1768,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Common Style","level":"1.3.4.2","depth":3,"next":{"title":"Text Style","level":"1.3.4.2.1","depth":4,"path":"references/text-style.md","ref":"references/text-style.md","articles":[]},"previous":{"title":"Common Attributes","level":"1.3.4.1","depth":3,"path":"references/common-attrs.md","ref":"references/common-attrs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/common-style.md","mtime":"2016-07-19T09:30:29.832Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-19T09:30:43.140Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Common Style","level":"1.3.4.2","depth":3,"next":{"title":"Text Style","level":"1.3.4.2.1","depth":4,"path":"references/text-style.md","ref":"references/text-style.md","articles":[]},"previous":{"title":"Common Attributes","level":"1.3.4.1","depth":3,"path":"references/common-attrs.md","ref":"references/common-attrs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/common-style.md","mtime":"2016-07-21T07:15:06.357Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-21T07:15:13.720Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
