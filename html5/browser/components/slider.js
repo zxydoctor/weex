@@ -91,7 +91,8 @@ Slider.prototype.attr = {
         doSlide(val)
       }
       !pre && window.addEventListener('renderend', this._updateIndex)
-    } else {
+    }
+    else {
       doSlide(val)
     }
   },
