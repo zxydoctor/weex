@@ -1603,7 +1603,6 @@ Something you have to do is to render weex view with specific URL, then add it t
     _instance = [[WXSDKInstance alloc] init];
     _instance.viewController = self;
     _instance.frame = self.view.frame; 
-    [_instance renderWithURL:self.url options:@{@&quot;bundleUrl&quot;:[self.url absoluteString]} data:nil];
 
     __weak typeof(self) weakSelf = self;
     _instance.onCreate = ^(UIView *view) {
@@ -1618,6 +1617,7 @@ Something you have to do is to render weex view with specific URL, then add it t
     _instance.renderFinish = ^ (UIView *view) {
         //process renderFinish
     };
+    [_instance renderWithURL:self.url options:@{@&quot;bundleUrl&quot;:[self.url absoluteString]} data:nil];
 }
 </code></pre><p>WXSDKInstance is a very imporent class, which provides you with some basic methods and callbacks, such as renderWithURL&#x3001;onCreate&#x3001;onFailed and etc. You can understand their usage by reading WXSDKInstance.h.</p>
 <h4 id="5-destroy-weex-instance">5. Destroy Weex Instance</h4>
@@ -1679,7 +1679,7 @@ Something you have to do is to render weex view with specific URL, then add it t
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"next":{"title":"Integrate to web","level":"1.2.4.5","depth":3,"path":"advanced/integrate-to-html5.md","ref":"advanced/integrate-to-html5.md","articles":[]},"previous":{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"path":"advanced/integrate-to-android.md","ref":"advanced/integrate-to-android.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/integrate-to-ios.md","mtime":"2016-08-08T10:31:16.606Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-08T10:31:34.537Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"next":{"title":"Integrate to web","level":"1.2.4.5","depth":3,"path":"advanced/integrate-to-html5.md","ref":"advanced/integrate-to-html5.md","articles":[]},"previous":{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"path":"advanced/integrate-to-android.md","ref":"advanced/integrate-to-android.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/integrate-to-ios.md","mtime":"2016-08-09T09:02:19.237Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-09T09:02:27.094Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
