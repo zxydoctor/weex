@@ -34,6 +34,13 @@
     [self.wx_component layoutDidFinish];
 }
 
+- (void)setDataSource:(id)dataSource
+{    
+    if (dataSource || (!dataSource && self.tag == 1)) {
+        [super setDataSource:dataSource];
+    }
+}
+
 @end
 
 @interface WXHeaderComponent : WXComponent
@@ -174,6 +181,7 @@
 {
     [super viewWillUnload];
     
+    _tableView.tag = 1;
     _tableView.delegate = nil;
     _tableView.dataSource = nil;
 }
