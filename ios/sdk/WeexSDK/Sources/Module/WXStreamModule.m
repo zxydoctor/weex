@@ -102,17 +102,18 @@ WX_EXPORT_METHOD(@selector(fetch:callback:progressCallback:))
     [networkHandler sendRequest:request
                 withSendingData:^(int64_t bytesSent, int64_t totalBytes) {
                 } withResponse:^(NSURLResponse *response) {
-                    httpResponse = (NSHTTPURLResponse*)response;
-                    respEncode = httpResponse.textEncodingName;
-                    [callbackRsp setObject:@{ @"HEADERS_RECEIVED" : @2  } forKey:@"readyState"];
-                    [callbackRsp setObject:[NSNumber numberWithInteger:httpResponse.statusCode] forKey:@"status"];
-                    [callbackRsp setObject:httpResponse.allHeaderFields forKey:@"headers"];
-                    statusText = [weakSelf.class getStatusText:httpResponse.statusCode];
-                    [callbackRsp setObject:statusText forKey:@"statusText"];
-                    [callbackRsp setObject:[NSNumber numberWithInteger:received] forKey:@"length"];
-                    
-                    [[WXSDKManager bridgeMgr] callBack:weakSelf.weexInstance.instanceId funcId:progressCallback params:[WXUtility JSONString:callbackRsp] keepAlive:true];
-                    
+                    if (weakSelf) {
+                        httpResponse = (NSHTTPURLResponse*)response;
+                        respEncode = httpResponse.textEncodingName;
+                        [callbackRsp setObject:@{ @"HEADERS_RECEIVED" : @2  } forKey:@"readyState"];
+                        [callbackRsp setObject:[NSNumber numberWithInteger:httpResponse.statusCode] forKey:@"status"];
+                        [callbackRsp setObject:httpResponse.allHeaderFields forKey:@"headers"];
+                        statusText = [weakSelf.class getStatusText:httpResponse.statusCode];
+                        [callbackRsp setObject:statusText forKey:@"statusText"];
+                        [callbackRsp setObject:[NSNumber numberWithInteger:received] forKey:@"length"];
+                        
+                        [[WXSDKManager bridgeMgr] callBack:weakSelf.weexInstance.instanceId funcId:progressCallback params:[WXUtility JSONString:callbackRsp] keepAlive:true];
+                    }
                 } withReceiveData:^(NSData *data) {
                     [callbackRsp setObject:@{ @"LOADING" : @3  } forKey:@"readyState"];
                     received += [data length];
