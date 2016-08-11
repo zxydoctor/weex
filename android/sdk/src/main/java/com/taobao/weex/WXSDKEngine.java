@@ -111,17 +111,27 @@
 package com.taobao.weex;
 
 import android.app.Application;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.taobao.weex.adapter.IWXHttpAdapter;
 import com.taobao.weex.adapter.IWXImgLoaderAdapter;
 import com.taobao.weex.adapter.IWXUserTrackAdapter;
+import com.taobao.weex.appfram.clipboard.WXClipboardModule;
 import com.taobao.weex.appfram.navigator.IActivityNavBarSetter;
 import com.taobao.weex.appfram.navigator.WXNavigatorModule;
+import com.taobao.weex.appfram.storage.IWXStorageAdapter;
+import com.taobao.weex.appfram.storage.WXStorageModule;
 import com.taobao.weex.bridge.ModuleFactory;
 import com.taobao.weex.bridge.WXBridgeManager;
 import com.taobao.weex.bridge.WXModuleManager;
-import com.taobao.weex.common.*;
+import com.taobao.weex.common.Destroyable;
+import com.taobao.weex.common.TypeModuleFactory;
+import com.taobao.weex.common.WXException;
+import com.taobao.weex.common.WXInstanceWrap;
+import com.taobao.weex.common.WXModule;
 import com.taobao.weex.dom.WXDomModule;
 import com.taobao.weex.dom.WXDomObject;
 import com.taobao.weex.dom.WXDomRegistry;
@@ -129,6 +139,7 @@ import com.taobao.weex.dom.WXSwitchDomObject;
 import com.taobao.weex.dom.WXTextDomObject;
 import com.taobao.weex.dom.module.WXModalUIModule;
 import com.taobao.weex.http.WXStreamModule;
+import com.taobao.weex.ui.SimpleComponentHolder;
 import com.taobao.weex.ui.WXComponentRegistry;
 import com.taobao.weex.ui.animation.WXAnimationModule;
 import com.taobao.weex.ui.component.WXA;
@@ -136,6 +147,7 @@ import com.taobao.weex.ui.component.WXBasicComponentType;
 import com.taobao.weex.ui.component.WXComponent;
 import com.taobao.weex.ui.component.WXDiv;
 import com.taobao.weex.ui.component.WXEmbed;
+import com.taobao.weex.ui.component.WXHeader;
 import com.taobao.weex.ui.component.WXImage;
 import com.taobao.weex.ui.component.WXIndicator;
 import com.taobao.weex.ui.component.WXInput;
@@ -151,14 +163,18 @@ import com.taobao.weex.ui.component.WXWeb;
 import com.taobao.weex.ui.component.list.HorizontalListComponent;
 import com.taobao.weex.ui.component.list.WXCell;
 import com.taobao.weex.ui.component.list.WXListComponent;
+import com.taobao.weex.ui.module.WXTimerModule;
 import com.taobao.weex.ui.module.WXWebViewModule;
 import com.taobao.weex.utils.WXLogUtils;
 import com.taobao.weex.utils.WXSoInstallMgrSdk;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Map;
 
 public class WXSDKEngine {
+
+  public static final String JS_FRAMEWORK_RELOAD="js_framework_reload";
 
   private static final String V8_SO_NAME = "weexcore";
   private volatile static boolean init;
@@ -231,6 +247,7 @@ public class WXSDKEngine {
           sm.setIWXImgLoaderAdapter(config.getImgAdapter());
           sm.setIWXUserTrackAdapter(config.getUtAdapter());
           sm.setIWXDebugAdapter(config.getDebugAdapter());
+          sm.setIWXStorageAdapter(config.getStorageAdapter());
           if(config.getDebugAdapter()!=null){
             config.getDebugAdapter().initDebug(application);
           }
@@ -264,10 +281,8 @@ public class WXSDKEngine {
   private static void register() {
     try {
       registerComponent(WXBasicComponentType.TEXT, WXText.class, false);
-      registerComponent(WXBasicComponentType.IMG, WXImage.class, false);
-      registerComponent(WXBasicComponentType.DIV, WXDiv.class, false);
-      registerComponent(WXBasicComponentType.IMAGE, WXImage.class, false);
-      registerComponent(WXBasicComponentType.CONTAINER, WXDiv.class, false);
+      registerComponent(WXDiv.class, false,WXBasicComponentType.CONTAINER,WXBasicComponentType.DIV,WXBasicComponentType.HEADER,WXBasicComponentType.FOOTER);
+      registerComponent(WXImage.class, false,WXBasicComponentType.IMAGE,WXBasicComponentType.IMG);
       registerComponent(WXBasicComponentType.SCROLLER, WXScroller.class, false);
       registerComponent(WXBasicComponentType.SLIDER, WXSlider.class, true);
 
@@ -284,6 +299,7 @@ public class WXSDKEngine {
       registerComponent(WXBasicComponentType.REFRESH, WXRefresh.class);
       registerComponent(WXBasicComponentType.LOADING, WXLoading.class);
       registerComponent(WXBasicComponentType.LOADING_INDICATOR, WXLoadingIndicator.class);
+      registerComponent(WXBasicComponentType.HEADER, WXHeader.class);
 
       registerModule("dom", WXDomModule.class, true);
       registerModule("modal", WXModalUIModule.class, false);
@@ -292,19 +308,22 @@ public class WXSDKEngine {
       registerModule("webview", WXWebViewModule.class, true);
       registerModule("navigator", WXNavigatorModule.class);
       registerModule("stream", WXStreamModule.class);
+      registerModule("timer", WXTimerModule.class, true);
+      registerModule("storage", WXStorageModule.class, true);
+      registerModule("clipboard", WXClipboardModule.class, true);
 
       registerDomObject(WXBasicComponentType.TEXT, WXTextDomObject.class);
       registerDomObject(WXBasicComponentType.INPUT, WXTextDomObject.class);
       registerDomObject(WXBasicComponentType.SWITCH, WXSwitchDomObject.class);
     } catch (WXException e) {
-      WXLogUtils.e("[WXSDKEngine] register:" + WXLogUtils.getStackTrace(e));
+      WXLogUtils.e("[WXSDKEngine] register:", e);
     }
   }
 
   /**
    *
    * Register component. The registration is singleton in {@link WXSDKEngine} level
-   * @param type name of component. Same as type filed in the JS.
+   * @param type name of component. Same as type field in the JS.
    * @param clazz the class of the {@link WXComponent} to be registered.
    * @param appendTree true for appendTree flag
    * @return true for registration success, false for otherwise.
@@ -320,13 +339,18 @@ public class WXSDKEngine {
    * @param clazz the class of the {@link WXComponent} to be registered.
    * @param appendTree true for appendTree flag
    * @return true for registration success, false for otherwise.
-   * @param names names(alias) of component. Same as type filed in the JS.
+   * @param names names(alias) of component. Same as type field in the JS.
    * @throws WXException Throws exception if type conflicts.
    */
   public static boolean registerComponent(Class<? extends WXComponent> clazz, boolean appendTree,String ... names) throws WXException {
     boolean result =  true;
+    SimpleComponentHolder holder = new SimpleComponentHolder(clazz);
+    Map<String, String> componentInfo = new HashMap<>();
+    if (appendTree) {
+      componentInfo.put("append", "tree");
+    }
     for(String name:names) {
-      result  = result && WXComponentRegistry.registerComponent(name, clazz, appendTree);
+      result  = result && WXComponentRegistry.registerComponent(name, holder, componentInfo);
     }
     return result;
   }
@@ -394,11 +418,18 @@ public class WXSDKEngine {
   }
 
   public static boolean registerComponent(String type, Class<? extends WXComponent> clazz) throws WXException {
-    return WXComponentRegistry.registerComponent(type, clazz, true);
+    return WXComponentRegistry.registerComponent(type, new SimpleComponentHolder(clazz),new HashMap<String, String>());
   }
 
   public static boolean registerComponent(Map<String, String> componentInfo, Class<? extends WXComponent> clazz) throws WXException {
-    return WXComponentRegistry.registerComponent(componentInfo, clazz);
+    if(componentInfo == null){
+      return false;
+    }
+    String type = componentInfo.get("type");
+    if(TextUtils.isEmpty(type)){
+      return false;
+    }
+    return WXComponentRegistry.registerComponent(type,new SimpleComponentHolder(clazz), componentInfo);
   }
 
   public static void addCustomOptions(String key, String value) {
@@ -435,6 +466,11 @@ public class WXSDKEngine {
     WXSDKManager.getInstance().setIWXHttpAdapter(IWXHttpAdapter);
   }
 
+  public static IWXStorageAdapter getIWXStorageAdapter() {
+    return WXSDKManager.getInstance().getIWXStorageAdapter();
+  }
+
+
   public static IActivityNavBarSetter getActivityNavBarSetter() {
     return WXSDKManager.getInstance().getActivityNavBarSetter();
   }
@@ -455,9 +491,9 @@ public class WXSDKEngine {
       WXEnvironment.sDebugMode = true;
       WXEnvironment.sDebugWsUrl = debugUrl;
       try {
-        Class cls = Class.forName("com.taobao.weex.WXDebugTool");
-        Method m = cls.getMethod("connect", new Class[]{String.class});
-        m.invoke(cls, new Object[]{debugUrl});
+        Class<?> cls = Class.forName("com.taobao.weex.WXDebugTool");
+        Method m = cls.getMethod("connect", String.class);
+        m.invoke(cls, debugUrl);
       } catch (Exception e) {
         Log.d("weex","WXDebugTool not found!");
       }
@@ -465,12 +501,31 @@ public class WXSDKEngine {
       WXEnvironment.sDebugMode = false;
       WXEnvironment.sDebugWsUrl = null;
       try {
-        Class cls = Class.forName("com.taobao.weex.WXDebugTool");
-        Method m = cls.getMethod("close", new Class[]{});
-        m.invoke(cls, new Object[]{});
+        Class<?> cls = Class.forName("com.taobao.weex.WXDebugTool");
+        Method m = cls.getMethod("close");
+        m.invoke(cls);
       } catch (Exception e) {
         Log.d("weex","WXDebugTool not found!");
       }
     }
+  }
+  public static void reload(final Application application,boolean remoteDebug){
+    if(remoteDebug){
+      WXEnvironment.sRemoteDebugMode=true;
+      WXBridgeManager.getInstance().restart();
+      WXBridgeManager.getInstance().initScriptsFramework(null);
+      WXModuleManager.reload();
+      WXComponentRegistry.reload();
+      WXSDKManager.getInstance().postOnUiThread(new Runnable() {
+        @Override
+        public void run() {
+          LocalBroadcastManager.getInstance(application).sendBroadcast(new Intent(JS_FRAMEWORK_RELOAD));
+        }
+      }, 1000);
+    }
+  }
+
+  public static void reload() {
+    reload(WXEnvironment.getApplication(), WXEnvironment.sRemoteDebugMode);
   }
 }

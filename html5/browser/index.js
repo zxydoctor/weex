@@ -6,7 +6,7 @@ require('../native')
 
 require('./styles/base.css')
 
-require('./polyfill')
+// require('./polyfill')
 
 const config = require('./config')
 const Loader = require('./loader')
@@ -125,9 +125,7 @@ Weex.init = function (options) {
       new Weex(config)
     })
   }
-  else if (
-      Object.prototype.toString.call(options).slice(8, -1) === 'Object'
-    ) {
+  else if (utils.getType(options) === 'object') {
     new Weex(options)
   }
 }

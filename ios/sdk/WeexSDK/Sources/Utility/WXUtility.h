@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CommonCrypto/CommonCrypto.h>
 #import "WXDefine.h"
 #import "WXType.h"
 #import "WXLog.h"
@@ -93,6 +94,8 @@ extern _Nonnull SEL WXSwizzledSelectorForSelector(_Nonnull SEL selector);
 
 @interface WXUtility : NSObject
 
++ (void)setNotStat:(BOOL)notStat;
++ (BOOL)notStat;
 /**
  * @abstract Returns the environment of current application, you can get some nessary properties such as appVersion、sdkVersion、appName etc.
  *
@@ -100,6 +103,8 @@ extern _Nonnull SEL WXSwizzledSelectorForSelector(_Nonnull SEL selector);
  *
  */
 + (NSDictionary *_Nonnull)getEnvironment;
+
++ (NSDictionary *_Nonnull)getDebugEnvironment;
 
 /**
  * @abstract UserAgent Generation
@@ -130,6 +135,7 @@ extern _Nonnull SEL WXSwizzledSelectorForSelector(_Nonnull SEL selector);
  *
  */
 + (NSString * _Nullable)JSONString:(id _Nonnull)object;
+
 
 #define WXEncodeJson(obj)  [WXUtility JSONString:obj]
 
@@ -277,6 +283,17 @@ CGPoint WXPixelPointResize(CGPoint value);
 
 #define WXGlobalCache   [WXUtility globalCache]
 
-+ (void)addStatTrack:(NSString *_Nonnull)appName;
++ (NSURL *_Nonnull)urlByDeletingParameters:(NSURL *_Nonnull)url;
 
+/**
+ *  @abstract Returns the contents of file.
+ *
+ */
++ (NSString *_Nullable)stringWithContentsOfFile:(NSString *_Nonnull)filePath;
+
+/**
+ *  @abstract Returns md5 string.
+ *
+ */
++ (NSString *)md5:(NSString *)string;
 @end

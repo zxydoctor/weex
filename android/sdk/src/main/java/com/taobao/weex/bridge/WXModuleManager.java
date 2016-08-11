@@ -207,7 +207,9 @@ package com.taobao.weex.bridge;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.taobao.weex.WXSDKManager;
-import com.taobao.weex.common.*;
+import com.taobao.weex.common.Destroyable;
+import com.taobao.weex.common.WXException;
+import com.taobao.weex.common.WXModule;
 import com.taobao.weex.dom.WXDomModule;
 import com.taobao.weex.utils.WXLogUtils;
 import com.taobao.weex.utils.WXReflectionUtils;
@@ -217,6 +219,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * Manager class for weex module. There are two types of modules in weex, one is instance-level module,
@@ -257,14 +260,14 @@ public class WXModuleManager {
             WXModule wxModule = factory.buildInstance();
             sGlobalModuleMap.put(moduleName, wxModule);
           } catch (Exception e) {
-            WXLogUtils.e(moduleName + " class must have a default constructor without params. " + WXLogUtils.getStackTrace(e));
+            WXLogUtils.e(moduleName + " class must have a default constructor without params. ", e);
           }
         }
 
         try {
           registerNativeModule(moduleName, factory);
         } catch (WXException e) {
-          e.printStackTrace();
+          WXLogUtils.e("", e);
         }
         registerJSModule(moduleName, factory);
       }
@@ -339,7 +342,7 @@ public class WXModuleManager {
             try {
               invoker.invoke(wxModule, params);
             } catch (Exception e) {
-              WXLogUtils.e("callModuleMethod >>> invoke module:" + WXLogUtils.getStackTrace(e));
+              WXLogUtils.e("callModuleMethod >>> invoke module:", e);
             }
           }
         }, 0);
@@ -347,7 +350,7 @@ public class WXModuleManager {
         invoker.invoke(wxModule, params);
       }
     } catch (Exception e) {
-      WXLogUtils.e("callModuleMethod >>> invoke module:" + moduleStr + ", method:" + methodStr + " failed. " + WXLogUtils.getStackTrace(e));
+      WXLogUtils.e("callModuleMethod >>> invoke module:" + moduleStr + ", method:" + methodStr + " failed. ", e);
       return false;
     } finally {
       if (wxModule instanceof WXDomModule) {
@@ -374,7 +377,7 @@ public class WXModuleManager {
         try {
           wxModule = factory.buildInstance();
         } catch (Exception e) {
-          WXLogUtils.e(moduleStr + " module build instace failed." + WXLogUtils.getStackTrace(e));
+          WXLogUtils.e(moduleStr + " module build instace failed.", e);
           return null;
         }
         moduleMap.put(moduleStr, wxModule);
@@ -398,6 +401,15 @@ public class WXModuleManager {
         ((Destroyable)module).destroy();
       }
 
+    }
+  }
+
+  public static void reload(){
+    if(sModuleFactoryMap!=null){
+      Set<String> keys=sModuleFactoryMap.keySet();
+      for(String key:keys){
+        registerJSModule(key,sModuleFactoryMap.get(key));
+      }
     }
   }
 

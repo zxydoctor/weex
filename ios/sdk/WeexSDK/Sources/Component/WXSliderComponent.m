@@ -8,6 +8,7 @@
 
 #import "WXSliderComponent.h"
 #import "WXIndicatorComponent.h"
+#import "WXComponent_internal.h"
 #import "NSTimer+Weex.h"
 #import "WXSDKManager.h"
 #import "WXUtility.h"
@@ -269,6 +270,7 @@
 @property (nonatomic, strong) NSTimer *autoTimer;
 @property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, assign) BOOL  autoPlay;
+@property (nonatomic, assign) NSUInteger interval;
 @property (nonatomic, assign) BOOL  sliderChangeEvent;
 @property (nonatomic, strong) NSMutableArray *childrenView;
 
@@ -285,10 +287,15 @@
 {
     if (self = [super initWithRef:ref type:type styles:styles attributes:attributes events:events weexInstance:weexInstance]) {
         _sliderChangeEvent = NO;
+        _interval = 3000;
         _childrenView = [NSMutableArray new];
         
         if (attributes[@"autoPlay"]) {
             _autoPlay = [attributes[@"autoPlay"] boolValue];
+        }
+        
+        if (attributes[@"interval"]) {
+            _interval = [attributes[@"interval"] integerValue];
         }
         
         self.cssNode->style.flex_direction = CSS_FLEX_DIRECTION_ROW;
@@ -324,35 +331,48 @@
 
 - (void)insertSubview:(WXComponent *)subcomponent atIndex:(NSInteger)index
 {
-    UIView *view = subcomponent.view;
-    
-    if(index < 0) {
-        [self.childrenView addObject:view];
-    }
-    else {
-        [self.childrenView insertObject:view atIndex:index];
-    }
-    
-    WXSliderView *sliderView = (WXSliderView *)self.view;
-    if ([view isKindOfClass:[WXIndicatorView class]]) {
-        [sliderView addSubview:view];
+    if (subcomponent->_positionType == WXPositionTypeFixed) {
+        [self.weexInstance.rootView addSubview:subcomponent.view];
         return;
     }
     
-    if (index == -1) {
-        [sliderView insertItemView:view atIndex:index];
-    } else {
-        NSInteger offset = 0;
-        for (int i = 0; i < [self.childrenView count]; ++i) {
-            if (index == i) break;
-            
-            if ([self.childrenView[i] isKindOfClass:[WXIndicatorView class]]) {
-                offset++;
-            }
-        }
-        [sliderView insertItemView:view atIndex:index - offset];
+    // use _lazyCreateView to forbid component like cell's view creating
+    if(_lazyCreateView) {
+        subcomponent->_lazyCreateView = YES;
     }
-    [sliderView loadData];
+    
+    if (!subcomponent->_lazyCreateView || (self->_lazyCreateView && [self isViewLoaded])) {
+        UIView *view = subcomponent.view;
+        
+        if(index < 0) {
+            [self.childrenView addObject:view];
+        }
+        else {
+            [self.childrenView insertObject:view atIndex:index];
+        }
+        
+        WXSliderView *sliderView = (WXSliderView *)self.view;
+        if ([view isKindOfClass:[WXIndicatorView class]]) {
+            [sliderView addSubview:view];
+            return;
+        }
+        
+        if (index == -1) {
+            [sliderView insertItemView:view atIndex:index];
+        } else {
+            NSInteger offset = 0;
+            for (int i = 0; i < [self.childrenView count]; ++i) {
+                if (index == i) break;
+                
+                if ([self.childrenView[i] isKindOfClass:[WXIndicatorView class]]) {
+                    offset++;
+                }
+            }
+            [sliderView insertItemView:view atIndex:index - offset];
+        }
+        
+        [sliderView loadData];
+    }
 }
 
 - (void)updateAttributes:(NSDictionary *)attributes
@@ -395,7 +415,7 @@
 {
     if (!self.autoTimer || ![self.autoTimer isValid]) {
         __weak __typeof__(self) weakSelf = self;
-        self.autoTimer = [NSTimer wx_scheduledTimerWithTimeInterval:3 block:^() {
+        self.autoTimer = [NSTimer wx_scheduledTimerWithTimeInterval:_interval/1000.0f block:^() {
             [weakSelf _autoPlayOnTimer];
         } repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:self.autoTimer forMode:NSRunLoopCommonModes];
@@ -413,8 +433,16 @@
 - (void)_autoPlayOnTimer
 {
     WXSliderView *sliderView = (WXSliderView *)self.view;
-    if (self.currentIndex < self.childrenView.count - 1) {
-        self.currentIndex ++;
+
+    int indicatorCnt = 0;
+    for (int i = 0; i < [self.childrenView count]; ++i) {
+        if ([self.childrenView[i] isKindOfClass:[WXIndicatorView class]]) {
+            indicatorCnt++;
+        }
+    }
+    
+    self.currentIndex ++;
+    if (self.currentIndex < self.childrenView.count - indicatorCnt) {
         [sliderView scroll2ItemView:self.currentIndex animated:YES];
     } else {
         self.currentIndex = 0;

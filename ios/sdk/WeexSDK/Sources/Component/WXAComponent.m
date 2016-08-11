@@ -48,21 +48,12 @@
                                                             withContainer:)]) {
             __weak typeof(self) weexSelf = self;
             [navigationHandler pushViewControllerWithParam:@{@"url":_href} completion:^(NSString *code, NSDictionary *responseData) {
-                WXLogVerbose(@"Push success -> %@", weexSelf.href);
+                WXLogDebug(@"Push success -> %@", weexSelf.href);
             } withContainer:self.weexInstance.viewController];
         } else {
             WXLogError(@"Event handler of class %@ does not respond to pushViewControllerWithParam", NSStringFromClass([navigationHandler class]));
         }
     }
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    if (gestureRecognizer == _tap) return YES;
-    
-    if (otherGestureRecognizer == _tap) return YES;
-    
-    return [super gestureRecognizer:gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:otherGestureRecognizer];
 }
 
 - (void)updateAttributes:(NSDictionary *)attributes

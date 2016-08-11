@@ -88,16 +88,14 @@
     
 #ifdef DEBUG
     [WXDebugTool setDebug:YES];
-    [WXLog setLogLevel:WXLogLevelInfo];
-#else
-    [WXDebugTool setDebug:NO];
-#endif
- 
-#ifndef UITEST
-    [[ATManager shareInstance] show];
+    [WXLog setLogLevel:WXLogLevelLog];
 #else
     [WXDebugTool setDebug:NO];
     [WXLog setLogLevel:WXLogLevelError];
+#endif
+    
+#ifndef UITEST
+    [[ATManager shareInstance] show];
 #endif
     
 }
@@ -181,7 +179,7 @@
 
 - (void)atAddPlugin {
     
-    [[ATManager shareInstance] addPluginWithId:@"weex" andName:@"weex" andIconName:@"weex" andEntry:@"" andArgs:@[@""]];
+    [[ATManager shareInstance] addPluginWithId:@"weex" andName:@"weex" andIconName:@"../weex" andEntry:@"" andArgs:@[@""]];
     [[ATManager shareInstance] addSubPluginWithParentId:@"weex" andSubId:@"logger" andName:@"logger" andIconName:@"log" andEntry:@"WXATLoggerPlugin" andArgs:@[@""]];
 //    [[ATManager shareInstance] addSubPluginWithParentId:@"weex" andSubId:@"viewHierarchy" andName:@"hierarchy" andIconName:@"log" andEntry:@"WXATViewHierarchyPlugin" andArgs:@[@""]];
     [[ATManager shareInstance] addSubPluginWithParentId:@"weex" andSubId:@"test2" andName:@"test" andIconName:@"at_arr_refresh" andEntry:@"" andArgs:@[]];

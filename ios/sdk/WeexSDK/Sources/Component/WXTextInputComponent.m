@@ -54,6 +54,7 @@
 //attribute
 @property (nonatomic, strong) UIColor *placeholderColor;
 @property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic) NSUInteger maxLength;
 //style
 @property (nonatomic) WXPixelType fontSize;
 @property (nonatomic) WXTextStyle fontStyle;
@@ -64,6 +65,7 @@
 @property (nonatomic) BOOL focusEvent;
 @property (nonatomic) BOOL blurEvent;
 @property (nonatomic) BOOL changeEvent;
+@property (nonatomic) BOOL clickEvent;
 @property (nonatomic, strong) NSString *changeEventString;
 
 @end
@@ -87,6 +89,7 @@
         _focusEvent = NO;
         _blurEvent = NO;
         _changeEvent = NO;
+        _clickEvent = NO;
         
         _inputView = [[WXTextInputView alloc] init];
         if (attributes[@"type"]) {
@@ -107,6 +110,11 @@
         }
         if (attributes[@"value"]) {
             _inputView.text = attributes[@"value"];
+        }
+        if (attributes[@"maxlength"]) {
+            _maxLength = [attributes[@"maxlength"] integerValue];
+        } else {
+            _maxLength = 0;
         }
         
         if (styles[@"color"]) {
@@ -193,6 +201,9 @@
     if ([eventName isEqualToString:@"change"]) {
         _changeEvent = YES;
     }
+    if ([eventName isEqualToString:@"click"]) {
+        _clickEvent = YES;
+    }
 }
 
 #pragma Remove Event
@@ -211,6 +222,9 @@
     if ([eventName isEqualToString:@"change"]) {
         _changeEvent = NO;
     }
+    if ([eventName isEqualToString:@"click"]) {
+        _clickEvent = NO;
+    }
 }
 
 #pragma mark - upate attributes
@@ -226,6 +240,10 @@
     if (attributes[@"disabled"]) {
         [_inputView setEnabled:[attributes[@"disabled"] boolValue]];
     }
+    if (attributes[@"maxlength"]) {
+        _maxLength = [attributes[@"maxlength"] integerValue];
+    }
+    
     if (attributes[@"placeholder"]) {
         _placeholder = attributes[@"placeholder"];
         _inputView.placeholder = _placeholder;
@@ -277,6 +295,37 @@
     }
 }
 
+- (CGSize (^)(CGSize))measureBlock
+{
+    __weak typeof(self) weakSelf = self;
+    return ^CGSize (CGSize constrainedSize) {
+        
+        CGSize computedSize = [[[NSString alloc] init]sizeWithAttributes:nil];
+        //TODO:more elegant way to use max and min constrained size
+        if (!isnan(weakSelf.cssNode->style.minDimensions[CSS_WIDTH])) {
+            computedSize.width = MAX(computedSize.width, weakSelf.cssNode->style.minDimensions[CSS_WIDTH]);
+        }
+        
+        if (!isnan(weakSelf.cssNode->style.maxDimensions[CSS_WIDTH])) {
+            computedSize.width = MIN(computedSize.width, weakSelf.cssNode->style.maxDimensions[CSS_WIDTH]);
+        }
+        
+        if (!isnan(weakSelf.cssNode->style.minDimensions[CSS_HEIGHT])) {
+            computedSize.width = MAX(computedSize.height, weakSelf.cssNode->style.minDimensions[CSS_HEIGHT]);
+        }
+        
+        if (!isnan(weakSelf.cssNode->style.maxDimensions[CSS_HEIGHT])) {
+            computedSize.width = MIN(computedSize.height, weakSelf.cssNode->style.maxDimensions[CSS_HEIGHT]);
+        }
+        
+        return (CGSize) {
+            WXCeilPixelValue(computedSize.width),
+            WXCeilPixelValue(computedSize.height)
+        };
+    };
+}
+
+
 #pragma mark -
 #pragma mark UITextFieldDelegate
 
@@ -286,13 +335,30 @@
     if (_focusEvent) {
         [self fireEvent:@"focus" params:nil];
     }
+    if (_clickEvent) {
+        [self fireEvent:@"click" params:nil];
+    }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (_maxLength) {
+        NSUInteger oldLength = [textField.text length];
+        NSUInteger replacementLength = [string length];
+        NSUInteger rangeLength = range.length;
+        
+        NSUInteger newLength = oldLength - rangeLength + replacementLength;
+        
+        return newLength <= _maxLength ;
+    }
+    return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (_changeEvent) {
         if (![[textField text] isEqualToString:_changeEventString]) {
-            [self fireEvent:@"change" params:@{@"value":[textField text]}];
+            [self fireEvent:@"change" params:@{@"value":[textField text]} domChanges:@{@"value":[textField text]}];
         }
     }
     if (_blurEvent) {

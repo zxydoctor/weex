@@ -14,6 +14,10 @@
 #import <objc/message.h>
 #import <sys/utsname.h>
 #import <UIKit/UIScreen.h>
+#import <Security/Security.h>
+
+#define KEY_PASSWORD  @"com.taobao.Weex.123456"
+#define KEY_USERNAME_PASSWORD  @"com.taobao.Weex.weex123456"
 
 void WXPerformBlockOnMainThread(void (^ _Nonnull block)())
 {
@@ -80,26 +84,6 @@ CGSize WXScreenSize(void)
     return [UIScreen mainScreen].bounds.size;
 }
 
-CGFloat WXScreenResizeRadio(void)
-{
-    static CGFloat resizeScale;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        CGSize size = WXScreenSize();
-        CGFloat deviceWidth;
-        if (size.width > size.height) {
-            // Landscape
-            deviceWidth = size.height;
-        } else {
-            deviceWidth = size.width;
-        }
-        
-        resizeScale = deviceWidth / WXDefaultScreenWidth;
-    });
-    
-    return resizeScale;
-}
-
 CGFloat WXRoundPixelValue(CGFloat value)
 {
     CGFloat scale = WXScreenScale();
@@ -138,13 +122,13 @@ CGPoint WXPixelPointResize(CGPoint value)
                               value.y * WXScreenResizeRadio());
     return new;
 }
-
+static BOOL WXNotStat;
 @implementation WXUtility
 
 + (NSDictionary *)getEnvironment
 {
     NSString *platform = @"iOS";
-    NSString *sysVersion = [[UIDevice currentDevice] systemVersion];
+    NSString *sysVersion = [[UIDevice currentDevice] systemVersion] ?: @"";
     NSString *weexVersion = WX_SDK_VERSION;
     NSString *machine = [self deviceName] ? : @"";
     NSString *appVersion = [WXAppConfiguration appVersion] ? : @"";
@@ -164,8 +148,24 @@ CGPoint WXPixelPointResize(CGPoint value)
                                     @"deviceWidth":@(deviceWidth * scale),
                                     @"deviceHeight":@(deviceHeight * scale),
                                     @"scale":@(scale),
-                                    @"logLevel":[WXLog logLevelString]
+                                    @"logLevel":[WXLog logLevelString] ?: @"error"
                                 }];
+    return data;
+}
+
++ (NSDictionary *)getDebugEnvironment {
+    NSString *platform = @"iOS";
+    NSString *weexVersion = [WXSDKEngine SDKEngineVersion];
+    NSString *machine = [self registeredDeviceName] ? : @"";
+    NSString *appName = [WXAppConfiguration appName] ? : @"";
+    NSString *deviceID = [self getDeviceID];
+    NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                            @"platform":platform,
+                                                            @"weexVersion":weexVersion,
+                                                            @"model":machine,
+                                                            @"name":appName,
+                                                            @"deviceId":deviceID,
+                                                        }];
     return data;
 }
 
@@ -364,26 +364,144 @@ CGPoint WXPixelPointResize(CGPoint value)
 {
     struct utsname systemInfo;
     uname(&systemInfo);
-    return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    NSString *machine = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    return machine;
 }
 
-+ (void)addStatTrack:(NSString *)appName
++ (NSString *)registeredDeviceName
 {
-    if (!appName) {
-        return;
+    NSString *machine = [[UIDevice currentDevice] model];
+    NSString *systemVer = [[UIDevice currentDevice] systemVersion] ? : @"";
+    NSString *model = [NSString stringWithFormat:@"%@:%@",machine,systemVer];
+    return model;
+}
+
+CGFloat WXScreenResizeRadio(void)
+{
+    return [WXUtility screenResizeScale];
+}
+
++ (CGFloat)screenResizeScale
+{
+    static CGFloat resizeScale;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        CGSize size = WXScreenSize();
+        CGFloat deviceWidth;
+        if (size.width > size.height) {
+            // Landscape
+            deviceWidth = size.height;
+        } else {
+            deviceWidth = size.width;
+        }
+        
+        resizeScale = deviceWidth / WXDefaultScreenWidth;
+    });
+    
+    return resizeScale;
+}
+
+#pragma mark - get deviceID
++ (NSString *)getDeviceID {
+    NSMutableDictionary *usernamepasswordKVPairs = (NSMutableDictionary *)[self load:KEY_USERNAME_PASSWORD];
+    NSString *deviceID = [usernamepasswordKVPairs objectForKey:KEY_PASSWORD];
+    if (!deviceID) {
+        CFUUIDRef uuid = CFUUIDCreate(NULL);
+        deviceID = CFBridgingRelease(CFUUIDCreateString(NULL, uuid));
+        assert(deviceID);
+        CFRelease(uuid);
+        NSMutableDictionary *usernamepasswordKVPairs = [NSMutableDictionary dictionary];
+        [usernamepasswordKVPairs setObject:deviceID forKey:KEY_PASSWORD];
+        [self save:KEY_USERNAME_PASSWORD data:usernamepasswordKVPairs];
     }
+    return deviceID;
+}
+
++ (NSMutableDictionary *)getKeychainQuery:(NSString *)service {
+    return [NSMutableDictionary dictionaryWithObjectsAndKeys:
+            (id)kSecClassGenericPassword,(id)kSecClass,
+            service, (id)kSecAttrService,
+            service, (id)kSecAttrAccount,
+            (id)kSecAttrAccessibleAfterFirstUnlock,(id)kSecAttrAccessible,
+            nil];
+}
+
++ (void)save:(NSString *)service data:(id)data {
+    //Get search dictionary
+    NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
+    //Delete old item before add new item
+    SecItemDelete((CFDictionaryRef)keychainQuery);
+    //Add new object to search dictionary(Attention:the data format)
+    [keychainQuery setObject:[NSKeyedArchiver archivedDataWithRootObject:data] forKey:(id)kSecValueData];
+    //Add item to keychain with the search dictionary
+    SecItemAdd((CFDictionaryRef)keychainQuery, NULL);
+}
+
++ (id)load:(NSString *)service {
+    id ret = nil;
+    NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
+    //Configure the search setting
+    //Since in our simple case we are expecting only a single attribute to be returned (the password) we can set the attribute kSecReturnData to kCFBooleanTrue
+    [keychainQuery setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnData];
+    [keychainQuery setObject:(id)kSecMatchLimitOne forKey:(id)kSecMatchLimit];
+    CFDataRef keyData = NULL;
+    if (SecItemCopyMatching((CFDictionaryRef)keychainQuery, (CFTypeRef *)&keyData) == noErr) {
+        @try {
+            ret = [NSKeyedUnarchiver unarchiveObjectWithData:(__bridge NSData *)keyData];
+        } @catch (NSException *e) {
+            NSLog(@"Unarchive of %@ failed: %@", service, e);
+        } @finally {
+        }
+    }
+    if (keyData)
+        CFRelease(keyData);
+    return ret;
+}
+
++ (void)delete:(NSString *)service {
+    NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
+    SecItemDelete((CFDictionaryRef)keychainQuery);
+}
+
++ (void)setNotStat:(BOOL)notStat {
+    WXNotStat = YES;
+}
+
++ (BOOL)notStat {
+    return WXNotStat;
+}
+
++ (NSURL *)urlByDeletingParameters:(NSURL *)url
+{
+    NSURLComponents *components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
+    components.query = nil;     // remove the query
+    components.fragment = nil;
+    return [components URL];
+}
+
++ (NSString *)stringWithContentsOfFile:(NSString *)filePath
+{
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSString *contents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
+        if (contents) {
+            return contents;
+        }
+    }
+    return nil;
+}
+
++ (NSString *)md5:(NSString *)string
+{
+    const char *str = string.UTF8String;
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(str, (CC_LONG)strlen(str), result);
     
-    // App name for non-commercial use
-    NSString *urlString = [NSString stringWithFormat:@"http://gm.mmstat.com/weex.1003?appname=%@", appName];
-    NSURL *URL = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                            completionHandler:
-                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                  }];
-    [task resume];
+    return [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+            result[0], result[1], result[2], result[3],
+            result[4], result[5], result[6], result[7],
+            result[8], result[9], result[10], result[11],
+            result[12], result[13], result[14], result[15]
+            ];
 }
 
 @end
