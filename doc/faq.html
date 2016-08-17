@@ -1645,6 +1645,36 @@ __weex_define__(<span class="hljs-string">&apos;@weex-temp/x&apos;</span>, <span
 modal.toast({message: <span class="hljs-string">&apos;hello&apos;</span>})
 </code></pre>
 <p>We will bring a better syntax design in the future.</p>
+<h2 id="how-to-detect-an-native-modulecomponent-supported-in-javascript">How to detect an native module/component supported in JavaScript?</h2>
+<h3 id="detect-native-module">Detect native module</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> xxx = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/xxx&apos;</span>)
+<span class="hljs-keyword">if</span> (xxx) {
+  <span class="hljs-comment">// todo: use this module</span>
+}
+<span class="hljs-keyword">else</span> {
+  <span class="hljs-comment">// todo: handle the exception</span>
+}
+</code></pre>
+<h3 id="detect-native-component">Detect native component</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">component</span> <span class="hljs-attr">is</span>=<span class="hljs-string">&quot;{{type}}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">component</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">var</span> type = <span class="hljs-string">&apos;xxx&apos;</span>
+  <span class="hljs-keyword">var</span> xxx = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-component/xxx&apos;</span>)
+  <span class="hljs-keyword">if</span> (!xxx) {
+    type = <span class="hljs-string">&apos;div&apos;</span> <span class="hljs-comment">// downgrade to &lt;div&gt;</span>
+  }
+  <span class="hljs-built_in">module</span>.exports = {
+    data: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> {
+        type: type
+      }
+    }
+  }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
 
                                 
                                 </section>
@@ -1684,7 +1714,7 @@ modal.toast({message: <span class="hljs-string">&apos;hello&apos;</span>})
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"FAQ","level":"1.6","depth":1,"previous":{"title":"Playground App","level":"1.5.4","depth":2,"path":"tools/playground-app.md","ref":"tools/playground-app.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"faq.md","mtime":"2016-08-16T10:19:37.770Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-16T10:19:52.936Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"FAQ","level":"1.6","depth":1,"previous":{"title":"Playground App","level":"1.5.4","depth":2,"path":"tools/playground-app.md","ref":"tools/playground-app.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"faq.md","mtime":"2016-08-17T02:13:17.474Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-17T02:13:25.991Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
