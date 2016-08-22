@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1607,10 +1611,10 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="integrate-to-android">Integrate to Android</h1>
+                                <h1 id="integrate-to-android"><a name="integrate-to-android" class="plugin-anchor" href="#integrate-to-android"><i class="fa fa-link" aria-hidden="true"></i></a>Integrate to Android</h1>
 <p><a href="https://github.com/weexteam/article/issues/25" class="weex-translate" target="_blank">cn</a></p>
 <p>When you need to use the new features or to customize specific features, you can rely on the Source SDK for development&#x3002;</p>
-<h2 id="prerequisites">Prerequisites</h2>
+<h2 id="prerequisites"><a name="prerequisites" class="plugin-anchor" href="#prerequisites"><i class="fa fa-link" aria-hidden="true"></i></a>Prerequisites</h2>
 <p>Assuming you have the Android SDK installed, run <code>android</code> to open the Android SDK Manager.</p>
 <p>Make sure you have the following installed:</p>
 <ol>
@@ -1625,12 +1629,12 @@ ndk.dir=absolute_path_to_android_ndk
 </code></pre><p>Example:</p>
 <pre><code>sdk.dir=/Users/your_name/android-sdk-macosx
 ndk.dir=/Users/your_name/android-ndk-r10e
-</code></pre><h2 id="building-the-source">Building the source</h2>
-<h4 id="1-clone-source-from-github">1. Clone source from github</h4>
+</code></pre><h2 id="building-the-source"><a name="building-the-source" class="plugin-anchor" href="#building-the-source"><i class="fa fa-link" aria-hidden="true"></i></a>Building the source</h2>
+<h4 id="1-clone-source-from-github"><a name="1-clone-source-from-github" class="plugin-anchor" href="#1-clone-source-from-github"><i class="fa fa-link" aria-hidden="true"></i></a>1. Clone source from github</h4>
 <p>First, you need to git clone <code>weex</code> from github:</p>
 <pre><code class="lang-shell">git clone https://github.com/alibaba/weex.git
 </code></pre>
-<h5 id="2-build-apk">2. Build APK</h5>
+<h5 id="2-build-apk"><a name="2-build-apk" class="plugin-anchor" href="#2-build-apk"><i class="fa fa-link" aria-hidden="true"></i></a>2. Build APK</h5>
 <p>  <strong><em>   1) Android stuido build APK </em></strong></p>
 <pre><code>     Step 1: run android stuido 
      Step 2: open the file of ~/weex/android/playground/build.gradle 
@@ -1640,7 +1644,7 @@ ndk.dir=/Users/your_name/android-ndk-r10e
      Step 2: run the build command: ./gradlew clean assemble
      Step 3: obtain the payground APK from the direction of weex/android/playground/app/build/outputs/apk/
      Step 3: then adb install -r weex/android/playground/app/build/outputs/apk/playgroud.apk
-</code></pre><h4 id="3-adding-the-weexsdkandroid-project">3. Adding the <code>:weex_sdk_android</code> project</h4>
+</code></pre><h4 id="3-adding-the-weexsdkandroid-project"><a name="3-adding-the-weexsdkandroid-project" class="plugin-anchor" href="#3-adding-the-weexsdkandroid-project"><i class="fa fa-link" aria-hidden="true"></i></a>3. Adding the <code>:weex_sdk_android</code> project</h4>
 <p>Add the <code>:weex_sdk_android</code> project in <code>android/settings.gradle</code>:</p>
 <pre><code class="lang-gradle"><span class="hljs-keyword">include</span> <span class="hljs-string">&apos;:weex_sdk_android&apos;</span>
 
@@ -1657,39 +1661,39 @@ ndk.dir=/Users/your_name/android-ndk-r10e
     ...
 }
 </code></pre>
-<h4 id="3-making-3rd-party-modules-use-your-project">3. Making 3rd-party modules use your project</h4>
+<h4 id="3-making-3rd-party-modules-use-your-project"><a name="3-making-3rd-party-modules-use-your-project" class="plugin-anchor" href="#3-making-3rd-party-modules-use-your-project"><i class="fa fa-link" aria-hidden="true"></i></a>3. Making 3rd-party modules use your project</h4>
 <p>If you use 3rd-party weex modules, you need to override their dependencies so that they don&apos;t build the pre-compiled library. Otherwise you&apos;ll get an error while compiling - <code>Error: more than one library with package name &apos;com.taobao.weex&apos;</code>.</p>
 <p>Modify your <code>android/app/build.gradle</code> and replace <code>compile project(&apos;:weex-custom-module&apos;)</code> with:</p>
 <pre><code class="lang-gradle"><span class="hljs-keyword">compile</span>(<span class="hljs-keyword">project</span>(<span class="hljs-string">&apos;:weex-custom-module&apos;</span>)) {
     <span class="hljs-keyword">exclude</span> <span class="hljs-keyword">group</span>: <span class="hljs-string">&apos;com.taobao.weex&apos;</span>, module: <span class="hljs-string">&apos;weex_sdk_android&apos;</span>
 }
 </code></pre>
-<h4 id="4&#x3001;how-to-load-local-your-js-bundle-in-the-directory-of-android-assets">4&#x3001;How to load local Your Js bundle in the directory of Android assets</h4>
+<h4 id="4&#x3001;how-to-load-local-your-js-bundle-in-the-directory-of-android-assets"><a name="4&#x3001;how-to-load-local-your-js-bundle-in-the-directory-of-android-assets" class="plugin-anchor" href="#4&#x3001;how-to-load-local-your-js-bundle-in-the-directory-of-android-assets"><i class="fa fa-link" aria-hidden="true"></i></a>4&#x3001;How to load local Your Js bundle in the directory of Android assets</h4>
 <p>Besides load a Js Bundle online, you also can load the js bundle from the directory of Android assets.</p>
 <p>For Example:</p>
 <pre><code>   String yourbundleStr =  WXFileUtils.loadFileContent(&quot;yourBundle.js&quot;, context);
    WXSDKInstance.render(TAG, yourbundleStr, options, null, width, Height, WXRenderStrategy.APPEND_ASYNC);
-</code></pre><h2 id="building-from-android-studio">Building from Android Studio</h2>
+</code></pre><h2 id="building-from-android-studio"><a name="building-from-android-studio" class="plugin-anchor" href="#building-from-android-studio"><i class="fa fa-link" aria-hidden="true"></i></a>Building from Android Studio</h2>
 <p>From the Welcome screen of Android Studio choose &quot;Import project&quot; and select the <code>playground</code> folder of your app.</p>
 <p>You should be able to use the <em>Run</em> button to run your app on a device. </p>
-<h2 id="tip">Tip</h2>
+<h2 id="tip"><a name="tip" class="plugin-anchor" href="#tip"><i class="fa fa-link" aria-hidden="true"></i></a>Tip</h2>
 <ol>
 <li><p>Since the packet size limit is currently only compiled arm , X86 does not support.</p>
 </li>
 <li><p>Gradle build fails in <code>ndk-build</code>. See the section about <code>local.properties</code> file above.</p>
 </li>
 </ol>
-<h1 id="quick-access">Quick access</h1>
-<h2 id="requirements">Requirements</h2>
+<h1 id="quick-access"><a name="quick-access" class="plugin-anchor" href="#quick-access"><i class="fa fa-link" aria-hidden="true"></i></a>Quick access</h1>
+<h2 id="requirements"><a name="requirements" class="plugin-anchor" href="#requirements"><i class="fa fa-link" aria-hidden="true"></i></a>Requirements</h2>
 <ul>
 <li>an existing, gradle-based Android app</li>
 </ul>
-<h2 id="prepare-your-app">Prepare your app</h2>
+<h2 id="prepare-your-app"><a name="prepare-your-app" class="plugin-anchor" href="#prepare-your-app"><i class="fa fa-link" aria-hidden="true"></i></a>Prepare your app</h2>
 <p>In your app&apos;s <code>build.gradle</code> file add the WEEX dependency:</p>
 <pre><code>compile &apos;com.taobao.android:weex_sdk:0.4.1&apos;
 </code></pre><p>You can find the latest version of the WEEX library on <a href="https://bintray.com/search?query=weex_sdk&amp;forceAgnostic=true" target="_blank">jcenter</a>. Next, make sure you have the Internet permission in your <code>AndroidManifest.xml</code>:</p>
 <pre><code>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
-</code></pre><h2 id="add-native-code">Add native code</h2>
+</code></pre><h2 id="add-native-code"><a name="add-native-code" class="plugin-anchor" href="#add-native-code"><i class="fa fa-link" aria-hidden="true"></i></a>Add native code</h2>
 <p>You need to add some native code in order to start the Weex runtime and get it to render something. To do this, we&apos;re going to create an <code>Application</code> to init weex, then we we&apos;re going to create an <code>Activity</code> that creates a WeexContainerView, starts a Weex application inside it and sets it as the main content view.</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WXApplication</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Application</span> </span>{
     <span class="hljs-meta">@Override</span>
@@ -1736,7 +1740,7 @@ mInstance.registerRenderListener(<span class="hljs-keyword">new</span> IWXRender
 mInstance.render(pageName,template, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>, -<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, WXRenderStrategy.APPEND_ASYNC);
 </code></pre>
 <p>That&apos;s it, your activity is ready to run some JavaScript code.</p>
-<h2 id="reference-example">Reference Example</h2>
+<h2 id="reference-example"><a name="reference-example" class="plugin-anchor" href="#reference-example"><i class="fa fa-link" aria-hidden="true"></i></a>Reference Example</h2>
 <p><a href="https://github.com/alibaba/weex/tree/master/examples" target="_blank"><code>Weex Examples</code></a></p>
 
                                 
@@ -1781,7 +1785,7 @@ mInstance.render(pageName,template, <span class="hljs-keyword">null</span>, <spa
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"next":{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},"previous":{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/integrate-to-android.md","mtime":"2016-08-19T08:49:02.126Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-19T08:49:15.526Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"next":{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},"previous":{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/integrate-to-android.md","mtime":"2016-08-22T08:15:22.014Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

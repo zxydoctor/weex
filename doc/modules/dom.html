@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1607,16 +1611,16 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="dom">dom</h1>
+                                <h1 id="dom"><a name="dom" class="plugin-anchor" href="#dom"><i class="fa fa-link" aria-hidden="true"></i></a>dom</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/issues/52" class="weex-translate" target="_blank">cn</a></p>
-<h2 id="summary">Summary</h2>
+<h2 id="summary"><a name="summary" class="plugin-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>Summary</h2>
 <p>A series of dom apis that sending virtual-dom&apos;s messages to the native renderer to update the dom tree. The only API for developers to use in a <code>.we</code> file is <code>scrollToElement</code> <del>which you can use by calling the <code>$scrollTo</code> method</del>. Other APIs mentioned on this page should only be used through the native renderer in the <code>callNative</code> process.</p>
-<h2 id="api">API</h2>
-<h3 id="scrolltoelementnode-options">scrollToElement(node, options)</h3>
+<h2 id="api"><a name="api" class="plugin-anchor" href="#api"><i class="fa fa-link" aria-hidden="true"></i></a>API</h2>
+<h3 id="scrolltoelementnode-options"><a name="scrolltoelementnode-options" class="plugin-anchor" href="#scrolltoelementnode-options"><i class="fa fa-link" aria-hidden="true"></i></a>scrollToElement(node, options)</h3>
 <p>Scroll the page to the specified node. This API should only be used on the element in the <code>scroller</code> or <code>list</code> component.</p>
 <p><del>This API can be used by calling the VM&apos;s method <code>$scrollTo</code> <strong>(deprecated)</strong>.</del> You can use <code>require(&apos;@weex-module/dom&apos;).scrollToElement</code> to call this API in your <code>.we</code> file.</p>
-<h4 id="arguments">Arguments</h4>
+<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
 <ul>
 <li><code>node</code><em>(Node)</em>: an element that scrolled into the view.</li>
 <li><code>options</code><em>(object)</em>: some options.<ul>
@@ -1624,69 +1628,69 @@ contentLoaded(window,function(){
 </ul>
 </li>
 </ul>
-<h4 id="example">Example</h4>
+<h4 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h4>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> dom = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/dom&apos;</span>);
 dom.scrollToElement(<span class="hljs-keyword">this</span>.$el(<span class="hljs-string">&apos;someId&apos;</span>), {offset: <span class="hljs-number">10</span>});
 </code></pre>
-<h3 id="createbodyelement">createBody(element)</h3>
+<h3 id="createbodyelement"><a name="createbodyelement" class="plugin-anchor" href="#createbodyelement"><i class="fa fa-link" aria-hidden="true"></i></a>createBody(element)</h3>
 <p>Create the body for the whole dom tree. Element type should only be the ones that can be used as roots (<code>div</code>, <code>scroller</code> and <code>list</code>).</p>
-<h4 id="arguments">Arguments</h4>
+<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
 <ul>
 <li><code>element</code><em>(object)</em>: a object that specified the body node info like ref, type, children, etc.</li>
 </ul>
-<h3 id="addelementparentnode-element-index">addElement(parentNode, element, index)</h3>
+<h3 id="addelementparentnode-element-index"><a name="addelementparentnode-element-index" class="plugin-anchor" href="#addelementparentnode-element-index"><i class="fa fa-link" aria-hidden="true"></i></a>addElement(parentNode, element, index)</h3>
 <p>Add a element into the dom tree.</p>
-<h4 id="arguments">Arguments</h4>
+<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
 <ul>
 <li><code>parentNode</code><em>(Node)</em>: specify the element&apos;s parent node.</li>
 <li><code>element</code><em>(object)</em>: a object that specified the config info for the node to be added.</li>
 <li><code>index</code><em>(number)</em>: insert the element to the specified position.</li>
 </ul>
-<h3 id="removeelementnode">removeElement(node)</h3>
+<h3 id="removeelementnode"><a name="removeelementnode" class="plugin-anchor" href="#removeelementnode"><i class="fa fa-link" aria-hidden="true"></i></a>removeElement(node)</h3>
 <p>Remove a node in the dom tree.</p>
-<h4 id="arguments">Arguments</h4>
+<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
 <ul>
 <li><code>node</code><em>(Node)</em>: the node to be removed.</li>
 </ul>
-<h3 id="moveelementnode-parentnode-index">moveElement(node, parentNode, index)</h3>
+<h3 id="moveelementnode-parentnode-index"><a name="moveelementnode-parentnode-index" class="plugin-anchor" href="#moveelementnode-parentnode-index"><i class="fa fa-link" aria-hidden="true"></i></a>moveElement(node, parentNode, index)</h3>
 <p>Move a exsited node into another parent (or the same parent) before the specified position.</p>
-<h4 id="arguments">Arguments</h4>
+<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
 <ul>
 <li><code>node</code><em>(Node)</em>: the node to be moved.</li>
 <li><code>parentNode</code><em>(Node)</em>: the parent node to move into.</li>
 <li><code>index</code><em>(number)</em>:: according to the specified position index, will the node be inserted into.</li>
 </ul>
-<h3 id="addeventnode-type">addEvent(node, type)</h3>
+<h3 id="addeventnode-type"><a name="addeventnode-type" class="plugin-anchor" href="#addeventnode-type"><i class="fa fa-link" aria-hidden="true"></i></a>addEvent(node, type)</h3>
 <p>Inform the renderer that there are listeners for a specified event type.</p>
-<h4 id="arguments">Arguments</h4>
+<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
 <ul>
 <li><code>node</code><em>(Node)</em>: the node to be listened on.</li>
 <li><code>type</code><em>(string)</em>: which type of events the node should be listened for.</li>
 </ul>
-<h3 id="removeeventnode-type">removeEvent(node, type)</h3>
+<h3 id="removeeventnode-type"><a name="removeeventnode-type" class="plugin-anchor" href="#removeeventnode-type"><i class="fa fa-link" aria-hidden="true"></i></a>removeEvent(node, type)</h3>
 <p>Remove event listeners on the specified node for the specified event type.</p>
-<h4 id="arguments">Arguments</h4>
+<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
 <ul>
 <li><code>node</code><em>(Node)</em>: on which node should the listeners to be removed</li>
 <li><code>type</code><em>(string)</em>: specify the event type.</li>
 </ul>
-<h3 id="updateattrsnode-attr">updateAttrs(node, attr)</h3>
+<h3 id="updateattrsnode-attr"><a name="updateattrsnode-attr" class="plugin-anchor" href="#updateattrsnode-attr"><i class="fa fa-link" aria-hidden="true"></i></a>updateAttrs(node, attr)</h3>
 <p>Update attrbutes of the specified node.</p>
-<h4 id="arguments">Arguments</h4>
+<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
 <ul>
 <li><code>node</code><em>(Node)</em>: the node to be updated.</li>
 <li><code>attr</code><em>(object)</em>: the attributes object with the attribute items to be updated.</li>
 </ul>
-<h3 id="updatestylenode-style">updateStyle(node, style)</h3>
+<h3 id="updatestylenode-style"><a name="updatestylenode-style" class="plugin-anchor" href="#updatestylenode-style"><i class="fa fa-link" aria-hidden="true"></i></a>updateStyle(node, style)</h3>
 <p>Update styles of the specified node.</p>
-<h4 id="arguments">Arguments</h4>
+<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
 <ul>
 <li><code>node</code><em>(Node)</em>: the node to be updated.</li>
 <li><code>style</code><em>(object)</em>: the style object with the style rules to be updated.</li>
 </ul>
-<h3 id="createfinish">createFinish()</h3>
+<h3 id="createfinish"><a name="createfinish" class="plugin-anchor" href="#createfinish"><i class="fa fa-link" aria-hidden="true"></i></a>createFinish()</h3>
 <p>Notify native renders that the series of messages for updating the native dom tree have reached a end.</p>
-<h3 id="refreshfinish">refreshFinish()</h3>
+<h3 id="refreshfinish"><a name="refreshfinish" class="plugin-anchor" href="#refreshfinish"><i class="fa fa-link" aria-hidden="true"></i></a>refreshFinish()</h3>
 <p>Notify native renders that the series of messages for refreshing a native dom tree have reached a end.</p>
 
                                 
@@ -1731,7 +1735,7 @@ dom.scrollToElement(<span class="hljs-keyword">this</span>.$el(<span class="hljs
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"dom","level":"1.3.5.1","depth":3,"next":{"title":"stream","level":"1.3.5.2","depth":3,"path":"modules/stream.md","ref":"modules/stream.md","articles":[]},"previous":{"title":"Built-in Modules","level":"1.3.5","depth":2,"path":"modules/main.md","ref":"modules/main.md","articles":[{"title":"dom","level":"1.3.5.1","depth":3,"path":"modules/dom.md","ref":"modules/dom.md","articles":[]},{"title":"stream","level":"1.3.5.2","depth":3,"path":"modules/stream.md","ref":"modules/stream.md","articles":[]},{"title":"modal","level":"1.3.5.3","depth":3,"path":"modules/modal.md","ref":"modules/modal.md","articles":[]},{"title":"animation","level":"1.3.5.4","depth":3,"path":"modules/animation.md","ref":"modules/animation.md","articles":[]},{"title":"webview","level":"1.3.5.5","depth":3,"path":"modules/webview.md","ref":"modules/webview.md","articles":[]},{"title":"navigator","level":"1.3.5.6","depth":3,"path":"modules/navigator.md","ref":"modules/navigator.md","articles":[]},{"title":"storage","level":"1.3.5.7","depth":3,"path":"modules/storage.md","ref":"modules/storage.md","articles":[]},{"title":"timer","level":"1.3.5.8","depth":3,"path":"modules/timer.md","ref":"modules/timer.md","articles":[]},{"title":"clipboard","level":"1.3.5.9","depth":3,"path":"modules/clipboard.md","ref":"modules/clipboard.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"modules/dom.md","mtime":"2016-08-19T08:49:02.130Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-19T08:49:15.526Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"dom","level":"1.3.5.1","depth":3,"next":{"title":"stream","level":"1.3.5.2","depth":3,"path":"modules/stream.md","ref":"modules/stream.md","articles":[]},"previous":{"title":"Built-in Modules","level":"1.3.5","depth":2,"path":"modules/main.md","ref":"modules/main.md","articles":[{"title":"dom","level":"1.3.5.1","depth":3,"path":"modules/dom.md","ref":"modules/dom.md","articles":[]},{"title":"stream","level":"1.3.5.2","depth":3,"path":"modules/stream.md","ref":"modules/stream.md","articles":[]},{"title":"modal","level":"1.3.5.3","depth":3,"path":"modules/modal.md","ref":"modules/modal.md","articles":[]},{"title":"animation","level":"1.3.5.4","depth":3,"path":"modules/animation.md","ref":"modules/animation.md","articles":[]},{"title":"webview","level":"1.3.5.5","depth":3,"path":"modules/webview.md","ref":"modules/webview.md","articles":[]},{"title":"navigator","level":"1.3.5.6","depth":3,"path":"modules/navigator.md","ref":"modules/navigator.md","articles":[]},{"title":"storage","level":"1.3.5.7","depth":3,"path":"modules/storage.md","ref":"modules/storage.md","articles":[]},{"title":"timer","level":"1.3.5.8","depth":3,"path":"modules/timer.md","ref":"modules/timer.md","articles":[]},{"title":"clipboard","level":"1.3.5.9","depth":3,"path":"modules/clipboard.md","ref":"modules/clipboard.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"modules/dom.md","mtime":"2016-08-22T08:15:22.042Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

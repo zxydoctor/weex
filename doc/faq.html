@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1605,19 +1609,19 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="faq">FAQ</h1>
-<h2 id="command-errors-in-windows">Command errors in Windows</h2>
+                                <h1 id="faq"><a name="faq" class="plugin-anchor" href="#faq"><i class="fa fa-link" aria-hidden="true"></i></a>FAQ</h1>
+<h2 id="command-errors-in-windows"><a name="command-errors-in-windows" class="plugin-anchor" href="#command-errors-in-windows"><i class="fa fa-link" aria-hidden="true"></i></a>Command errors in Windows</h2>
 <p>Please install <a href="https://git-scm.com/download/win" target="_blank">Git for Windows</a> first, see <a href="https://github.com/alibaba/weex/tree/dev#for-windows" target="_blank">For Windows</a> for more information.</p>
-<h2 id="gradle-errors-in-android-studio">Gradle errors in Android Studio</h2>
+<h2 id="gradle-errors-in-android-studio"><a name="gradle-errors-in-android-studio" class="plugin-anchor" href="#gradle-errors-in-android-studio"><i class="fa fa-link" aria-hidden="true"></i></a>Gradle errors in Android Studio</h2>
 <p>Downloading <code>license-gradle-plugin.jar</code> may trigger errors, like <code>Connection reset</code> or <code>peer not authenticated</code>.
 Maybe a network problem, try a proxy or VPN.</p>
-<h2 id="use-local-image">Use local image</h2>
+<h2 id="use-local-image"><a name="use-local-image" class="plugin-anchor" href="#use-local-image"><i class="fa fa-link" aria-hidden="true"></i></a>Use local image</h2>
 <p>Weex&apos;s native runtime support load image file from device&apos;s disk, all you have to do set the file url like <code>file:///sdcard/image_new0.png</code>. As to load image file in your project, Weex is not support yet.   </p>
-<h2 id="error&#xFF08;the-header-content-contains-invalid-characters-in-windows">Error&#xFF08;<code>The header content contains invalid characters</code>) in windows</h2>
+<h2 id="error&#xFF08;the-header-content-contains-invalid-characters-in-windows"><a name="error&#xFF08;the-header-content-contains-invalid-characters-in-windows" class="plugin-anchor" href="#error&#xFF08;the-header-content-contains-invalid-characters-in-windows"><i class="fa fa-link" aria-hidden="true"></i></a>Error&#xFF08;<code>The header content contains invalid characters</code>) in windows</h2>
 <p>This&apos;s is caused by weex-toolkit&apos;s dependency &apos;http-server&apos;, whose old version is not working well in chinese windows environment. We have fixed that, you should upgrade weex-toolkit before use that.</p>
-<h2 id="playground-app-display-nothing-white-screen-after-scan">Playground app display nothing (white screen) after scan</h2>
+<h2 id="playground-app-display-nothing-white-screen-after-scan"><a name="playground-app-display-nothing-white-screen-after-scan" class="plugin-anchor" href="#playground-app-display-nothing-white-screen-after-scan"><i class="fa fa-link" aria-hidden="true"></i></a>Playground app display nothing (white screen) after scan</h2>
 <p>Best way to find out what&apos;s happening is read debug log, you can follow <a href="https://github.com/alibaba/weex/blob/doc/doc/tools/how-to-debug.md" target="_blank">this document</a> to firgure out how to do that.</p>
-<h2 id="about-ecmascript-version">About ECMAScript Version</h2>
+<h2 id="about-ecmascript-version"><a name="about-ecmascript-version" class="plugin-anchor" href="#about-ecmascript-version"><i class="fa fa-link" aria-hidden="true"></i></a>About ECMAScript Version</h2>
 <p>Weex uses JSCore in iOS and uses v8 in Android. So they both support ECMAScript 5 spec. Additionally, we do some polyfills in native environment:</p>
 <ul>
 <li><code>Promise</code> in iOS/Android</li>
@@ -1627,7 +1631,7 @@ Maybe a network problem, try a proxy or VPN.</p>
 <p>In Browser we contains a polyfill of <code>Promise</code> temporarily. In the future developers can choose whether to import a polyfill by configurations.</p>
 <p>You can also write ES6 syntax by <code>babel</code> with <code>webpack</code>. The loader will convert ES6 syntax into ES5 automatically.</p>
 <p>If you want more ES6 polyfills you can import them into the JS Bundle as you like.</p>
-<h2 id="dependencies-in-frontend">Dependencies in frontend</h2>
+<h2 id="dependencies-in-frontend"><a name="dependencies-in-frontend" class="plugin-anchor" href="#dependencies-in-frontend"><i class="fa fa-link" aria-hidden="true"></i></a>Dependencies in frontend</h2>
 <p>In Weex you may have some ways to import/require a component or a JS module. Take ES5 syntax for example:</p>
 <ul>
 <li><code>require(&apos;xxx.js&apos;)</code>: depends on a JS file</li>
@@ -1645,8 +1649,8 @@ __weex_define__(<span class="hljs-string">&apos;@weex-temp/x&apos;</span>, <span
 modal.toast({message: <span class="hljs-string">&apos;hello&apos;</span>})
 </code></pre>
 <p>We will bring a better syntax design in the future.</p>
-<h2 id="how-to-detect-an-native-modulecomponent-supported-in-javascript">How to detect an native module/component supported in JavaScript?</h2>
-<h3 id="detect-native-module">Detect native module</h3>
+<h2 id="how-to-detect-an-native-modulecomponent-supported-in-javascript"><a name="how-to-detect-an-native-modulecomponent-supported-in-javascript" class="plugin-anchor" href="#how-to-detect-an-native-modulecomponent-supported-in-javascript"><i class="fa fa-link" aria-hidden="true"></i></a>How to detect an native module/component supported in JavaScript?</h2>
+<h3 id="detect-native-module"><a name="detect-native-module" class="plugin-anchor" href="#detect-native-module"><i class="fa fa-link" aria-hidden="true"></i></a>Detect native module</h3>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> xxx = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/xxx&apos;</span>)
 <span class="hljs-keyword">if</span> (xxx) {
   <span class="hljs-comment">// todo: use this module</span>
@@ -1655,7 +1659,7 @@ modal.toast({message: <span class="hljs-string">&apos;hello&apos;</span>})
   <span class="hljs-comment">// todo: handle the exception</span>
 }
 </code></pre>
-<h3 id="detect-native-component">Detect native component</h3>
+<h3 id="detect-native-component"><a name="detect-native-component" class="plugin-anchor" href="#detect-native-component"><i class="fa fa-link" aria-hidden="true"></i></a>Detect native component</h3>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">component</span> <span class="hljs-attr">is</span>=<span class="hljs-string">&quot;{{type}}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">component</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
@@ -1675,7 +1679,7 @@ modal.toast({message: <span class="hljs-string">&apos;hello&apos;</span>})
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<h2 id="transfer-data-between-pages">Transfer data between pages</h2>
+<h2 id="transfer-data-between-pages"><a name="transfer-data-between-pages" class="plugin-anchor" href="#transfer-data-between-pages"><i class="fa fa-link" aria-hidden="true"></i></a>Transfer data between pages</h2>
 <p>If you have 2 pages, A and B.</p>
 <ol>
 <li>A -&gt; B, use <a href="http://alibaba.github.io/weex/doc/references/api.html#getconfig" target="_blank">getConfig api</a> or <a href="http://alibaba.github.io/weex/doc/modules/storage.html" target="_blank">storage module</a> to transfer data</li>
@@ -1720,7 +1724,7 @@ modal.toast({message: <span class="hljs-string">&apos;hello&apos;</span>})
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"FAQ","level":"1.6","depth":1,"previous":{"title":"Playground App","level":"1.5.4","depth":2,"path":"tools/playground-app.md","ref":"tools/playground-app.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"faq.md","mtime":"2016-08-19T08:49:02.126Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-19T08:49:15.526Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"FAQ","level":"1.6","depth":1,"previous":{"title":"Playground App","level":"1.5.4","depth":2,"path":"tools/playground-app.md","ref":"tools/playground-app.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"faq.md","mtime":"2016-08-22T08:15:22.018Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

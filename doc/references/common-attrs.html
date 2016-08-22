@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1607,42 +1611,42 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="common-attribute">Common Attribute</h1>
+                                <h1 id="common-attribute"><a name="common-attribute" class="plugin-anchor" href="#common-attribute"><i class="fa fa-link" aria-hidden="true"></i></a>Common Attribute</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/issues/13" class="weex-translate" target="_blank">cn</a></p>
 <p>All of weex tags share some common attributes</p>
-<h2 id="id">id</h2>
+<h2 id="id"><a name="id" class="plugin-anchor" href="#id"><i class="fa fa-link" aria-hidden="true"></i></a>id</h2>
 <pre><code>id=&quot;logo&quot;
 id=&quot;item-{{index}}&quot;
 </code></pre><p><code>id</code> gives weex tag a unique mark in <code>&lt;template&gt;</code> scope. With id attribute you can easily refer a weex tag.</p>
 <p><a href="../syntax/id.html">more information</a></p>
-<h2 id="style">style</h2>
+<h2 id="style"><a name="style" class="plugin-anchor" href="#style"><i class="fa fa-link" aria-hidden="true"></i></a>style</h2>
 <pre><code>style=&quot;width: 200; height: 200&quot;
 style=&quot;padding: {{x}}; margin: 0&quot;
 </code></pre><p>weex tag inline style.</p>
 <p><a href="../syntax/style-n-class.html">more information</a></p>
-<h2 id="class">class</h2>
+<h2 id="class"><a name="class" class="plugin-anchor" href="#class"><i class="fa fa-link" aria-hidden="true"></i></a>class</h2>
 <pre><code>class=&quot;button&quot;
 class=&quot;button {{btnStatus}}&quot;
 </code></pre><p>to add classname for weex tag, you can use class attribute for tag classification.</p>
-<h2 id="repeat">repeat</h2>
+<h2 id="repeat"><a name="repeat" class="plugin-anchor" href="#repeat"><i class="fa fa-link" aria-hidden="true"></i></a>repeat</h2>
 <pre><code>repeat=&quot;{{items}}&quot;
 </code></pre><p>provide a list of data, using current tag as a template to repeatedly generate the same weex tags.</p>
 <p><a href="../syntax/display-logic.html">more information</a></p>
-<h2 id="if">if</h2>
+<h2 id="if"><a name="if" class="plugin-anchor" href="#if"><i class="fa fa-link" aria-hidden="true"></i></a>if</h2>
 <pre><code>if=&quot;{{opened}}&quot;
 </code></pre><p>provide a boolean value to decide whether or not to display current tag.</p>
 <p><a href="../syntax/display-logic.html">more information</a></p>
-<h2 id="append">append</h2>
+<h2 id="append"><a name="append" class="plugin-anchor" href="#append"><i class="fa fa-link" aria-hidden="true"></i></a>append</h2>
 <pre><code>append=&quot;tree/node&quot;
 </code></pre><p>by providing the value of <code>tree</code> or <code>node</code>, it determines the progress of rendering.</p>
 <p><a href="../syntax/render-logic.html">more information</a></p>
-<h2 id="event-handing-on">Event Handing (on...)</h2>
+<h2 id="event-handing-on"><a name="event-handing-on" class="plugin-anchor" href="#event-handing-on"><i class="fa fa-link" aria-hidden="true"></i></a>Event Handing (on...)</h2>
 <pre><code>onclick=&quot;gotoDetail&quot;
 onappear=&quot;loadMore&quot;
 </code></pre><p>register event handlers on weex tag</p>
 <p><a href="../syntax/events.html">more information</a></p>
-<h3 id="notes">Notes!</h3>
+<h3 id="notes"><a name="notes" class="plugin-anchor" href="#notes"><i class="fa fa-link" aria-hidden="true"></i></a>Notes!</h3>
 <p>weex is basically following <a href="https://en.wikipedia.org/wiki/HTML_attribute" target="_blank">HTML attribute</a> naming rule , so please <strong>do not use CamelCase</strong> in your attribute , <strong>kebab-case</strong> with &#x201C;-&#x201D; as delimiter is much better.</p>
 
                                 
@@ -1687,7 +1691,7 @@ onappear=&quot;loadMore&quot;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Common Attributes","level":"1.3.4.1","depth":3,"next":{"title":"Common Style","level":"1.3.4.2","depth":3,"path":"references/common-style.md","ref":"references/common-style.md","articles":[{"title":"Text Style","level":"1.3.4.2.1","depth":4,"path":"references/text-style.md","ref":"references/text-style.md","articles":[]},{"title":"Color","level":"1.3.4.2.2","depth":4,"path":"references/color-names.md","ref":"references/color-names.md","articles":[]}]},"previous":{"title":"Built-in Components","level":"1.3.4","depth":2,"path":"components/main.md","ref":"components/main.md","articles":[{"title":"Common Attributes","level":"1.3.4.1","depth":3,"path":"references/common-attrs.md","ref":"references/common-attrs.md","articles":[]},{"title":"Common Style","level":"1.3.4.2","depth":3,"path":"references/common-style.md","ref":"references/common-style.md","articles":[{"title":"Text Style","level":"1.3.4.2.1","depth":4,"path":"references/text-style.md","ref":"references/text-style.md","articles":[]},{"title":"Color","level":"1.3.4.2.2","depth":4,"path":"references/color-names.md","ref":"references/color-names.md","articles":[]}]},{"title":"Common Event","level":"1.3.4.3","depth":3,"path":"references/common-event.md","ref":"references/common-event.md","articles":[]},{"title":"Special Element","level":"1.3.4.4","depth":3,"path":"components/special-element.md","ref":"components/special-element.md","articles":[]},{"title":"div","level":"1.3.4.5","depth":3,"path":"components/div.md","ref":"components/div.md","articles":[]},{"title":"scroller","level":"1.3.4.6","depth":3,"path":"components/scroller.md","ref":"components/scroller.md","articles":[]},{"title":"list","level":"1.3.4.7","depth":3,"path":"components/list.md","ref":"components/list.md","articles":[{"title":"cell","level":"1.3.4.7.1","depth":4,"path":"components/cell.md","ref":"components/cell.md","articles":[]}]},{"title":"text","level":"1.3.4.8","depth":3,"path":"components/text.md","ref":"components/text.md","articles":[]},{"title":"image","level":"1.3.4.9","depth":3,"path":"components/image.md","ref":"components/image.md","articles":[]},{"title":"input","level":"1.3.4.10","depth":3,"path":"components/input.md","ref":"components/input.md","articles":[]},{"title":"switch","level":"1.3.4.11","depth":3,"path":"components/switch.md","ref":"components/switch.md","articles":[]},{"title":"slider","level":"1.3.4.12","depth":3,"path":"components/slider.md","ref":"components/slider.md","articles":[{"title":"indicator","level":"1.3.4.12.1","depth":4,"path":"components/indicator.md","ref":"components/indicator.md","articles":[]}]},{"title":"video","level":"1.3.4.13","depth":3,"path":"components/video.md","ref":"components/video.md","articles":[]},{"title":"a","level":"1.3.4.14","depth":3,"path":"components/a.md","ref":"components/a.md","articles":[]},{"title":"web","level":"1.3.4.15","depth":3,"path":"components/web.md","ref":"components/web.md","articles":[]},{"title":"wxc-tabbar","level":"1.3.4.16","depth":3,"path":"components/wxc-tabbar.md","ref":"components/wxc-tabbar.md","articles":[]},{"title":"wxc-navpage","level":"1.3.4.17","depth":3,"path":"components/wxc-navpage.md","ref":"components/wxc-navpage.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/common-attrs.md","mtime":"2016-08-19T08:49:02.130Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-19T08:49:15.526Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Common Attributes","level":"1.3.4.1","depth":3,"next":{"title":"Common Style","level":"1.3.4.2","depth":3,"path":"references/common-style.md","ref":"references/common-style.md","articles":[{"title":"Text Style","level":"1.3.4.2.1","depth":4,"path":"references/text-style.md","ref":"references/text-style.md","articles":[]},{"title":"Color","level":"1.3.4.2.2","depth":4,"path":"references/color-names.md","ref":"references/color-names.md","articles":[]}]},"previous":{"title":"Built-in Components","level":"1.3.4","depth":2,"path":"components/main.md","ref":"components/main.md","articles":[{"title":"Common Attributes","level":"1.3.4.1","depth":3,"path":"references/common-attrs.md","ref":"references/common-attrs.md","articles":[]},{"title":"Common Style","level":"1.3.4.2","depth":3,"path":"references/common-style.md","ref":"references/common-style.md","articles":[{"title":"Text Style","level":"1.3.4.2.1","depth":4,"path":"references/text-style.md","ref":"references/text-style.md","articles":[]},{"title":"Color","level":"1.3.4.2.2","depth":4,"path":"references/color-names.md","ref":"references/color-names.md","articles":[]}]},{"title":"Common Event","level":"1.3.4.3","depth":3,"path":"references/common-event.md","ref":"references/common-event.md","articles":[]},{"title":"Special Element","level":"1.3.4.4","depth":3,"path":"components/special-element.md","ref":"components/special-element.md","articles":[]},{"title":"div","level":"1.3.4.5","depth":3,"path":"components/div.md","ref":"components/div.md","articles":[]},{"title":"scroller","level":"1.3.4.6","depth":3,"path":"components/scroller.md","ref":"components/scroller.md","articles":[]},{"title":"list","level":"1.3.4.7","depth":3,"path":"components/list.md","ref":"components/list.md","articles":[{"title":"cell","level":"1.3.4.7.1","depth":4,"path":"components/cell.md","ref":"components/cell.md","articles":[]}]},{"title":"text","level":"1.3.4.8","depth":3,"path":"components/text.md","ref":"components/text.md","articles":[]},{"title":"image","level":"1.3.4.9","depth":3,"path":"components/image.md","ref":"components/image.md","articles":[]},{"title":"input","level":"1.3.4.10","depth":3,"path":"components/input.md","ref":"components/input.md","articles":[]},{"title":"switch","level":"1.3.4.11","depth":3,"path":"components/switch.md","ref":"components/switch.md","articles":[]},{"title":"slider","level":"1.3.4.12","depth":3,"path":"components/slider.md","ref":"components/slider.md","articles":[{"title":"indicator","level":"1.3.4.12.1","depth":4,"path":"components/indicator.md","ref":"components/indicator.md","articles":[]}]},{"title":"video","level":"1.3.4.13","depth":3,"path":"components/video.md","ref":"components/video.md","articles":[]},{"title":"a","level":"1.3.4.14","depth":3,"path":"components/a.md","ref":"components/a.md","articles":[]},{"title":"web","level":"1.3.4.15","depth":3,"path":"components/web.md","ref":"components/web.md","articles":[]},{"title":"wxc-tabbar","level":"1.3.4.16","depth":3,"path":"components/wxc-tabbar.md","ref":"components/wxc-tabbar.md","articles":[]},{"title":"wxc-navpage","level":"1.3.4.17","depth":3,"path":"components/wxc-navpage.md","ref":"components/wxc-navpage.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/common-attrs.md","mtime":"2016-08-22T08:15:22.050Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

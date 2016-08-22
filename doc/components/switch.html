@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1607,19 +1611,19 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="switch">&lt;switch&gt;</h1>
+                                <h1 id="switch"><a name="switch" class="plugin-anchor" href="#switch"><i class="fa fa-link" aria-hidden="true"></i></a>&lt;switch&gt;</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/issues/46" class="weex-translate" target="_blank">cn</a></p>
-<h3 id="summary">Summary</h3>
+<h3 id="summary"><a name="summary" class="plugin-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>Summary</h3>
 <p>The weex builtin component <code>switch</code> is used to create and manage a IOS styled On/Off buttons used, for example, in the Settings app for options such as &apos;muted&apos; and &apos;toggle color&apos;.</p>
-<h3 id="child-components">Child Components</h3>
+<h3 id="child-components"><a name="child-components" class="plugin-anchor" href="#child-components"><i class="fa fa-link" aria-hidden="true"></i></a>Child Components</h3>
 <p>This component supports no child components.</p>
-<h3 id="attributes">Attributes</h3>
+<h3 id="attributes"><a name="attributes" class="plugin-anchor" href="#attributes"><i class="fa fa-link" aria-hidden="true"></i></a>Attributes</h3>
 <ul>
 <li><code>checked</code>: &lt;boolean&gt; <code>true</code> | <code>false</code>. The initial value of whether the status of this button is On or Off.</li>
 </ul>
 <p>Other attributes please check out the <a href="../references/common-attrs.html">common attributes</a>.</p>
-<h3 id="styles">Styles</h3>
+<h3 id="styles"><a name="styles" class="plugin-anchor" href="#styles"><i class="fa fa-link" aria-hidden="true"></i></a>Styles</h3>
 <p><strong>Notes:</strong> There are several style properties that you mustn&apos;t use on this component, mostly have impact on the layout. Here are all the invalid properties:</p>
 <ul>
 <li><code>width</code></li>
@@ -1631,7 +1635,7 @@ contentLoaded(window,function(){
 <li><code>border</code> and <code>border-xx</code>s</li>
 </ul>
 <p><strong>Notes:</strong> Specially the <code>width</code> and <code>height</code> related properties is not configurable and the size of this component is fixed to <code>100x60</code> (for the design width 750px).</p>
-<h3 id="events">Events</h3>
+<h3 id="events"><a name="events" class="plugin-anchor" href="#events"><i class="fa fa-link" aria-hidden="true"></i></a>Events</h3>
 <ul>
 <li><code>click</code>: check out <a href="../references/common-event.html">common events</a></li>
 </ul>
@@ -1640,7 +1644,7 @@ contentLoaded(window,function(){
 <li>support <code>click</code> event. Check out <a href="../references/common-event.html">common events</a></li>
 <li>support <code>appear</code> / <code>disappear</code> event. Check out <a href="../references/common-event.html">common events</a></li>
 </ul>
-<h3 id="parameters-of-events-object">Parameters of events&apos; object</h3>
+<h3 id="parameters-of-events-object"><a name="parameters-of-events-object" class="plugin-anchor" href="#parameters-of-events-object"><i class="fa fa-link" aria-hidden="true"></i></a>Parameters of events&apos; object</h3>
 <ul>
 <li>for <code>change</code> event:<ul>
 <li>value: the value of the component who dispatched this event, which is the boolean value <code>true</code> or <code>false</code>.</li>
@@ -1648,7 +1652,7 @@ contentLoaded(window,function(){
 </ul>
 </li>
 </ul>
-<h3 id="example">Example</h3>
+<h3 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h3>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">text</span>&gt;</span>muted:<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">switch</span> <span class="hljs-attr">checked</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">switch</span>&gt;</span>
@@ -1697,7 +1701,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"switch","level":"1.3.4.11","depth":3,"next":{"title":"slider","level":"1.3.4.12","depth":3,"path":"components/slider.md","ref":"components/slider.md","articles":[{"title":"indicator","level":"1.3.4.12.1","depth":4,"path":"components/indicator.md","ref":"components/indicator.md","articles":[]}]},"previous":{"title":"input","level":"1.3.4.10","depth":3,"path":"components/input.md","ref":"components/input.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"components/switch.md","mtime":"2016-08-19T08:49:02.126Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-19T08:49:15.526Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"switch","level":"1.3.4.11","depth":3,"next":{"title":"slider","level":"1.3.4.12","depth":3,"path":"components/slider.md","ref":"components/slider.md","articles":[{"title":"indicator","level":"1.3.4.12.1","depth":4,"path":"components/indicator.md","ref":"components/indicator.md","articles":[]}]},"previous":{"title":"input","level":"1.3.4.10","depth":3,"path":"components/input.md","ref":"components/input.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"components/switch.md","mtime":"2016-08-22T08:15:22.018Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

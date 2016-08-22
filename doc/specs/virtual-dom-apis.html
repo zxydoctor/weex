@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1605,78 +1609,78 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="virtual-dom-apis">Virtual DOM APIs</h1>
+                                <h1 id="virtual-dom-apis"><a name="virtual-dom-apis" class="plugin-anchor" href="#virtual-dom-apis"><i class="fa fa-link" aria-hidden="true"></i></a>Virtual DOM APIs</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
-<h2 id="document"><code>Document</code></h2>
+<h2 id="document"><a name="document" class="plugin-anchor" href="#document"><i class="fa fa-link" aria-hidden="true"></i></a><code>Document</code></h2>
 <p>Each instance has a corresponding document with the instance id. A document has many nodes which compose a node tree.</p>
-<h3 id="constructor">Constructor</h3>
-<h5 id="new-documentid-string-url-string"><code>new Document(id: string, url: string?)</code></h5>
-<h3 id="members">Members</h3>
-<h5 id="createelementtagname-string-props-object-element"><code>createElement(tagName: string, props: Object?): Element</code></h5>
+<h3 id="constructor"><a name="constructor" class="plugin-anchor" href="#constructor"><i class="fa fa-link" aria-hidden="true"></i></a>Constructor</h3>
+<h5 id="new-documentid-string-url-string"><a name="new-documentid-string-url-string" class="plugin-anchor" href="#new-documentid-string-url-string"><i class="fa fa-link" aria-hidden="true"></i></a><code>new Document(id: string, url: string?)</code></h5>
+<h3 id="members"><a name="members" class="plugin-anchor" href="#members"><i class="fa fa-link" aria-hidden="true"></i></a>Members</h3>
+<h5 id="createelementtagname-string-props-object-element"><a name="createelementtagname-string-props-object-element" class="plugin-anchor" href="#createelementtagname-string-props-object-element"><i class="fa fa-link" aria-hidden="true"></i></a><code>createElement(tagName: string, props: Object?): Element</code></h5>
 <p>Create a certain type <code>Element</code>. And the <code>props</code> may contain <code>attr</code> object and <code>style</code> object. e.g. <code>createBody(&apos;div&apos;, {style: {backgroundColor: &apos;#ffffff&apos;}})</code></p>
-<h5 id="createcommenttext-string-comment"><code>createComment(text: string): Comment</code></h5>
+<h5 id="createcommenttext-string-comment"><a name="createcommenttext-string-comment" class="plugin-anchor" href="#createcommenttext-string-comment"><i class="fa fa-link" aria-hidden="true"></i></a><code>createComment(text: string): Comment</code></h5>
 <p>Create a <code>Comment</code> with a certain comment text.</p>
-<h5 id="open"><code>open()</code></h5>
+<h5 id="open"><a name="open" class="plugin-anchor" href="#open"><i class="fa fa-link" aria-hidden="true"></i></a><code>open()</code></h5>
 <p>Set a flag which means init rendering start, so each dom update will be called immediately</p>
-<h5 id="close"><code>close()</code></h5>
+<h5 id="close"><a name="close" class="plugin-anchor" href="#close"><i class="fa fa-link" aria-hidden="true"></i></a><code>close()</code></h5>
 <p>Set a flag which means init rendering finished, so the dom updates later will be batched in each task.</p>
-<h5 id="fireeventel-element-type-string-e-object-domchanges-object"><code>fireEvent(el: Element, type: string, e: Object?, domChanges: Object?)</code></h5>
+<h5 id="fireeventel-element-type-string-e-object-domchanges-object"><a name="fireeventel-element-type-string-e-object-domchanges-object" class="plugin-anchor" href="#fireeventel-element-type-string-e-object-domchanges-object"><i class="fa fa-link" aria-hidden="true"></i></a><code>fireEvent(el: Element, type: string, e: Object?, domChanges: Object?)</code></h5>
 <p>Fire an certain type of event on a certain element with an event object. When the event leads to some dom changes, the fourth parameter will describe the change just like <code>props</code> parameter in <code>createElement</code> method.</p>
-<h4 id="read-only--getters">Read-only &amp; Getters</h4>
-<h5 id="id-string"><code>id: string</code></h5>
-<h5 id="url-string"><code>URL: string?</code></h5>
-<h5 id="body-element"><code>body: Element</code></h5>
+<h4 id="read-only--getters"><a name="read-only--getters" class="plugin-anchor" href="#read-only--getters"><i class="fa fa-link" aria-hidden="true"></i></a>Read-only &amp; Getters</h4>
+<h5 id="id-string"><a name="id-string" class="plugin-anchor" href="#id-string"><i class="fa fa-link" aria-hidden="true"></i></a><code>id: string</code></h5>
+<h5 id="url-string"><a name="url-string" class="plugin-anchor" href="#url-string"><i class="fa fa-link" aria-hidden="true"></i></a><code>URL: string?</code></h5>
+<h5 id="body-element"><a name="body-element" class="plugin-anchor" href="#body-element"><i class="fa fa-link" aria-hidden="true"></i></a><code>body: Element</code></h5>
 <p>body element</p>
-<h5 id="documentelement-element"><code>documentElement: Element</code></h5>
+<h5 id="documentelement-element"><a name="documentelement-element" class="plugin-anchor" href="#documentelement-element"><i class="fa fa-link" aria-hidden="true"></i></a><code>documentElement: Element</code></h5>
 <p>document element</p>
-<h5 id="getrefref-string-node"><code>getRef(ref: string): Node?</code></h5>
+<h5 id="getrefref-string-node"><a name="getrefref-string-node" class="plugin-anchor" href="#getrefref-string-node"><i class="fa fa-link" aria-hidden="true"></i></a><code>getRef(ref: string): Node?</code></h5>
 <p>Get node by <code>ref</code> from the internal node map</p>
 <p><strong>Note</strong>: the <code>documentElement</code> will be generated automatically when a document created, and the <code>body</code> should to be created manually and appended to <code>documentElement</code> to work. The <code>type</code> of a <code>body</code> must be one of <code>div</code>, <code>list</code> or <code>scroller</code>.</p>
-<h2 id="node"><code>Node</code></h2>
-<h3 id="constructor">Constructor</h3>
-<h5 id="new-node"><code>new Node()</code></h5>
-<h3 id="members">Members</h3>
-<h5 id="destroy"><code>destroy()</code></h5>
-<h4 id="read-only--getters">Read-only &amp; Getters</h4>
-<h5 id="ref-string"><code>ref: string</code></h5>
-<h5 id="nextsibling-node"><code>nextSibling: Node?</code></h5>
-<h5 id="previoussibling-node"><code>previousSibling: Node?</code></h5>
-<h5 id="parentnode-node"><code>parentNode: Node?</code></h5>
-<h2 id="element-extends-node"><code>Element</code> extends <code>Node</code></h2>
-<h3 id="constructor">Constructor</h3>
-<h5 id="new-elementtype-string-props-object-ownerdocument-document"><code>new Element(type: string, props: Object?, ownerDocument: Document)</code></h5>
+<h2 id="node"><a name="node" class="plugin-anchor" href="#node"><i class="fa fa-link" aria-hidden="true"></i></a><code>Node</code></h2>
+<h3 id="constructor"><a name="constructor" class="plugin-anchor" href="#constructor"><i class="fa fa-link" aria-hidden="true"></i></a>Constructor</h3>
+<h5 id="new-node"><a name="new-node" class="plugin-anchor" href="#new-node"><i class="fa fa-link" aria-hidden="true"></i></a><code>new Node()</code></h5>
+<h3 id="members"><a name="members" class="plugin-anchor" href="#members"><i class="fa fa-link" aria-hidden="true"></i></a>Members</h3>
+<h5 id="destroy"><a name="destroy" class="plugin-anchor" href="#destroy"><i class="fa fa-link" aria-hidden="true"></i></a><code>destroy()</code></h5>
+<h4 id="read-only--getters"><a name="read-only--getters" class="plugin-anchor" href="#read-only--getters"><i class="fa fa-link" aria-hidden="true"></i></a>Read-only &amp; Getters</h4>
+<h5 id="ref-string"><a name="ref-string" class="plugin-anchor" href="#ref-string"><i class="fa fa-link" aria-hidden="true"></i></a><code>ref: string</code></h5>
+<h5 id="nextsibling-node"><a name="nextsibling-node" class="plugin-anchor" href="#nextsibling-node"><i class="fa fa-link" aria-hidden="true"></i></a><code>nextSibling: Node?</code></h5>
+<h5 id="previoussibling-node"><a name="previoussibling-node" class="plugin-anchor" href="#previoussibling-node"><i class="fa fa-link" aria-hidden="true"></i></a><code>previousSibling: Node?</code></h5>
+<h5 id="parentnode-node"><a name="parentnode-node" class="plugin-anchor" href="#parentnode-node"><i class="fa fa-link" aria-hidden="true"></i></a><code>parentNode: Node?</code></h5>
+<h2 id="element-extends-node"><a name="element-extends-node" class="plugin-anchor" href="#element-extends-node"><i class="fa fa-link" aria-hidden="true"></i></a><code>Element</code> extends <code>Node</code></h2>
+<h3 id="constructor"><a name="constructor" class="plugin-anchor" href="#constructor"><i class="fa fa-link" aria-hidden="true"></i></a>Constructor</h3>
+<h5 id="new-elementtype-string-props-object-ownerdocument-document"><a name="new-elementtype-string-props-object-ownerdocument-document" class="plugin-anchor" href="#new-elementtype-string-props-object-ownerdocument-document"><i class="fa fa-link" aria-hidden="true"></i></a><code>new Element(type: string, props: Object?, ownerDocument: Document)</code></h5>
 <p>Create an element and the <code>props</code> may contain <code>attr</code> object and <code>style</code> object.</p>
-<h3 id="members">Members</h3>
-<h4 id="dom-tree">DOM Tree</h4>
-<h5 id="appendchildnode-node"><code>appendChild(node: Node)</code></h5>
-<h5 id="insertbeforenode-node-before-node"><code>insertBefore(node: Node, before: Node?)</code></h5>
-<h5 id="insertafternode-node-after-node"><code>insertAfter(node: Node, after: Node?)</code></h5>
-<h5 id="removechildnode-node-preserved-boolean"><code>removeChild(node: Node, preserved: boolean?)</code></h5>
+<h3 id="members"><a name="members" class="plugin-anchor" href="#members"><i class="fa fa-link" aria-hidden="true"></i></a>Members</h3>
+<h4 id="dom-tree"><a name="dom-tree" class="plugin-anchor" href="#dom-tree"><i class="fa fa-link" aria-hidden="true"></i></a>DOM Tree</h4>
+<h5 id="appendchildnode-node"><a name="appendchildnode-node" class="plugin-anchor" href="#appendchildnode-node"><i class="fa fa-link" aria-hidden="true"></i></a><code>appendChild(node: Node)</code></h5>
+<h5 id="insertbeforenode-node-before-node"><a name="insertbeforenode-node-before-node" class="plugin-anchor" href="#insertbeforenode-node-before-node"><i class="fa fa-link" aria-hidden="true"></i></a><code>insertBefore(node: Node, before: Node?)</code></h5>
+<h5 id="insertafternode-node-after-node"><a name="insertafternode-node-after-node" class="plugin-anchor" href="#insertafternode-node-after-node"><i class="fa fa-link" aria-hidden="true"></i></a><code>insertAfter(node: Node, after: Node?)</code></h5>
+<h5 id="removechildnode-node-preserved-boolean"><a name="removechildnode-node-preserved-boolean" class="plugin-anchor" href="#removechildnode-node-preserved-boolean"><i class="fa fa-link" aria-hidden="true"></i></a><code>removeChild(node: Node, preserved: boolean?)</code></h5>
 <p>Removes a child. The parameter <code>preserved</code> means whether destroy the removed node immediately or preserve it.</p>
-<h5 id="clear"><code>clear()</code></h5>
-<h4 id="dom-props">DOM props</h4>
-<h5 id="setattrkey-string-value-string-silent-boolean"><code>setAttr(key: string, value: string, silent: boolean?)</code></h5>
+<h5 id="clear"><a name="clear" class="plugin-anchor" href="#clear"><i class="fa fa-link" aria-hidden="true"></i></a><code>clear()</code></h5>
+<h4 id="dom-props"><a name="dom-props" class="plugin-anchor" href="#dom-props"><i class="fa fa-link" aria-hidden="true"></i></a>DOM props</h4>
+<h5 id="setattrkey-string-value-string-silent-boolean"><a name="setattrkey-string-value-string-silent-boolean" class="plugin-anchor" href="#setattrkey-string-value-string-silent-boolean"><i class="fa fa-link" aria-hidden="true"></i></a><code>setAttr(key: string, value: string, silent: boolean?)</code></h5>
 <p>If <code>slient</code> is truthy, it won&apos;t cause native calls. Used for handling event with virtual-DOM changes.</p>
-<h5 id="setstylekey-string-value-string-silent-boolean"><code>setStyle(key: string, value: string, silent: boolean?)</code></h5>
+<h5 id="setstylekey-string-value-string-silent-boolean"><a name="setstylekey-string-value-string-silent-boolean" class="plugin-anchor" href="#setstylekey-string-value-string-silent-boolean"><i class="fa fa-link" aria-hidden="true"></i></a><code>setStyle(key: string, value: string, silent: boolean?)</code></h5>
 <p>The <code>slient</code> parameter is just same as <code>setAttr</code> method.</p>
-<h5 id="setclassstyleclassstyle-object"><code>setClassStyle(classStyle: Object)</code></h5>
+<h5 id="setclassstyleclassstyle-object"><a name="setclassstyleclassstyle-object" class="plugin-anchor" href="#setclassstyleclassstyle-object"><i class="fa fa-link" aria-hidden="true"></i></a><code>setClassStyle(classStyle: Object)</code></h5>
 <p>The specificity of class style is lower than normal style. In another way the normal style will override the same name value in class style.</p>
-<h5 id="addeventtype-string-handler-function"><code>addEvent(type: string, handler: Function)</code></h5>
-<h5 id="removeeventtype-string"><code>removeEvent(type: string)</code></h5>
-<h5 id="fireeventtype-string-e-any"><code>fireEvent(type: string, e: any)</code></h5>
-<h4 id="read-only--getters">Read-only &amp; Getters</h4>
-<h5 id="tojson-object"><code>toJSON(): Object</code></h5>
+<h5 id="addeventtype-string-handler-function"><a name="addeventtype-string-handler-function" class="plugin-anchor" href="#addeventtype-string-handler-function"><i class="fa fa-link" aria-hidden="true"></i></a><code>addEvent(type: string, handler: Function)</code></h5>
+<h5 id="removeeventtype-string"><a name="removeeventtype-string" class="plugin-anchor" href="#removeeventtype-string"><i class="fa fa-link" aria-hidden="true"></i></a><code>removeEvent(type: string)</code></h5>
+<h5 id="fireeventtype-string-e-any"><a name="fireeventtype-string-e-any" class="plugin-anchor" href="#fireeventtype-string-e-any"><i class="fa fa-link" aria-hidden="true"></i></a><code>fireEvent(type: string, e: any)</code></h5>
+<h4 id="read-only--getters"><a name="read-only--getters" class="plugin-anchor" href="#read-only--getters"><i class="fa fa-link" aria-hidden="true"></i></a>Read-only &amp; Getters</h4>
+<h5 id="tojson-object"><a name="tojson-object" class="plugin-anchor" href="#tojson-object"><i class="fa fa-link" aria-hidden="true"></i></a><code>toJSON(): Object</code></h5>
 <p>Format of <code>{ref: string, type: string, attr: Object, style: Object, event: Array(string), children: Array}</code></p>
-<h2 id="comment-extends-node"><code>Comment</code> extends <code>Node</code></h2>
+<h2 id="comment-extends-node"><a name="comment-extends-node" class="plugin-anchor" href="#comment-extends-node"><i class="fa fa-link" aria-hidden="true"></i></a><code>Comment</code> extends <code>Node</code></h2>
 <p><code>Comment</code> won&apos;t be passed to the rendering engine. So it&apos;s very useful as a assistant placeholder sometimes.</p>
-<h3 id="constructor">Constructor</h3>
-<h5 id="new-commentvalue-string"><code>new Comment(value: string)</code></h5>
-<h3 id="members">Members</h3>
-<h4 id="read-only--getters">Read-only &amp; Getters</h4>
-<h5 id="type-string"><code>type: string</code></h5>
+<h3 id="constructor"><a name="constructor" class="plugin-anchor" href="#constructor"><i class="fa fa-link" aria-hidden="true"></i></a>Constructor</h3>
+<h5 id="new-commentvalue-string"><a name="new-commentvalue-string" class="plugin-anchor" href="#new-commentvalue-string"><i class="fa fa-link" aria-hidden="true"></i></a><code>new Comment(value: string)</code></h5>
+<h3 id="members"><a name="members" class="plugin-anchor" href="#members"><i class="fa fa-link" aria-hidden="true"></i></a>Members</h3>
+<h4 id="read-only--getters"><a name="read-only--getters" class="plugin-anchor" href="#read-only--getters"><i class="fa fa-link" aria-hidden="true"></i></a>Read-only &amp; Getters</h4>
+<h5 id="type-string"><a name="type-string" class="plugin-anchor" href="#type-string"><i class="fa fa-link" aria-hidden="true"></i></a><code>type: string</code></h5>
 <p>Returns <code>&apos;comment&apos;</code></p>
-<h5 id="value-string"><code>value: string</code></h5>
+<h5 id="value-string"><a name="value-string" class="plugin-anchor" href="#value-string"><i class="fa fa-link" aria-hidden="true"></i></a><code>value: string</code></h5>
 
                                 
                                 </section>
@@ -1716,7 +1720,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Virtual DOM APIs","level":"1.3.6.3","depth":3,"next":{"title":"Examples","level":"1.4","depth":1,"ref":"","articles":[{"title":"Hello World","level":"1.4.1","depth":2,"path":"demo/hello-world.md","ref":"demo/hello-world.md","articles":[]},{"title":"Modal","level":"1.4.2","depth":2,"path":"demo/modal.md","ref":"demo/modal.md","articles":[]},{"title":"Clipboard","level":"1.4.3","depth":2,"path":"demo/clipboard.md","ref":"demo/clipboard.md","articles":[]},{"title":"List","level":"1.4.4","depth":2,"path":"demo/list.md","ref":"demo/list.md","articles":[]},{"title":"Slider","level":"1.4.5","depth":2,"path":"demo/slider.md","ref":"demo/slider.md","articles":[]},{"title":"Animation","level":"1.4.6","depth":2,"path":"demo/animation.md","ref":"demo/animation.md","articles":[]},{"title":"More","level":"1.4.7","depth":2,"url":"https://github.com/alibaba/weex/tree/dev/examples","ref":"https://github.com/alibaba/weex/tree/dev/examples","articles":[]}]},"previous":{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"specs/virtual-dom-apis.md","mtime":"2016-08-19T08:49:02.154Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-19T08:49:15.526Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Virtual DOM APIs","level":"1.3.6.3","depth":3,"next":{"title":"Examples","level":"1.4","depth":1,"ref":"","articles":[{"title":"Hello World","level":"1.4.1","depth":2,"path":"demo/hello-world.md","ref":"demo/hello-world.md","articles":[]},{"title":"Modal","level":"1.4.2","depth":2,"path":"demo/modal.md","ref":"demo/modal.md","articles":[]},{"title":"Clipboard","level":"1.4.3","depth":2,"path":"demo/clipboard.md","ref":"demo/clipboard.md","articles":[]},{"title":"List","level":"1.4.4","depth":2,"path":"demo/list.md","ref":"demo/list.md","articles":[]},{"title":"Slider","level":"1.4.5","depth":2,"path":"demo/slider.md","ref":"demo/slider.md","articles":[]},{"title":"Animation","level":"1.4.6","depth":2,"path":"demo/animation.md","ref":"demo/animation.md","articles":[]},{"title":"More","level":"1.4.7","depth":2,"url":"https://github.com/alibaba/weex/tree/dev/examples","ref":"https://github.com/alibaba/weex/tree/dev/examples","articles":[]}]},"previous":{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"specs/virtual-dom-apis.md","mtime":"2016-08-22T08:15:22.078Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

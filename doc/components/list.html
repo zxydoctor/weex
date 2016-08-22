@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1607,13 +1611,13 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="list">&lt;list&gt;</h1>
+                                <h1 id="list"><a name="list" class="plugin-anchor" href="#list"><i class="fa fa-link" aria-hidden="true"></i></a>&lt;list&gt;</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
-<h3 id="summary">Summary</h3>
+<h3 id="summary"><a name="summary" class="plugin-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>Summary</h3>
 <p>A core component which provides the most popular features for using a list of items.  </p>
 <p>It can provide better experience and performance with smooth scrolling and memory reusing.</p>
-<h3 id="child-components">Child Components</h3>
+<h3 id="child-components"><a name="child-components" class="plugin-anchor" href="#child-components"><i class="fa fa-link" aria-hidden="true"></i></a>Child Components</h3>
 <p><strong>Notes:</strong> The <code>list</code>&apos;s subcomponents can only contain <code>cell</code>, <code>header</code>, <code>refresh</code>, <code>loading</code> or fixed-position components. Other kind of components will not be displayed correctly.</p>
 <ul>
 <li><code>cell</code> defines the attributes and behavior of the cells that appear in list.</li>
@@ -1624,12 +1628,12 @@ contentLoaded(window,function(){
 <li><p><code>refresh</code> and <code>loading</code> please check out the <a href="refresh-loading.md">refresh-loading</a>.</p>
 </li>
 </ul>
-<h3 id="attributes">Attributes</h3>
+<h3 id="attributes"><a name="attributes" class="plugin-anchor" href="#attributes"><i class="fa fa-link" aria-hidden="true"></i></a>Attributes</h3>
 <ul>
 <li><code>loadmoreoffset</code>: &lt;number&gt; the offset distance downwards the bottom of the list to trigger the loadmore event, which is triggered when the list scrolls down near enough to the bottom.</li>
 </ul>
 <p>Other attributes please check out the <a href="../references/common-attrs.html">common attributes</a>.</p>
-<h3 id="styles">Styles</h3>
+<h3 id="styles"><a name="styles" class="plugin-anchor" href="#styles"><i class="fa fa-link" aria-hidden="true"></i></a>Styles</h3>
 <p><strong>common styles</strong>: check out <a href="../references/common-style.html">common styles for components</a></p>
 <ul>
 <li>support flexbox related styles</li>
@@ -1637,7 +1641,7 @@ contentLoaded(window,function(){
 <li>support <code>position</code> related styles</li>
 <li>support <code>opacity</code>, <code>background-color</code> etc.</li>
 </ul>
-<h3 id="events">Events</h3>
+<h3 id="events"><a name="events" class="plugin-anchor" href="#events"><i class="fa fa-link" aria-hidden="true"></i></a>Events</h3>
 <ul>
 <li><code>loadmore</code> <sup class="wx-v">0.5</sup>: if the list scrolls to bottom, this event will be triggered immediately. You can load the next page of items in this event handler.</li>
 </ul>
@@ -1646,12 +1650,12 @@ contentLoaded(window,function(){
 <li>support <code>click</code> event. Check out <a href="../references/common-event.html">common events</a></li>
 <li>support <code>appear</code> / <code>disappear</code> event. Check out <a href="../references/common-event.html">common events</a></li>
 </ul>
-<h3 id="api">API</h3>
+<h3 id="api"><a name="api" class="plugin-anchor" href="#api"><i class="fa fa-link" aria-hidden="true"></i></a>API</h3>
 <p>All cells or cell&apos;s subcomponents in list support the <code>scrollToElement</code> API in <a href="../modules/dom.html">dom module</a></p>
-<h3 id="restriction">Restriction</h3>
+<h3 id="restriction"><a name="restriction" class="plugin-anchor" href="#restriction"><i class="fa fa-link" aria-hidden="true"></i></a>Restriction</h3>
 <p>Nested lists or scrollers within the same direction are <strong>not</strong> supported. In other words. nested lists/scroller must have different directions.</p>
 <p>For example, a vertical list nested in a vertical list or scroller is <strong> not </strong> allowed. However, a vertical list nested in a horizontal list or scroller is legal.</p>
-<h3 id="example">Example</h3>
+<h3 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h3>
 <p>see <a href="https://github.com/alibaba/weex/blob/example/examples/component/list/list-basic.we" target="_blank">list-basic demo</a></p>
 
                                 
@@ -1696,7 +1700,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"list","level":"1.3.4.7","depth":3,"next":{"title":"cell","level":"1.3.4.7.1","depth":4,"path":"components/cell.md","ref":"components/cell.md","articles":[]},"previous":{"title":"scroller","level":"1.3.4.6","depth":3,"path":"components/scroller.md","ref":"components/scroller.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"components/list.md","mtime":"2016-08-19T08:49:02.126Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-19T08:49:15.526Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"list","level":"1.3.4.7","depth":3,"next":{"title":"cell","level":"1.3.4.7.1","depth":4,"path":"components/cell.md","ref":"components/cell.md","articles":[]},"previous":{"title":"scroller","level":"1.3.4.6","depth":3,"path":"components/scroller.md","ref":"components/scroller.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"components/list.md","mtime":"2016-08-22T08:15:22.018Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

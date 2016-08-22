@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1607,15 +1611,15 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="input">&lt;input&gt;</h1>
+                                <h1 id="input"><a name="input" class="plugin-anchor" href="#input"><i class="fa fa-link" aria-hidden="true"></i></a>&lt;input&gt;</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/issues/45" class="weex-translate" target="_blank">cn</a></p>
-<h3 id="summary">Summary</h3>
+<h3 id="summary"><a name="summary" class="plugin-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>Summary</h3>
 <p>The weex builtin component <code>input</code> is used to create interactive controls to accept data from users. How a <code>input</code> component works varies considerably depending on the value of its <code>type</code> attribute, such as <code>text</code>, <code>password</code>, <code>url</code>, <code>email</code>, <code>tel</code> etc.</p>
 <p><strong>Notes:</strong> <code>&lt;input&gt;</code> does not support the common-event <code>click</code>. Please listen to the <code>input</code> or <code>change</code> event instead.</p>
-<h3 id="child-components">Child Components</h3>
+<h3 id="child-components"><a name="child-components" class="plugin-anchor" href="#child-components"><i class="fa fa-link" aria-hidden="true"></i></a>Child Components</h3>
 <p>This component supports no child components.</p>
-<h3 id="attributes">Attributes</h3>
+<h3 id="attributes"><a name="attributes" class="plugin-anchor" href="#attributes"><i class="fa fa-link" aria-hidden="true"></i></a>Attributes</h3>
 <ul>
 <li><code>type</code>: &lt;string&gt; the type of controls to display. The default value is <code>text</code>, if this attribute is not specified. Possible values are <code>text</code>, <code>password</code>, <code>tel</code>, <code>email</code>, <code>url</code> etc, each of which has the same meaning with w3c standard.</li>
 <li><code>value</code>: &lt;string&gt; the value of the control.</li>
@@ -1625,7 +1629,7 @@ contentLoaded(window,function(){
 <li><code>maxlength</code><sup class="wx-v">0.7</sup> :&lt;length&gt; a number value to specify maxlength of input</li>
 </ul>
 <p>Other attributes please check out the <a href="../references/common-attrs.html">common attributes</a>.</p>
-<h3 id="styles">Styles</h3>
+<h3 id="styles"><a name="styles" class="plugin-anchor" href="#styles"><i class="fa fa-link" aria-hidden="true"></i></a>Styles</h3>
 <ul>
 <li><code>placeholder-color</code>: the color of placeholder. Default value is <code>#999999</code>.</li>
 </ul>
@@ -1644,7 +1648,7 @@ contentLoaded(window,function(){
 <li>support <code>position</code> related styles</li>
 <li>support <code>opacity</code>, <code>background-color</code> etc.</li>
 </ul>
-<h3 id="events">Events</h3>
+<h3 id="events"><a name="events" class="plugin-anchor" href="#events"><i class="fa fa-link" aria-hidden="true"></i></a>Events</h3>
 <ul>
 <li><code>input</code>: the value of an element changes.</li>
 <li><code>change</code>: the change event is fired when a change to the component&apos;s value is commited by the user. It always come after a <code>blur</code> event.</li>
@@ -1656,7 +1660,7 @@ contentLoaded(window,function(){
 <li>support <code>appear</code> / <code>disappear</code> event. Check out <a href="../references/common-event.html">common events</a></li>
 </ul>
 <p><strong>Notes:</strong> <code>&lt;input&gt;</code> does not support the common-event <code>click</code>. Please listen to the <code>input</code> or <code>change</code> event instead.</p>
-<h3 id="parameters-of-events-object">Parameters of events&apos; object</h3>
+<h3 id="parameters-of-events-object"><a name="parameters-of-events-object" class="plugin-anchor" href="#parameters-of-events-object"><i class="fa fa-link" aria-hidden="true"></i></a>Parameters of events&apos; object</h3>
 <ul>
 <li>for <code>input</code> and <code>change</code> events:<ul>
 <li><code>value</code>: the value of the component who dispatched this event.</li>
@@ -1668,7 +1672,7 @@ contentLoaded(window,function(){
 </ul>
 </li>
 </ul>
-<h3 id="example">Example</h3>
+<h3 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h3>
 <pre><code>&lt;div&gt;
   &lt;input
     type=&quot;url&quot;
@@ -1721,7 +1725,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"input","level":"1.3.4.10","depth":3,"next":{"title":"switch","level":"1.3.4.11","depth":3,"path":"components/switch.md","ref":"components/switch.md","articles":[]},"previous":{"title":"image","level":"1.3.4.9","depth":3,"path":"components/image.md","ref":"components/image.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"components/input.md","mtime":"2016-08-19T08:49:08.986Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-19T08:49:15.526Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"input","level":"1.3.4.10","depth":3,"next":{"title":"switch","level":"1.3.4.11","depth":3,"path":"components/switch.md","ref":"components/switch.md","articles":[]},"previous":{"title":"image","level":"1.3.4.9","depth":3,"path":"components/image.md","ref":"components/image.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"components/input.md","mtime":"2016-08-22T08:15:22.018Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

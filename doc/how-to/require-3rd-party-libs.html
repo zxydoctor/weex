@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1607,12 +1611,12 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="how-to-require-3rd-party-libs-">How to require 3rd Party Libs ?</h1>
+                                <h1 id="how-to-require-3rd-party-libs-"><a name="how-to-require-3rd-party-libs-" class="plugin-anchor" href="#how-to-require-3rd-party-libs-"><i class="fa fa-link" aria-hidden="true"></i></a>How to require 3rd Party Libs ?</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
 <p>In the paragraph <a href="maintain-your-component-code.md">Maintain Your Component Code</a>, we learn that JavaScript code can be written in <code>&lt;script&gt;</code> tag in one component. But there must be some common functions or modules in your project, such as parsing url params, extending properties from some objects to another object and so on. It&apos;s a bad practice to copy and paste them in each component, therefore there&apos;s a urgent need of <code>require</code>. Weex provides CommonJS <code>require</code> syntax for developers.</p>
 <p>Let take <code>extend</code> for example.</p>
-<h2 id="require-local-js-modules">Require Local Js Modules</h2>
+<h2 id="require-local-js-modules"><a name="require-local-js-modules" class="plugin-anchor" href="#require-local-js-modules"><i class="fa fa-link" aria-hidden="true"></i></a>Require Local Js Modules</h2>
 <p>A basic implementation of <code>extend</code> is as follows, and it&apos;s placed in directory path <code>./common/utils.js</code>.</p>
 <pre><code>function extend(dest, src) {
   for (var key in src) {
@@ -1627,7 +1631,7 @@ exports.extend = extend
   var obj2 = {b: 2}
   utils.extend(obj1, obj2) // obj1 =&gt; {a: 1, b: 2}
 &lt;/script&gt;
-</code></pre><h2 id="require-installed-node-modules">Require Installed Node Modules</h2>
+</code></pre><h2 id="require-installed-node-modules"><a name="require-installed-node-modules" class="plugin-anchor" href="#require-installed-node-modules"><i class="fa fa-link" aria-hidden="true"></i></a>Require Installed Node Modules</h2>
 <p>Besides, <a href="http://underscorejs.org" target="_blank">underscore</a> is a JavaScript library that provides a whole mess of useful functional programming helpers without extending any built-in objects. It implements a more robust version of <a href="http://underscorejs.org/#extend" target="_blank">extend</a>.</p>
 <p>We can use underscore&apos;s extend instead of the version implemented by ourselves. After installing <code>underscore</code> to the <code>node_modules</code> directory, we can <code>require</code> and use it.</p>
 <pre><code>npm install underscore
@@ -1681,7 +1685,7 @@ exports.extend = extend
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Require 3rd Party Libs","level":"1.2.3.6","depth":3,"next":{"title":"Transform Code Into JS Bundle","level":"1.2.3.7","depth":3,"path":"how-to/transform-code-into-js-bundle.md","ref":"how-to/transform-code-into-js-bundle.md","articles":[]},"previous":{"title":"Debug in html5 renderer","level":"1.2.3.5","depth":3,"path":"how-to/debug-with-html5.md","ref":"how-to/debug-with-html5.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"how-to/require-3rd-party-libs.md","mtime":"2016-08-19T08:49:02.126Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-19T08:49:15.526Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Require 3rd Party Libs","level":"1.2.3.6","depth":3,"next":{"title":"Transform Code Into JS Bundle","level":"1.2.3.7","depth":3,"path":"how-to/transform-code-into-js-bundle.md","ref":"how-to/transform-code-into-js-bundle.md","articles":[]},"previous":{"title":"Debug in html5 renderer","level":"1.2.3.5","depth":3,"path":"how-to/debug-with-html5.md","ref":"how-to/debug-with-html5.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"how-to/require-3rd-party-libs.md","mtime":"2016-08-22T08:15:22.018Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

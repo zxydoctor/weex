@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1607,11 +1611,11 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="common-style">Common Style</h1>
+                                <h1 id="common-style"><a name="common-style" class="plugin-anchor" href="#common-style"><i class="fa fa-link" aria-hidden="true"></i></a>Common Style</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/issues/23" class="weex-translate" target="_blank">cn</a></p>
 <p>All of weex tags share some common style rules</p>
-<h2 id="box-model">Box Model</h2>
+<h2 id="box-model"><a name="box-model" class="plugin-anchor" href="#box-model"><i class="fa fa-link" aria-hidden="true"></i></a>Box Model</h2>
 <p><img src="../images/css-boxmodel.png" alt="box model"></p>
 <p>Weex box model based on the CSS box model, all of weex elements can be considered as boxes.  The term &quot;box model&quot; is used when talking about design and layout. The box model is essentially a box that wraps around every HTML element. It consists of margins, borders, paddings, and the actual content.</p>
 <p>you can use the definition below in weex box model.</p>
@@ -1673,11 +1677,11 @@ contentLoaded(window,function(){
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </code></pre>
-<h2 id="flexbox">Flexbox</h2>
+<h2 id="flexbox"><a name="flexbox" class="plugin-anchor" href="#flexbox"><i class="fa fa-link" aria-hidden="true"></i></a>Flexbox</h2>
 <p>Weex box style model based on the CSS flexbox, ensures that elements behave predictably and the page layout can accommodates to different screen sizes and different display devices.</p>
 <p>Flexbox consists of flex containers and flex items. If a weex element can containing other elements, it is a flex container.</p>
 <p>Notice that the old version of flexbox specification has differences with the new ones, such as whether or not to support wrapping. This is described at w3c&apos;s working drafts, and you should notice the differences among them. Also notice that the old version is only supported below the 4.4 version of android.</p>
-<h3 id="flex-container">Flex container</h3>
+<h3 id="flex-container"><a name="flex-container" class="plugin-anchor" href="#flex-container"><i class="fa fa-link" aria-hidden="true"></i></a>Flex container</h3>
 <p>Flexbox is the default and only style model in Weex, so you don&apos;t have to add <code>display: flex;</code> in a container.</p>
 <ul>
 <li><code>flex-direction</code>: values <code>row</code> | <code>column</code>, default value <code>column</code></li>
@@ -1693,12 +1697,12 @@ contentLoaded(window,function(){
 </ul>
 <p>The align-items property vertically aligns the flexible container&apos;s items when the items do not use all available space on the cross-axis. Default value is <code>stretch</code> meaning the items are stretched to fit the container. <code>flex-start</code> means the items are positioned at the top of the container; <code>flex-end</code> means the items are positioned at the bottom of the container; <code>center</code> means items are positioned at the center of the container (vertically).</p>
 <p><img src="../images/css-flexbox-align.jpg" alt="align-items"></p>
-<h3 id="flex-item">Flex item</h3>
+<h3 id="flex-item"><a name="flex-item" class="plugin-anchor" href="#flex-item"><i class="fa fa-link" aria-hidden="true"></i></a>Flex item</h3>
 <ul>
 <li><code>flex</code>: <a href="styles/units/number.md">number</a> type, default value <code>0</code></li>
 </ul>
 <p>the flex property specifies the length of the flex item, relative to the rest of the flex items inside the same container.  If all of the flex items set <code>flex: 1</code>, they will have equal width or height on direction of flex container&apos;s <code>flex-direction</code>. If there are two flex items, with one setting <code>flex: 1</code>, and the other setting <code>flex: 2</code>, the first one will take 1/3 container space, and the second one will take 2/3 container space. If all of flex items don&apos;t set <code>flex</code>, they will be aligned depending on the container&apos;s <code>justify-content</code> property.</p>
-<h2 id="examples">Examples</h2>
+<h2 id="examples"><a name="examples" class="plugin-anchor" href="#examples"><i class="fa fa-link" aria-hidden="true"></i></a>Examples</h2>
 <p>a list of images with equal scales align at the vertical axis:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 300; height: 100;&quot;</span>&gt;</span>
@@ -1736,7 +1740,7 @@ contentLoaded(window,function(){
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </code></pre>
-<h2 id="position">Position</h2>
+<h2 id="position"><a name="position" class="plugin-anchor" href="#position"><i class="fa fa-link" aria-hidden="true"></i></a>Position</h2>
 <p>we can use properties below to control placement of weex tag</p>
 <ul>
 <li><code>position</code>: values <code>relative</code> | <code>absolute</code> | <code>fixed</code> | <code>sticky</code>, default value <code>relative</code></li>
@@ -1748,7 +1752,7 @@ contentLoaded(window,function(){
 <li><code>left</code>: <a href="styles/units/number.md">number</a> type, default value <code>0</code>, leftward offset value</li>
 <li><code>right</code>: <a href="styles/units/number.md">number</a> type, default value <code>0</code>, rightward offset value</li>
 </ul>
-<h3 id="examples">Examples</h3>
+<h3 id="examples"><a name="examples" class="plugin-anchor" href="#examples"><i class="fa fa-link" aria-hidden="true"></i></a>Examples</h3>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;flex-direction: column;&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height: 3000;&quot;</span>&gt;</span>
@@ -1763,19 +1767,19 @@ contentLoaded(window,function(){
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </code></pre>
-<h2 id="other-common-style">Other Common Style</h2>
+<h2 id="other-common-style"><a name="other-common-style" class="plugin-anchor" href="#other-common-style"><i class="fa fa-link" aria-hidden="true"></i></a>Other Common Style</h2>
 <ul>
 <li><a href="styles/opacity.md"><code>opacity</code></a></li>
 <li><a href="styles/background-color.md"><code>background-color</code></a></li>
 </ul>
-<h2 id="type-of-style-value">Type of Style Value</h2>
+<h2 id="type-of-style-value"><a name="type-of-style-value" class="plugin-anchor" href="#type-of-style-value"><i class="fa fa-link" aria-hidden="true"></i></a>Type of Style Value</h2>
 <ul>
 <li><a href="styles/units/length.md">length</a> type</li>
 <li><a href="styles/units/number.md">number</a> type</li>
 <li><a href="styles/units/color.md">color</a> type (<em><a href="color-names.html">The list of color keywords.</a></em>)</li>
 <li>enumerated type</li>
 </ul>
-<h2 id="simple-step">Simple Step</h2>
+<h2 id="simple-step"><a name="simple-step" class="plugin-anchor" href="#simple-step"><i class="fa fa-link" aria-hidden="true"></i></a>Simple Step</h2>
 <p>These up-to-down steps may help you to plan the whole style of weex pages.</p>
 <ol>
 <li>overall style: divide the whole page to different parts</li>
@@ -1826,7 +1830,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Common Style","level":"1.3.4.2","depth":3,"next":{"title":"Text Style","level":"1.3.4.2.1","depth":4,"path":"references/text-style.md","ref":"references/text-style.md","articles":[]},"previous":{"title":"Common Attributes","level":"1.3.4.1","depth":3,"path":"references/common-attrs.md","ref":"references/common-attrs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/common-style.md","mtime":"2016-08-19T08:49:02.130Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-19T08:49:15.526Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Common Style","level":"1.3.4.2","depth":3,"next":{"title":"Text Style","level":"1.3.4.2.1","depth":4,"path":"references/text-style.md","ref":"references/text-style.md","articles":[]},"previous":{"title":"Common Attributes","level":"1.3.4.1","depth":3,"path":"references/common-attrs.md","ref":"references/common-attrs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/common-style.md","mtime":"2016-08-22T08:15:22.050Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1607,10 +1611,10 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="common-events">Common Events</h1>
+                                <h1 id="common-events"><a name="common-events" class="plugin-anchor" href="#common-events"><i class="fa fa-link" aria-hidden="true"></i></a>Common Events</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/issues/33" class="weex-translate" target="_blank">cn</a></p>
-<h2 id="click-event">Click event</h2>
+<h2 id="click-event"><a name="click-event" class="plugin-anchor" href="#click-event"><i class="fa fa-link" aria-hidden="true"></i></a>Click event</h2>
 <p>If a <code>click</code> event is bound to a component, the event will be triggered when the user clicks on it.</p>
 <p><strong>Notes:</strong> The component <code>input</code> and <code>switch</code> do not currently support this event, please use <code>change</code> or <code>input</code> event instead.</p>
 <p><strong>event object</strong></p>
@@ -1619,7 +1623,7 @@ contentLoaded(window,function(){
 <li><code>target</code>: The target component where the event is triggered</li>
 <li><code>timestamp</code>: Timestamp when event is triggered.</li>
 </ul>
-<h2 id="appear-event">Appear event</h2>
+<h2 id="appear-event"><a name="appear-event" class="plugin-anchor" href="#appear-event"><i class="fa fa-link" aria-hidden="true"></i></a>Appear event</h2>
 <p>If a <code>appear</code> event is bound to a component inside a scroller, the event will be triggered when the component comes to be visible.</p>
 <p><strong>event object</strong></p>
 <ul>
@@ -1628,7 +1632,7 @@ contentLoaded(window,function(){
 <li><code>timestamp</code>: Timestamp when event is triggered.</li>
 <li><code>direction</code>: The direction in which the scroller is scrolling. Should be <code>up</code> or <code>down</code>.</li>
 </ul>
-<h2 id="disappear-event">Disappear event</h2>
+<h2 id="disappear-event"><a name="disappear-event" class="plugin-anchor" href="#disappear-event"><i class="fa fa-link" aria-hidden="true"></i></a>Disappear event</h2>
 <p>If a <code>disappear</code> event is bound to a component inside a scroller, the event will be triggered when the component scrolls out of viewport and disappears from your sight.</p>
 <p><strong>event object</strong></p>
 <ul>
@@ -1637,7 +1641,7 @@ contentLoaded(window,function(){
 <li><code>timestamp</code>: Timestamp when event is triggered.</li>
 <li><code>direction</code>: The direction in which the scroller is scrolling. Should be <code>up</code> or <code>down</code></li>
 </ul>
-<h2 id="page-event">Page event</h2>
+<h2 id="page-event"><a name="page-event" class="plugin-anchor" href="#page-event"><i class="fa fa-link" aria-hidden="true"></i></a>Page event</h2>
 <p><span class="weex-version">0.6.1</span></p>
 <p>Weex provides you with simple management of page status, such as <code>viewappear</code> and <code>viewdisappear</code>&#xFF0C;</p>
 <p>The <code>viewappear</code> event will be triggered when page is about to show or before any animations are configured for showing. For example, when calling <code>push</code> method in navigator module, this event will be trigged in new page. </p>
@@ -1712,7 +1716,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Common Event","level":"1.3.4.3","depth":3,"next":{"title":"Special Element","level":"1.3.4.4","depth":3,"path":"components/special-element.md","ref":"components/special-element.md","articles":[]},"previous":{"title":"Color","level":"1.3.4.2.2","depth":4,"path":"references/color-names.md","ref":"references/color-names.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/common-event.md","mtime":"2016-08-19T08:49:02.130Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-19T08:49:15.526Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Common Event","level":"1.3.4.3","depth":3,"next":{"title":"Special Element","level":"1.3.4.4","depth":3,"path":"components/special-element.md","ref":"components/special-element.md","articles":[]},"previous":{"title":"Color","level":"1.3.4.2.2","depth":4,"path":"references/color-names.md","ref":"references/color-names.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/common-event.md","mtime":"2016-08-22T08:15:22.050Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

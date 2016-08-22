@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1607,14 +1611,14 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="import-weex-ios-to-your-project">import Weex iOS to your project</h1>
+                                <h1 id="import-weex-ios-to-your-project"><a name="import-weex-ios-to-your-project" class="plugin-anchor" href="#import-weex-ios-to-your-project"><i class="fa fa-link" aria-hidden="true"></i></a>import Weex iOS to your project</h1>
 <p><a href="https://github.com/weexteam/article/issues/18" class="weex-translate" target="_blank">cn</a></p>
 <p>You will need to build Weex from source if you want to work on a new feature/bug fix, try out the latest features not released yet, or maintain your own fork with patches that cannot be merged to the core.</p>
 <p>Assuming you have installed <a href="https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppStoreDistributionTutorial/Setup/Setup.html" target="_blank">iOS Develop Environment</a> and <a href="https://guides.cocoapods.org/using/getting-started.html" target="_blank">CocoaPods</a>. </p>
-<h4 id="1-clone-source-from-github">1. Clone source from github</h4>
+<h4 id="1-clone-source-from-github"><a name="1-clone-source-from-github" class="plugin-anchor" href="#1-clone-source-from-github"><i class="fa fa-link" aria-hidden="true"></i></a>1. Clone source from github</h4>
 <p>First, you need to git clone <code>weex</code> from github:</p>
 <pre><code>git clone https://github.com/alibaba/weex.git
-</code></pre><h4 id="2-import-weexsdk-to-project">2. Import WeexSDK to project</h4>
+</code></pre><h4 id="2-import-weexsdk-to-project"><a name="2-import-weexsdk-to-project" class="plugin-anchor" href="#2-import-weexsdk-to-project"><i class="fa fa-link" aria-hidden="true"></i></a>2. Import WeexSDK to project</h4>
 <p>Copy the whole folder <code>/ios/sdk</code> to your project directory.</p>
 <p>Before adding the dependencies, please confirm that the project directory already exists the Podfile. If not, create a new one. Then, edit this file, adding some necessary dependecis for the target.</p>
 <pre><code>target &apos;YourTarget&apos; do
@@ -1624,7 +1628,7 @@ end
 </code></pre><p>You can get your <code>YourTarget</code> below</p>
 <p><img src="http://img4.tbcdn.cn/L1/461/1/4d9f4d6a8441b44e4816c7778627824fb72c58de" alt="img"></p>
 <p>Run pod install in current directory, for a while, .xcworkspace will be created.  At this point, the dependencies have been established.</p>
-<h4 id="3-init-weex-environment">3. Init Weex Environment</h4>
+<h4 id="3-init-weex-environment"><a name="3-init-weex-environment" class="plugin-anchor" href="#3-init-weex-environment"><i class="fa fa-link" aria-hidden="true"></i></a>3. Init Weex Environment</h4>
 <p>We are used to doing some initial tasks in appDelegate. Of course, there is no exception. You can do this in <code>didFinishLaunchingWithOptions</code> as follows.</p>
 <pre><code>//business configuration
 [WXAppConfiguration setAppGroup:@&quot;AliApp&quot;];
@@ -1643,7 +1647,7 @@ end
 
 //set the log level    
 [WXLog setLogLevel:WXLogLevelVerbose];
-</code></pre><h4 id="4-render-weex-instance">4. Render Weex Instance</h4>
+</code></pre><h4 id="4-render-weex-instance"><a name="4-render-weex-instance" class="plugin-anchor" href="#4-render-weex-instance"><i class="fa fa-link" aria-hidden="true"></i></a>4. Render Weex Instance</h4>
 <p>Weex supports two different modes, the full page rendering and part of page rendering. 
 Something you have to do is to render weex view with specific URL, then add it to the parent container, which may be the viewController.</p>
 <pre><code>#import &lt;WeexSDK/WXSDKInstance.h&gt;
@@ -1672,13 +1676,13 @@ Something you have to do is to render weex view with specific URL, then add it t
     [_instance renderWithURL:self.url options:@{@&quot;bundleUrl&quot;:[self.url absoluteString]} data:nil];
 }
 </code></pre><p>WXSDKInstance is a very imporent class, which provides you with some basic methods and callbacks, such as renderWithURL&#x3001;onCreate&#x3001;onFailed and etc. You can understand their usage by reading WXSDKInstance.h.</p>
-<h4 id="5-destroy-weex-instance">5. Destroy Weex Instance</h4>
+<h4 id="5-destroy-weex-instance"><a name="5-destroy-weex-instance" class="plugin-anchor" href="#5-destroy-weex-instance"><i class="fa fa-link" aria-hidden="true"></i></a>5. Destroy Weex Instance</h4>
 <p>Please release weex instance in dealloc stage of viewContoller, or it will lead to memory leak.</p>
 <pre><code>- (void)dealloc
 {
     [_instance destroyInstance];
 }
-</code></pre><h4 id="6-build-ipa-for-weex">6. Build .IPA for Weex</h4>
+</code></pre><h4 id="6-build-ipa-for-weex"><a name="6-build-ipa-for-weex" class="plugin-anchor" href="#6-build-ipa-for-weex"><i class="fa fa-link" aria-hidden="true"></i></a>6. Build .IPA for Weex</h4>
 <p>We can also pack all the JS files into the app&apos;s resources. This way you can run your app without development server and submit it to the AppStore.</p>
 <ul>
 <li><a href="https://github.com/alibaba/weex_toolchain/tree/master/toolkit" target="_blank">Install weex-toolkit</a> and transform your <code>.we</code> file to JS by running <code>weex index.we -o index.js</code>, <code>index.we</code> is the entry file of your app.</li>
@@ -1731,7 +1735,7 @@ Something you have to do is to render weex view with specific URL, then add it t
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"next":{"title":"Integrate to web","level":"1.2.4.5","depth":3,"path":"advanced/integrate-to-html5.md","ref":"advanced/integrate-to-html5.md","articles":[]},"previous":{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"path":"advanced/integrate-to-android.md","ref":"advanced/integrate-to-android.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/integrate-to-ios.md","mtime":"2016-08-19T08:49:02.126Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-19T08:49:15.526Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"next":{"title":"Integrate to web","level":"1.2.4.5","depth":3,"path":"advanced/integrate-to-html5.md","ref":"advanced/integrate-to-html5.md","articles":[]},"previous":{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"path":"advanced/integrate-to-android.md","ref":"advanced/integrate-to-android.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/integrate-to-ios.md","mtime":"2016-08-22T08:15:22.014Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

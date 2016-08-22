@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1605,12 +1609,12 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="js-bundle-format">JS Bundle format</h1>
+                                <h1 id="js-bundle-format"><a name="js-bundle-format" class="plugin-anchor" href="#js-bundle-format"><i class="fa fa-link" aria-hidden="true"></i></a>JS Bundle format</h1>
 <p>JS Bundle Version: v0.3.0</p>
-<h2 id="v050">v0.5.0</h2>
-<h3 id="whole-syntax-and-structure">Whole Syntax and Structure</h3>
+<h2 id="v050"><a name="v050" class="plugin-anchor" href="#v050"><i class="fa fa-link" aria-hidden="true"></i></a>v0.5.0</h2>
+<h3 id="whole-syntax-and-structure"><a name="whole-syntax-and-structure" class="plugin-anchor" href="#whole-syntax-and-structure"><i class="fa fa-link" aria-hidden="true"></i></a>Whole Syntax and Structure</h3>
 <p>A JS Bundle is actually a JavaScript file which follows <strong>ES5</strong> standard. The code is used to define some custom components for the instance and bootstrap the instance with certain name, config and data. Developers could use all kinds of JS code packager like webpack, browserify, requirejs to organize your whole instance code.</p>
-<h3 id="meta-info">Meta Info</h3>
+<h3 id="meta-info"><a name="meta-info" class="plugin-anchor" href="#meta-info"><i class="fa fa-link" aria-hidden="true"></i></a>Meta Info</h3>
 <p>The JS Bundle Must begin with a comment line which is a JSON object like:</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// { &quot;framework&quot;: &quot;Weex&quot;, &quot;version&quot;: &quot;0.5.0&quot; }</span>
 </code></pre>
@@ -1619,14 +1623,14 @@ contentLoaded(window,function(){
 <li>property <code>framework</code> must be <code>&quot;Weex&quot;</code></li>
 <li>property <code>version</code> should be corresponded with the JS Bundle format version</li>
 </ul>
-<h3 id="global-members">Global Members</h3>
+<h3 id="global-members"><a name="global-members" class="plugin-anchor" href="#global-members"><i class="fa fa-link" aria-hidden="true"></i></a>Global Members</h3>
 <ul>
 <li><code>__weex_define__(name, options)</code></li>
 <li><code>__weex_bootstrap__(name, config, data)</code></li>
 <li><code>__weex_document__</code></li>
 <li><code>__weex_require__(name)</code></li>
 </ul>
-<h4 id="weexdefinenamestring-options-object"><code>__weex_define__(name:string, options: object)</code></h4>
+<h4 id="weexdefinenamestring-options-object"><a name="weexdefinenamestring-options-object" class="plugin-anchor" href="#weexdefinenamestring-options-object"><i class="fa fa-link" aria-hidden="true"></i></a><code>__weex_define__(name:string, options: object)</code></h4>
 <p>Define a custom component named <code>name</code> for current instance with <code>options</code>.</p>
 <p><strong>example:</strong></p>
 <pre><code class="lang-javascript">__weex_define__(<span class="hljs-string">&apos;rmb&apos;</span>, {
@@ -1665,7 +1669,7 @@ contentLoaded(window,function(){
 <li><code>$broadcast</code>/<code>$emit</code>/<code>$dispatch</code>/<code>$on</code>/<code>$off</code>: listen and fire component events</li>
 <li><code>$transition</code> <em>(experimental)</em>: animation transition (see more in <a href="../animation.md">animation native module</a>)</li>
 </ul>
-<h4 id="weexrequirename-string-object"><code>__weex_require__(name: string): object</code></h4>
+<h4 id="weexrequirename-string-object"><a name="weexrequirename-string-object" class="plugin-anchor" href="#weexrequirename-string-object"><i class="fa fa-link" aria-hidden="true"></i></a><code>__weex_require__(name: string): object</code></h4>
 <p>Get a Weex native module with several native APIs.</p>
 <p><strong>example:</strong></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> modal = __weex_require__(<span class="hljs-string">&apos;modal&apos;</span>)
@@ -1683,7 +1687,7 @@ modal.toast({
   <span class="hljs-keyword">return</span> result
 }
 </code></pre>
-<h4 id="weexbootstrapnameoroptions-stringobject-config-object-data-object-appinstance--error"><code>__weex_bootstrap__(nameOrOptions: string|object, config: object?, data: object?): AppInstance | Error</code></h4>
+<h4 id="weexbootstrapnameoroptions-stringobject-config-object-data-object-appinstance--error"><a name="weexbootstrapnameoroptions-stringobject-config-object-data-object-appinstance--error" class="plugin-anchor" href="#weexbootstrapnameoroptions-stringobject-config-object-data-object-appinstance--error"><i class="fa fa-link" aria-hidden="true"></i></a><code>__weex_bootstrap__(nameOrOptions: string|object, config: object?, data: object?): AppInstance | Error</code></h4>
 <p>Start to render by a certain component name or a direct component options as the root element, and some instance <code>config</code> and instance <code>data</code>. If everything fine, it will returns the root app instance. Otherwise it will return an <code>Error</code> instance which describes something wrong.</p>
 <p><strong>example:</strong></p>
 <pre><code class="lang-javascript">__weex_bootstrap__(
@@ -1706,11 +1710,11 @@ modal.toast({
 <li>a function like <code>function (config) { return true }</code> to return a boolean value. <code>true</code> means normal and <code>false</code> means downgrade.</li>
 </ol>
 <p>The instance <code>data</code> will merge to root component data. So the root component is also easy to reuse and the instance data is easy to customize.</p>
-<h4 id="weexdocument"><code>__weex_document__</code></h4>
+<h4 id="weexdocument"><a name="weexdocument" class="plugin-anchor" href="#weexdocument"><i class="fa fa-link" aria-hidden="true"></i></a><code>__weex_document__</code></h4>
 <p>An virtual-DOM <code>Document</code> instance. Also the host of <a href="virtual-dom-apis.html">virtual-DOM APIs</a>. Every Weex instance has and must have just one <code>Document</code> instance.</p>
-<h3 id="preserved-global-variables">Preserved Global Variables</h3>
+<h3 id="preserved-global-variables"><a name="preserved-global-variables" class="plugin-anchor" href="#preserved-global-variables"><i class="fa fa-link" aria-hidden="true"></i></a>Preserved Global Variables</h3>
 <p><code>define</code>, <code>bootstrap</code>, <code>module</code>, <code>exports</code>, <code>document</code>, <code>require</code>, <code>register</code>, <code>render</code></p>
-<h3 id="a-whole-example">A whole example</h3>
+<h3 id="a-whole-example"><a name="a-whole-example" class="plugin-anchor" href="#a-whole-example"><i class="fa fa-link" aria-hidden="true"></i></a>A whole example</h3>
 <pre><code class="lang-javascript"><span class="hljs-comment">// { &quot;framework&quot;: &quot;Weex&quot;, &quot;version&quot;: &quot;0.5.0&quot; }</span>
 
 <span class="hljs-keyword">var</span> modal = __weex_require__(<span class="hljs-string">&apos;modal&apos;</span>)
@@ -1779,8 +1783,8 @@ __weex_define__(<span class="hljs-string">&apos;app&apos;</span>, {
 
 __weex_bootstrap__(<span class="hljs-string">&apos;app&apos;</span>)
 </code></pre>
-<h2 id="v030">v0.3.0</h2>
-<h3 id="whole-syntax-and-structure">Whole Syntax and Structure</h3>
+<h2 id="v030"><a name="v030" class="plugin-anchor" href="#v030"><i class="fa fa-link" aria-hidden="true"></i></a>v0.3.0</h2>
+<h3 id="whole-syntax-and-structure"><a name="whole-syntax-and-structure" class="plugin-anchor" href="#whole-syntax-and-structure"><i class="fa fa-link" aria-hidden="true"></i></a>Whole Syntax and Structure</h3>
 <p>A JS Bundle is actually a JavaScript file which follows <strong>ES5</strong> standard. The code is organized by several modules with AMD-like format:</p>
 <pre><code class="lang-javascript">define(<span class="hljs-string">&apos;moduleName1&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">require, exports, module</span>) </span>{
   <span class="hljs-comment">// content of module1</span>
@@ -1805,7 +1809,7 @@ bootstrap(<span class="hljs-string">&apos;@weex-component/b&apos;</span>)
 </code></pre>
 <p>As the sample above, the component name should be hyphenated (a-z, 0-9, &quot;-&quot;). Other characters are not allowed.</p>
 <p>And, the method call <code>bootstrap()</code> allows 1~3 parameters: root module name (String), config info (optional JSON) and external data (optional JSON).</p>
-<h3 id="content-of-composed-components">Content of Composed Components</h3>
+<h3 id="content-of-composed-components"><a name="content-of-composed-components" class="plugin-anchor" href="#content-of-composed-components"><i class="fa fa-link" aria-hidden="true"></i></a>Content of Composed Components</h3>
 <p>A module of composed component contains 3 parts: whole options definition, additional template option definition and additional style option definition.</p>
 <ul>
 <li>whole options is a piece of JavaScript code to put component options (except <code>template</code> option and <code>style</code> option) into <code>module.exports</code></li>
@@ -1814,7 +1818,7 @@ bootstrap(<span class="hljs-string">&apos;@weex-component/b&apos;</span>)
 </ul>
 <p>The <code>template</code> option is required and appeared only once, and the <code>style</code> option and whole options definition are optional.</p>
 <p>These options are defined and transformed by Transformer. Actually you can also ignore all the format limitation and write options to <code>module.exports</code> as the same result if you are not going to use Transformer. But that&apos;s not recommended.</p>
-<h4 id="details-of-template-option-definitions">Details of template option definitions</h4>
+<h4 id="details-of-template-option-definitions"><a name="details-of-template-option-definitions" class="plugin-anchor" href="#details-of-template-option-definitions"><i class="fa fa-link" aria-hidden="true"></i></a>Details of template option definitions</h4>
 <p>A piece of multi-level embedded JSON-like object which describes the view structure.</p>
 <p>Every level JSON-like object has these members below:</p>
 <ul>
@@ -1842,7 +1846,7 @@ bootstrap(<span class="hljs-string">&apos;@weex-component/b&apos;</span>)
 <li>Child nodes in Weex file corresponds to <code>children</code></li>
 </ul>
 <p>All tag names, attr names are case-insensitive and transformed to lower-cased. But the attr values are case-sensitive.</p>
-<h4 id="details-of-style-option-definitions">Details of style option definitions</h4>
+<h4 id="details-of-style-option-definitions"><a name="details-of-style-option-definitions" class="plugin-anchor" href="#details-of-style-option-definitions"><i class="fa fa-link" aria-hidden="true"></i></a>Details of style option definitions</h4>
 <p>Just a two-levels JSON object.</p>
 <ul>
 <li>The first levels are class names.</li>
@@ -1893,7 +1897,7 @@ bootstrap(<span class="hljs-string">&apos;@weex-component/b&apos;</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"JS Bundle Format","level":"1.3.6.1","depth":3,"next":{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},"previous":{"title":"Low-level Specs","level":"1.3.6","depth":2,"ref":"","articles":[{"title":"JS Bundle Format","level":"1.3.6.1","depth":3,"path":"specs/js-bundle-format.md","ref":"specs/js-bundle-format.md","articles":[]},{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},{"title":"Virtual DOM APIs","level":"1.3.6.3","depth":3,"path":"specs/virtual-dom-apis.md","ref":"specs/virtual-dom-apis.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"specs/js-bundle-format.md","mtime":"2016-08-19T08:49:02.146Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-19T08:49:15.526Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"JS Bundle Format","level":"1.3.6.1","depth":3,"next":{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},"previous":{"title":"Low-level Specs","level":"1.3.6","depth":2,"ref":"","articles":[{"title":"JS Bundle Format","level":"1.3.6.1","depth":3,"path":"specs/js-bundle-format.md","ref":"specs/js-bundle-format.md","articles":[]},{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},{"title":"Virtual DOM APIs","level":"1.3.6.3","depth":3,"path":"specs/virtual-dom-apis.md","ref":"specs/virtual-dom-apis.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"specs/js-bundle-format.md","mtime":"2016-08-22T08:15:22.050Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
