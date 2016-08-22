@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1611,50 +1607,50 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="storage"><a name="storage" class="plugin-anchor" href="#storage"><i class="fa fa-link" aria-hidden="true"></i></a>storage</h1>
+                                <h1 id="storage">storage</h1>
 <p><span class="weex-version">0.7</span>
 <a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
-<h2 id="summary"><a name="summary" class="plugin-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>Summary</h2>
+<h2 id="summary">Summary</h2>
 <p><code>storage</code> is a series of apis, allowing you to for example add, modify or delete stored data items.</p>
-<h2 id="api"><a name="api" class="plugin-anchor" href="#api"><i class="fa fa-link" aria-hidden="true"></i></a>API</h2>
-<h3 id="setitemkey-value-callback"><a name="setitemkey-value-callback" class="plugin-anchor" href="#setitemkey-value-callback"><i class="fa fa-link" aria-hidden="true"></i></a>setItem(key, value, callback)</h3>
+<h2 id="api">API</h2>
+<h3 id="setitemkey-value-callback">setItem(key, value, callback)</h3>
 <p>When passed a key name and value, will add that key to the storage,
 or update that key&apos;s value if it already exists.</p>
-<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
+<h4 id="arguments">Arguments</h4>
 <ul>
 <li><code>key</code><em>(string)</em>: the name of the key you want to store. &quot;&quot; or null is not allowed.</li>
 <li><code>value</code><em>(string)</em>: the name of the value you want to store.&quot;&quot; or null is not allowed.</li>
 <li><code>callback</code><em>(object)</em>: the callback function after executing this action.  </li>
 </ul>
-<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h5>
+<h5 id="example">Example</h5>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> storage = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/storage&apos;</span>);
 storage.setItem(<span class="hljs-string">&apos;bar&apos;</span>, <span class="hljs-string">&apos;bar-value&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
   <span class="hljs-comment">// callback.&apos;e&apos; is an object that contains &apos;result&apos; and &apos;data&apos;. e.result indicate wether `setItem` is succeed.</span>
   <span class="hljs-comment">// e.data will return &apos;undefined&apos; if success or &apos;invalid_param&apos; if your key/value is &quot;&quot;/null.</span>
 });
 </code></pre>
-<h3 id="getitemkey-callback"><a name="getitemkey-callback" class="plugin-anchor" href="#getitemkey-callback"><i class="fa fa-link" aria-hidden="true"></i></a>getItem(key, callback)</h3>
+<h3 id="getitemkey-callback">getItem(key, callback)</h3>
 <p>When passed a key name, will return that key&apos;s value.</p>
-<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
+<h4 id="arguments">Arguments</h4>
 <ul>
 <li><code>key</code><em>(string)</em>:  the name of the key you want to retrieve the value of.&quot;&quot; or null is not allowed.</li>
 <li><code>callback</code><em>(object)</em>: the callback function after executing this action.  </li>
 </ul>
-<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h5>
+<h5 id="example">Example</h5>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> storage = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/storage&apos;</span>);
 storage.getItem(<span class="hljs-string">&apos;foo&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
   <span class="hljs-comment">//callback.&apos;e&apos; is an object that contains &apos;result&apos; and &apos;data&apos;.</span>
   <span class="hljs-comment">// use &apos;e.data&apos; to fetch the value of the key,if not found,&apos;undefined&apos; will return.</span>
 });
 </code></pre>
-<h3 id="removeitemkey-callback"><a name="removeitemkey-callback" class="plugin-anchor" href="#removeitemkey-callback"><i class="fa fa-link" aria-hidden="true"></i></a>removeItem(key, callback)</h3>
+<h3 id="removeitemkey-callback">removeItem(key, callback)</h3>
 <p>When passed a key name, will remove that key from the storage.</p>
-<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
+<h4 id="arguments">Arguments</h4>
 <ul>
 <li><code>key</code><em>(string)</em>:  the name of the key you want to remove.&quot;&quot; or null is not allowed.</li>
 <li><code>callback</code><em>(object)</em>: the callback function after executing this action.  </li>
 </ul>
-<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h5>
+<h5 id="example">Example</h5>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> storage = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/storage&apos;</span>);
 storage.removeItem(<span class="hljs-string">&apos;foo&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
   <span class="hljs-comment">// callback. &apos;e&apos; is an object that contains &apos;result&apos; and &apos;data&apos;.</span>
@@ -1662,26 +1658,26 @@ storage.removeItem(<span class="hljs-string">&apos;foo&apos;</span>, <span class
   <span class="hljs-comment">// e.data will always return &apos;undefined&apos; in this function if success.</span>
 });
 </code></pre>
-<h3 id="lengthcallback"><a name="lengthcallback" class="plugin-anchor" href="#lengthcallback"><i class="fa fa-link" aria-hidden="true"></i></a>length(callback)</h3>
+<h3 id="lengthcallback">length(callback)</h3>
 <p>Returns an integer representing the number of data items stored in the Storage object.</p>
-<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
+<h4 id="arguments">Arguments</h4>
 <ul>
 <li><code>callback</code><em>(object)</em>: the callback function after executing this action.  </li>
 </ul>
-<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h5>
+<h5 id="example">Example</h5>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> storage = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/storage&apos;</span>);
 storage.length(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
   <span class="hljs-comment">// callback. &apos;e&apos; is an object that contains &apos;result&apos; and &apos;data&apos;.</span>
   <span class="hljs-comment">//e.data will return that number.</span>
 });
 </code></pre>
-<h3 id="getallkeyscallback"><a name="getallkeyscallback" class="plugin-anchor" href="#getallkeyscallback"><i class="fa fa-link" aria-hidden="true"></i></a>getAllKeys(callback)</h3>
+<h3 id="getallkeyscallback">getAllKeys(callback)</h3>
 <p>Returns an array that contains all keys stored in Storage object.</p>
-<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
+<h4 id="arguments">Arguments</h4>
 <ul>
 <li><code>callback</code><em>(object)</em>: the callback function after executing this action.  </li>
 </ul>
-<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h5>
+<h5 id="example">Example</h5>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> storage = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/storage&apos;</span>);
 storage.getAllKeys(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
   <span class="hljs-comment">// callback. &apos;e&apos; is an object that contains &apos;result&apos; and &apos;data&apos;.</span>
@@ -1731,7 +1727,7 @@ storage.getAllKeys(<span class="hljs-function"><span class="hljs-keyword">functi
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"storage","level":"1.3.5.7","depth":3,"next":{"title":"timer","level":"1.3.5.8","depth":3,"path":"modules/timer.md","ref":"modules/timer.md","articles":[]},"previous":{"title":"navigator","level":"1.3.5.6","depth":3,"path":"modules/navigator.md","ref":"modules/navigator.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"modules/storage.md","mtime":"2016-08-22T08:15:22.050Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"storage","level":"1.3.5.7","depth":3,"next":{"title":"timer","level":"1.3.5.8","depth":3,"path":"modules/timer.md","ref":"modules/timer.md","articles":[]},"previous":{"title":"navigator","level":"1.3.5.6","depth":3,"path":"modules/navigator.md","ref":"modules/navigator.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"modules/storage.md","mtime":"2016-08-22T09:20:31.010Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1746,6 +1742,14 @@ storage.getAllKeys(<span class="hljs-function"><span class="hljs-keyword">functi
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         

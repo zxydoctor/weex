@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1609,10 +1605,10 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="clipboard"><a name="clipboard" class="plugin-anchor" href="#clipboard"><i class="fa fa-link" aria-hidden="true"></i></a>clipboard</h1>
+                                <h1 id="clipboard">clipboard</h1>
 <p><span class="weex-version">0.8 (developing)</span>
 <a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
-<h2 id="summary"><a name="summary" class="plugin-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>Summary</h2>
+<h2 id="summary">Summary</h2>
 <p><code>clipboard</code> allows you to <code>getString()</code> or <code>setString()</code> from the system clipboard.<br>
 Image a scene, you have send a verification code by SMS. Now most phone has a feature to capture the code from whole SMS text, and copy to the clipboard. In the past, you need to input the code manually. Now just click a button which calls <code>clipboard.getString()</code> .</p><p></p>
 <p><em>AUCTION</em> </p>
@@ -1620,14 +1616,14 @@ Image a scene, you have send a verification code by SMS. Now most phone has a fe
 <li>only support text. </li>
 <li>only works in Android and iOS. NOT works in html5, for web security reason.</li>
 </ul>
-<h2 id="api"><a name="api" class="plugin-anchor" href="#api"><i class="fa fa-link" aria-hidden="true"></i></a>API</h2>
-<h3 id="getstringcallback"><a name="getstringcallback" class="plugin-anchor" href="#getstringcallback"><i class="fa fa-link" aria-hidden="true"></i></a>getString(callback)</h3>
+<h2 id="api">API</h2>
+<h3 id="getstringcallback">getString(callback)</h3>
 <p>read from clipboard.</p>
-<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
+<h4 id="arguments">Arguments</h4>
 <ul>
 <li><code>callback</code><em>(function)</em>: the callback function after executing this action. <code>data</code> is the return value. </li>
 </ul>
-<h4 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h4>
+<h4 id="example">Example</h4>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> clipboard = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/clipboard&apos;</span>);
 clipboard.getString(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ret</span>) </span>{
   <span class="hljs-comment">// callback. &apos;ret&apos; is an object that contains &apos;result&apos; and &apos;data&apos;.</span>
@@ -1635,13 +1631,13 @@ clipboard.getString(<span class="hljs-function"><span class="hljs-keyword">funct
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;read from clipboard is &quot;</span> + ret.data);
 });
 </code></pre>
-<h3 id="setstringtext"><a name="setstringtext" class="plugin-anchor" href="#setstringtext"><i class="fa fa-link" aria-hidden="true"></i></a>setString(text)</h3>
+<h3 id="setstringtext">setString(text)</h3>
 <p>set the text into clipboard, as the same as copy manully. </p>
-<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
+<h4 id="arguments">Arguments</h4>
 <ul>
 <li><code>text</code><em>(string)</em>: the string to copy into the clipboard.</li>
 </ul>
-<h4 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h4>
+<h4 id="example">Example</h4>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> clipboard = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/clipboard&apos;</span>);
 clipboard.setString(<span class="hljs-string">&quot;SomeStringHere&quot;</span>);
 </code></pre>
@@ -1684,7 +1680,7 @@ clipboard.setString(<span class="hljs-string">&quot;SomeStringHere&quot;</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"clipboard","level":"1.3.5.9","depth":3,"next":{"title":"Low-level Specs","level":"1.3.6","depth":2,"ref":"","articles":[{"title":"JS Bundle Format","level":"1.3.6.1","depth":3,"path":"specs/js-bundle-format.md","ref":"specs/js-bundle-format.md","articles":[]},{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},{"title":"Virtual DOM APIs","level":"1.3.6.3","depth":3,"path":"specs/virtual-dom-apis.md","ref":"specs/virtual-dom-apis.md","articles":[]}]},"previous":{"title":"timer","level":"1.3.5.8","depth":3,"path":"modules/timer.md","ref":"modules/timer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"modules/clipboard.md","mtime":"2016-08-22T08:15:22.042Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"clipboard","level":"1.3.5.9","depth":3,"next":{"title":"Low-level Specs","level":"1.3.6","depth":2,"ref":"","articles":[{"title":"JS Bundle Format","level":"1.3.6.1","depth":3,"path":"specs/js-bundle-format.md","ref":"specs/js-bundle-format.md","articles":[]},{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},{"title":"Virtual DOM APIs","level":"1.3.6.3","depth":3,"path":"specs/virtual-dom-apis.md","ref":"specs/virtual-dom-apis.md","articles":[]}]},"previous":{"title":"timer","level":"1.3.5.8","depth":3,"path":"modules/timer.md","ref":"modules/timer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"modules/clipboard.md","mtime":"2016-08-22T09:20:30.966Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1699,6 +1695,14 @@ clipboard.setString(<span class="hljs-string">&quot;SomeStringHere&quot;</span>)
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         

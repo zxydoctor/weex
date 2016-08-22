@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1611,11 +1607,11 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="data-binding"><a name="data-binding" class="plugin-anchor" href="#data-binding"><i class="fa fa-link" aria-hidden="true"></i></a>Data-Binding</h1>
+                                <h1 id="data-binding">Data-Binding</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/issues/5" class="weex-translate" target="_blank">cn</a></p>
 <p>In Weex, we use the <em>mustache</em> syntax <code>{{...}}</code> to bind data in <code>&lt;template&gt;</code> which are defined in <code>&lt;script&gt;</code>. Once data and template is bound, the data changes will influence the corresponding template content immediately and automatically.</p>
-<h2 id="binding-data-path"><a name="binding-data-path" class="plugin-anchor" href="#binding-data-path"><i class="fa fa-link" aria-hidden="true"></i></a>Binding data path</h2>
+<h2 id="binding-data-path">Binding data path</h2>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">container</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">text</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;font-size: {{size}}&quot;</span>&gt;</span>{{title}}<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span>
@@ -1650,7 +1646,7 @@ contentLoaded(window,function(){
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<h2 id="in-template-expression"><a name="in-template-expression" class="plugin-anchor" href="#in-template-expression"><i class="fa fa-link" aria-hidden="true"></i></a>In-template expression</h2>
+<h2 id="in-template-expression">In-template expression</h2>
 <p>Inside data bindings, Weex supports simply javascript expressions, e.g.</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">container</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;flex-direction: row;&quot;</span>&gt;</span>
@@ -1669,7 +1665,7 @@ contentLoaded(window,function(){
 </code></pre>
 <p>The expression will be evaluated in the data scope of current context.</p>
 <p><strong>NOTE: EACH BINDING CAN ONLY CONTAIN ONE SINGLE EXPRESSION</strong></p>
-<h2 id="computed-properties"><a name="computed-properties" class="plugin-anchor" href="#computed-properties"><i class="fa fa-link" aria-hidden="true"></i></a>Computed Properties</h2>
+<h2 id="computed-properties">Computed Properties</h2>
 <p><span class="weex-version">0.5</span></p>
 <p>According to simple operations, in-template expressions are very convenient. But if you want to put more logic into the template, you should use a computed property.</p>
 <p>e.g.</p>
@@ -1710,8 +1706,8 @@ contentLoaded(window,function(){
 <p>Here we have declared a computed property fullName. The function we provided will be used as the getter function for concating firstName and lastName.</p>
 <p>Otherwise when you call <code>changeName</code> after click, the setter will be invoked and this.firstName and this.lastName will be updated accordingly.</p>
 <p><strong>NOTE: <code>data</code> and <code>methods</code> can&apos;t have duplicated fields. &apos;Cause in the execution context -- <code>this</code>, we can access both of them.</strong></p>
-<h2 id="usage-of-some-special-attributes-in-data-binding"><a name="usage-of-some-special-attributes-in-data-binding" class="plugin-anchor" href="#usage-of-some-special-attributes-in-data-binding"><i class="fa fa-link" aria-hidden="true"></i></a>Usage of some special attributes in Data-Binding</h2>
-<h3 id="styles-style-or-class"><a name="styles-style-or-class" class="plugin-anchor" href="#styles-style-or-class"><i class="fa fa-link" aria-hidden="true"></i></a>Styles: <code>style</code> or <code>class</code></h3>
+<h2 id="usage-of-some-special-attributes-in-data-binding">Usage of some special attributes in Data-Binding</h2>
+<h3 id="styles-style-or-class">Styles: <code>style</code> or <code>class</code></h3>
 <p>the style of a component can be bind using the <code>style</code> attribute:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">text</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;font-size: {{size}}; color: {{color}}; ...&quot;</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span>
@@ -1729,7 +1725,7 @@ contentLoaded(window,function(){
 <ul>
 <li><a href="style-n-class.html">See more about style and class</a></li>
 </ul>
-<h3 id="event-handler-on"><a name="event-handler-on" class="plugin-anchor" href="#event-handler-on"><i class="fa fa-link" aria-hidden="true"></i></a>Event Handler: <code>on...</code></h3>
+<h3 id="event-handler-on">Event Handler: <code>on...</code></h3>
 <p>The event handler is an attribute which name has a prefix <code>on...</code>. The other part of attribute name is event type and the value is event handler name. We don&apos;t need to add mustache around the method name or add parentheses to call it.</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">text</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;toggle&quot;</span>&gt;</span>Toggle<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span>
@@ -1745,7 +1741,7 @@ contentLoaded(window,function(){
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<h3 id="if--repeat"><a name="if--repeat" class="plugin-anchor" href="#if--repeat"><i class="fa fa-link" aria-hidden="true"></i></a><code>if</code> &amp; <code>repeat</code></h3>
+<h3 id="if--repeat"><code>if</code> &amp; <code>repeat</code></h3>
 <p><code>if</code> attribute can control the display of a component by a truthy/falsy value.</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">container</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;flex-direction: column;&quot;</span>&gt;</span>
@@ -1822,7 +1818,7 @@ example2.items = []
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Data Binding","level":"1.2.2.1","depth":3,"next":{"title":"Style and Class","level":"1.2.2.2","depth":3,"path":"syntax/style-n-class.md","ref":"syntax/style-n-class.md","articles":[]},"previous":{"title":"Syntax","level":"1.2.2","depth":2,"path":"syntax/main.md","ref":"syntax/main.md","articles":[{"title":"Data Binding","level":"1.2.2.1","depth":3,"path":"syntax/data-binding.md","ref":"syntax/data-binding.md","articles":[]},{"title":"Style and Class","level":"1.2.2.2","depth":3,"path":"syntax/style-n-class.md","ref":"syntax/style-n-class.md","articles":[]},{"title":"Events","level":"1.2.2.3","depth":3,"path":"syntax/events.md","ref":"syntax/events.md","articles":[]},{"title":"Display Logic Control","level":"1.2.2.4","depth":3,"path":"syntax/display-logic.md","ref":"syntax/display-logic.md","articles":[]},{"title":"Render Logic Control","level":"1.2.2.5","depth":3,"path":"syntax/render-logic.md","ref":"syntax/render-logic.md","articles":[]},{"title":"Composed Component","level":"1.2.2.6","depth":3,"path":"syntax/composed-component.md","ref":"syntax/composed-component.md","articles":[]},{"title":"Find an Element","level":"1.2.2.7","depth":3,"path":"syntax/id.md","ref":"syntax/id.md","articles":[]},{"title":"Communications","level":"1.2.2.8","depth":3,"path":"syntax/comm.md","ref":"syntax/comm.md","articles":[]},{"title":"Page Config & Data","level":"1.2.2.9","depth":3,"path":"syntax/config-n-data.md","ref":"syntax/config-n-data.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"syntax/data-binding.md","mtime":"2016-08-22T08:15:22.078Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Data Binding","level":"1.2.2.1","depth":3,"next":{"title":"Style and Class","level":"1.2.2.2","depth":3,"path":"syntax/style-n-class.md","ref":"syntax/style-n-class.md","articles":[]},"previous":{"title":"Syntax","level":"1.2.2","depth":2,"path":"syntax/main.md","ref":"syntax/main.md","articles":[{"title":"Data Binding","level":"1.2.2.1","depth":3,"path":"syntax/data-binding.md","ref":"syntax/data-binding.md","articles":[]},{"title":"Style and Class","level":"1.2.2.2","depth":3,"path":"syntax/style-n-class.md","ref":"syntax/style-n-class.md","articles":[]},{"title":"Events","level":"1.2.2.3","depth":3,"path":"syntax/events.md","ref":"syntax/events.md","articles":[]},{"title":"Display Logic Control","level":"1.2.2.4","depth":3,"path":"syntax/display-logic.md","ref":"syntax/display-logic.md","articles":[]},{"title":"Render Logic Control","level":"1.2.2.5","depth":3,"path":"syntax/render-logic.md","ref":"syntax/render-logic.md","articles":[]},{"title":"Composed Component","level":"1.2.2.6","depth":3,"path":"syntax/composed-component.md","ref":"syntax/composed-component.md","articles":[]},{"title":"Find an Element","level":"1.2.2.7","depth":3,"path":"syntax/id.md","ref":"syntax/id.md","articles":[]},{"title":"Communications","level":"1.2.2.8","depth":3,"path":"syntax/comm.md","ref":"syntax/comm.md","articles":[]},{"title":"Page Config & Data","level":"1.2.2.9","depth":3,"path":"syntax/config-n-data.md","ref":"syntax/config-n-data.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"syntax/data-binding.md","mtime":"2016-08-22T09:20:31.058Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1837,6 +1833,14 @@ example2.items = []
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         

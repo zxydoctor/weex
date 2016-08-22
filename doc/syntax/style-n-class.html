@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1611,10 +1607,10 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="style--class"><a name="style--class" class="plugin-anchor" href="#style--class"><i class="fa fa-link" aria-hidden="true"></i></a>Style &amp; Class</h1>
+                                <h1 id="style--class">Style &amp; Class</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/issues/6" class="weex-translate" target="_blank">cn</a></p>
-<h2 id="the-basic-syntax"><a name="the-basic-syntax" class="plugin-anchor" href="#the-basic-syntax"><i class="fa fa-link" aria-hidden="true"></i></a>The Basic Syntax</h2>
+<h2 id="the-basic-syntax">The Basic Syntax</h2>
 <p>CSS style description can be viewed as a series of key-value pairs,each of which describes a particular style, such as the width and height of a component.</p>
 <pre><code>width: 400; height: 50; ...
 </code></pre><p>The format of key-value pairs is <code>prop-name: prop-value;</code>. The key name is <code>prop-name</code>, the value name is <code>prop-value</code>.  Usually,the key name and the value name follow Horizontal connection nomenclature, the value may be a number(the default units is px); The key and the value must be separated by <code>:</code>, between each key-value pairs must be separated by <code>;</code>.</p>
@@ -1623,7 +1619,7 @@ contentLoaded(window,function(){
 <li>Style attribute of <code>&lt;template&gt;</code> label</li>
 <li>Stylesheets of <code>&lt;style&gt;</code> label</li>
 </ul>
-<h3 id="style-attribute"><a name="style-attribute" class="plugin-anchor" href="#style-attribute"><i class="fa fa-link" aria-hidden="true"></i></a>style attribute</h3>
+<h3 id="style-attribute">style attribute</h3>
 <p>The style written in the style label, for example:</p>
 <pre><code>&lt;template&gt;
   &lt;container style=&quot;width: 400; height: 50;&quot;&gt;
@@ -1631,7 +1627,7 @@ contentLoaded(window,function(){
   &lt;/container&gt;
 &lt;/template&gt;
 </code></pre><p>It is said that the width and height of <code>&lt;container&gt;</code> label is 400 pixels and 50 pixels respectively.</p>
-<h3 id="the-style-tag"><a name="the-style-tag" class="plugin-anchor" href="#the-style-tag"><i class="fa fa-link" aria-hidden="true"></i></a>the <code>&lt;style&gt;</code> tag</h3>
+<h3 id="the-style-tag">the <code>&lt;style&gt;</code> tag</h3>
 <p>For example:</p>
 <pre><code>&lt;style&gt;
   .wrapper {width: 600;}
@@ -1641,7 +1637,7 @@ contentLoaded(window,function(){
 </code></pre><p>The stylesheets contain multiple style rules, each style rule has only one class which is contained by its style selector, a pair of curly braces <code>{...}</code>, and the styles of the curly braces. For example:</p>
 <pre><code>.title {width: 400; height: 50;}
 </code></pre><p>The above is a rule.</p>
-<h3 id="class-attribute"><a name="class-attribute" class="plugin-anchor" href="#class-attribute"><i class="fa fa-link" aria-hidden="true"></i></a>Class attribute</h3>
+<h3 id="class-attribute">Class attribute</h3>
 <p>The selectors of <code>&lt;style&gt;</code> label are matched with the class attribute of <code>&lt;template&gt;</code> label, we should use spaces to separate the class names. For example:</p>
 <pre><code>&lt;template&gt;
   &lt;container class=&quot;wrapper&quot;&gt;
@@ -1655,7 +1651,7 @@ contentLoaded(window,function(){
   .highlight {color: #ff0000;}
 &lt;/style&gt;
 </code></pre><p>It means that the width of the outermost container is 600px, The inside of the two title text is 400 pixels high 50 pixels wide, the second piece of text is red.</p>
-<h3 id="notes"><a name="notes" class="plugin-anchor" href="#notes"><i class="fa fa-link" aria-hidden="true"></i></a>Notes</h3>
+<h3 id="notes">Notes</h3>
 <ul>
 <li>In order to simplify the page design and the complete underlying implementation, the width of our default screen is unified to 750 pixels, different screens should be scaled with corresponding ratio.</li>
 <li>The CSS standard may support a lot of selectors, but now weex only support single-class selector.</li>
@@ -1663,7 +1659,7 @@ contentLoaded(window,function(){
 <li>The styles of Weex cannot be inherited to children elements, this is different to the CSS standard, such as <code>color</code> and <code>font-size</code>.</li>
 <li>The CSS standard contains a lot of styles, but weex only sopport few styles which include layouts such as box model, flexbox, positions. And styles include <code>font-size</code>, <code>color</code>, etc.</li>
 </ul>
-<h2 id="with-data-binding"><a name="with-data-binding" class="plugin-anchor" href="#with-data-binding"><i class="fa fa-link" aria-hidden="true"></i></a>With Data-binding</h2>
+<h2 id="with-data-binding">With Data-binding</h2>
 <p>Page <a href="data-binding.html">data</a> can be bound in <code>style</code> and <code>class</code> attribute. For example:</p>
 <pre><code>&lt;template&gt;
   &lt;container&gt;
@@ -1727,7 +1723,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Style and Class","level":"1.2.2.2","depth":3,"next":{"title":"Events","level":"1.2.2.3","depth":3,"path":"syntax/events.md","ref":"syntax/events.md","articles":[]},"previous":{"title":"Data Binding","level":"1.2.2.1","depth":3,"path":"syntax/data-binding.md","ref":"syntax/data-binding.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"syntax/style-n-class.md","mtime":"2016-08-22T08:15:22.078Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Style and Class","level":"1.2.2.2","depth":3,"next":{"title":"Events","level":"1.2.2.3","depth":3,"path":"syntax/events.md","ref":"syntax/events.md","articles":[]},"previous":{"title":"Data Binding","level":"1.2.2.1","depth":3,"path":"syntax/data-binding.md","ref":"syntax/data-binding.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"syntax/style-n-class.md","mtime":"2016-08-22T09:20:31.058Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1742,6 +1738,14 @@ contentLoaded(window,function(){
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         

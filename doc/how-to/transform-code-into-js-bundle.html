@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1611,28 +1607,28 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="transform-code-into-js-bundle"><a name="transform-code-into-js-bundle" class="plugin-anchor" href="#transform-code-into-js-bundle"><i class="fa fa-link" aria-hidden="true"></i></a>Transform Code into Js Bundle</h1>
+                                <h1 id="transform-code-into-js-bundle">Transform Code into Js Bundle</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
 <p>Paragraphs <a href="maintain-your-component-code.md">Maintain Your Component Code</a> and <a href="require-3rd-party-libs.html">Require 3rd Party Libs</a> show us how to write and organize weex code. However, Weex DSL code must be transformed to <code>js bundle</code> so that <code>js framework</code> can parse and execute it for iOS, Android and HTML5 portal. For more information, please refer to <a href="../advanced/how-it-works.html">How It Works
 </a> and <a href="../specs/js-bundle-format.html">JS Bundle Format</a>.</p>
 <p>Now come back to the topic <code>transform code into js bundle</code>. There are several ways to achieve the goal.</p>
-<h2 id="weex-toolkit"><a name="weex-toolkit" class="plugin-anchor" href="#weex-toolkit"><i class="fa fa-link" aria-hidden="true"></i></a>weex-toolkit</h2>
+<h2 id="weex-toolkit">weex-toolkit</h2>
 <pre><code class="lang-bash"><span class="hljs-variable">$npm</span> install -g weex-toolkit
 </code></pre>
-<h3 id="transform-a-we-file-to-js-bundle"><a name="transform-a-we-file-to-js-bundle" class="plugin-anchor" href="#transform-a-we-file-to-js-bundle"><i class="fa fa-link" aria-hidden="true"></i></a>transform a <code>we file</code> to JS Bundle</h3>
+<h3 id="transform-a-we-file-to-js-bundle">transform a <code>we file</code> to JS Bundle</h3>
 <pre><code>$weex your_best_weex.we  -o .
 </code></pre><p><code>your_best_weex.we</code> will be transform to JS Bundle file <code>your_best_weex.js</code> , saved in your current directory</p>
-<h3 id="transform-a-we-file-to-js-bundle--watch-this-file-&#xFF0C;auto-run-transformer-if-change-happen"><a name="transform-a-we-file-to-js-bundle--watch-this-file-&#xFF0C;auto-run-transformer-if-change-happen" class="plugin-anchor" href="#transform-a-we-file-to-js-bundle--watch-this-file-&#xFF0C;auto-run-transformer-if-change-happen"><i class="fa fa-link" aria-hidden="true"></i></a>transform a <code>we file</code> to JS Bundle , watch this file &#xFF0C;auto run transformer if change happen.</h3>
+<h3 id="transform-a-we-file-to-js-bundle--watch-this-file-&#xFF0C;auto-run-transformer-if-change-happen">transform a <code>we file</code> to JS Bundle , watch this file &#xFF0C;auto run transformer if change happen.</h3>
 <pre><code>$weex your_best_weex.we  -o . --watch
-</code></pre><h3 id="transform-every-we-file-in-a-directory"><a name="transform-every-we-file-in-a-directory" class="plugin-anchor" href="#transform-every-we-file-in-a-directory"><i class="fa fa-link" aria-hidden="true"></i></a>transform every we file in a directory</h3>
+</code></pre><h3 id="transform-every-we-file-in-a-directory">transform every we file in a directory</h3>
 <pre><code>$weex we/file/storage/path  -o outputpath
 </code></pre><p>every <code>we file</code> in <code>we/file/storage/path</code> we be transform to JS Bundle  , saved in <code>outputpath</code> path</p>
 <p>please access <a href="https://www.npmjs.com/package/weex-toolkit" target="_blank">npmjs.com</a> for more information about weex-toolkit.</p>
-<h2 id="transformer"><a name="transformer" class="plugin-anchor" href="#transformer"><i class="fa fa-link" aria-hidden="true"></i></a>transformer</h2>
+<h2 id="transformer">transformer</h2>
 <pre><code class="lang-bash">npm install weex-transformer
 </code></pre>
-<h3 id="cli-tool"><a name="cli-tool" class="plugin-anchor" href="#cli-tool"><i class="fa fa-link" aria-hidden="true"></i></a>CLI Tool</h3>
+<h3 id="cli-tool">CLI Tool</h3>
 <pre><code>  Usage: transformer [options] &lt;file...&gt;
 
   Options:
@@ -1642,7 +1638,7 @@ contentLoaded(window,function(){
     -l, --oldFormat [value]  whether to transform to old format (default: false)
     -e, --isEntry [value]    whether is an entry module which has `bootstrap` (default: true)
     -o, --output [path]      the output file dirname
-</code></pre><h3 id="api"><a name="api" class="plugin-anchor" href="#api"><i class="fa fa-link" aria-hidden="true"></i></a>API</h3>
+</code></pre><h3 id="api">API</h3>
 <p><strong> transform(name, code, path, elements, config) </strong></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> transformer = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;weex-transformer&apos;</span>)
 <span class="hljs-keyword">var</span> output = transformer.transform(<span class="hljs-string">&apos;foo&apos;</span>, <span class="hljs-string">&apos;/* code here */&apos;</span>, <span class="hljs-string">&apos;.&apos;</span>, {})
@@ -1667,7 +1663,7 @@ contentLoaded(window,function(){
 </ul>
 </li>
 </ul>
-<h2 id="gulp-weex"><a name="gulp-weex" class="plugin-anchor" href="#gulp-weex"><i class="fa fa-link" aria-hidden="true"></i></a>gulp weex</h2>
+<h2 id="gulp-weex">gulp weex</h2>
 <pre><code class="lang-bash">npm install gulp-weex
 </code></pre>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp&apos;</span>)
@@ -1727,7 +1723,7 @@ gulp.task(<span class="hljs-string">&apos;default&apos;</span>, <span class="hlj
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Transform Code Into JS Bundle","level":"1.2.3.7","depth":3,"next":{"title":"Advanced","level":"1.2.4","depth":2,"path":"advanced/main.md","ref":"advanced/main.md","articles":[{"title":"How It Works","level":"1.2.4.1","depth":3,"path":"advanced/how-it-works.md","ref":"advanced/how-it-works.md","articles":[]},{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"path":"advanced/integrate-to-android.md","ref":"advanced/integrate-to-android.md","articles":[]},{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},{"title":"Integrate to web","level":"1.2.4.5","depth":3,"path":"advanced/integrate-to-html5.md","ref":"advanced/integrate-to-html5.md","articles":[]},{"title":"Extend to Android","level":"1.2.4.6","depth":3,"path":"advanced/extend-to-android.md","ref":"advanced/extend-to-android.md","articles":[]},{"title":"Extend to iOS","level":"1.2.4.7","depth":3,"path":"advanced/extend-to-ios.md","ref":"advanced/extend-to-ios.md","articles":[]},{"title":"Extend to web","level":"1.2.4.8","depth":3,"path":"advanced/extend-to-html5.md","ref":"advanced/extend-to-html5.md","articles":[]}]},"previous":{"title":"Require 3rd Party Libs","level":"1.2.3.6","depth":3,"path":"how-to/require-3rd-party-libs.md","ref":"how-to/require-3rd-party-libs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"how-to/transform-code-into-js-bundle.md","mtime":"2016-08-22T08:15:22.018Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Transform Code Into JS Bundle","level":"1.2.3.7","depth":3,"next":{"title":"Advanced","level":"1.2.4","depth":2,"path":"advanced/main.md","ref":"advanced/main.md","articles":[{"title":"How It Works","level":"1.2.4.1","depth":3,"path":"advanced/how-it-works.md","ref":"advanced/how-it-works.md","articles":[]},{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"path":"advanced/integrate-to-android.md","ref":"advanced/integrate-to-android.md","articles":[]},{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},{"title":"Integrate to web","level":"1.2.4.5","depth":3,"path":"advanced/integrate-to-html5.md","ref":"advanced/integrate-to-html5.md","articles":[]},{"title":"Extend to Android","level":"1.2.4.6","depth":3,"path":"advanced/extend-to-android.md","ref":"advanced/extend-to-android.md","articles":[]},{"title":"Extend to iOS","level":"1.2.4.7","depth":3,"path":"advanced/extend-to-ios.md","ref":"advanced/extend-to-ios.md","articles":[]},{"title":"Extend to web","level":"1.2.4.8","depth":3,"path":"advanced/extend-to-html5.md","ref":"advanced/extend-to-html5.md","articles":[]}]},"previous":{"title":"Require 3rd Party Libs","level":"1.2.3.6","depth":3,"path":"how-to/require-3rd-party-libs.md","ref":"how-to/require-3rd-party-libs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"how-to/transform-code-into-js-bundle.md","mtime":"2016-08-22T09:20:30.946Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1742,6 +1738,14 @@ gulp.task(<span class="hljs-string">&apos;default&apos;</span>, <span class="hlj
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         

@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1611,14 +1607,14 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="extend-to-android"><a name="extend-to-android" class="plugin-anchor" href="#extend-to-android"><i class="fa fa-link" aria-hidden="true"></i></a>Extend to Android</h2>
+                                <h2 id="extend-to-android">Extend to Android</h2>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/issues/27" class="weex-translate" target="_blank">cn</a></p>
-<h3 id="module-extend"><a name="module-extend" class="plugin-anchor" href="#module-extend"><i class="fa fa-link" aria-hidden="true"></i></a>Module extend</h3>
+<h3 id="module-extend">Module extend</h3>
 <p>weex sdk support Moulde extend,
 Weex SDK provides only rendering capabilities, rather than have other capabilities, such as network, picture, and URL redirection. If you want the these features, you need to implement it.  </p>
 <p>For example: If you want to implement an address jumping function, you can achieve a Module Follow the steps below. </p>
-<h4 id="step-to-customize-a-module"><a name="step-to-customize-a-module" class="plugin-anchor" href="#step-to-customize-a-module"><i class="fa fa-link" aria-hidden="true"></i></a>Step to customize a module</h4>
+<h4 id="step-to-customize-a-module">Step to customize a module</h4>
 <ol>
 <li>Customize module must extend WXModule  </li>
 <li>@WXModuleAnno annotation must be added, as it is the only the way to recognized by Weex  </li>
@@ -1639,17 +1635,17 @@ Weex SDK provides only rendering capabilities, rather than have other capabiliti
         }
     }
 </code></pre>
-<h4 id="register-the-moulde"><a name="register-the-moulde" class="plugin-anchor" href="#register-the-moulde"><i class="fa fa-link" aria-hidden="true"></i></a>Register the moulde</h4>
+<h4 id="register-the-moulde">Register the moulde</h4>
 <pre><code class="lang-java">
   WXSDKEngine.registerModule(<span class="hljs-string">&quot;event&quot;</span>, WXEventModule.class);
 </code></pre>
-<h3 id="use-this-module-in-weex-dsl"><a name="use-this-module-in-weex-dsl" class="plugin-anchor" href="#use-this-module-in-weex-dsl"><i class="fa fa-link" aria-hidden="true"></i></a>Use this module in weex DSL</h3>
+<h3 id="use-this-module-in-weex-dsl">Use this module in weex DSL</h3>
 <p>Now <code>event</code> moudle is avaiable in weex, use the module like this:   </p>
 <pre><code class="lang-javascript">
 <span class="hljs-keyword">var</span> event = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/event&apos;</span>);
 event.openURL(<span class="hljs-string">&quot;http://www.github.com&quot;</span>);
 </code></pre>
-<h3 id="javascript-callback"><a name="javascript-callback" class="plugin-anchor" href="#javascript-callback"><i class="fa fa-link" aria-hidden="true"></i></a>Javascript callback</h3>
+<h3 id="javascript-callback">Javascript callback</h3>
 <p>If the module need implement a callback to javascript, you just add <code>JSCallback</code> argument to the method you want expose to javascript:   </p>
 <pre><code class="lang-java">
     <span class="hljs-meta">@WXModuleAnno</span>
@@ -1664,10 +1660,10 @@ event.openURL(<span class="hljs-string">&quot;http://www.github.com&quot;</span>
 <pre><code class="lang-javascript">
 event.openURL(<span class="hljs-string">&quot;http://www.github.com&quot;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resp</span>)</span>{ <span class="hljs-built_in">console</span>.log(resp.result); });
 </code></pre>
-<h3 id="component-extend"><a name="component-extend" class="plugin-anchor" href="#component-extend"><i class="fa fa-link" aria-hidden="true"></i></a>Component extend</h3>
+<h3 id="component-extend">Component extend</h3>
 <p><font color="gray">
 There are label, image, div, scroll, ect. components in weex, you can also customize your own components.  </font></p>
-<h4 id="step-to-customize-a-component"><a name="step-to-customize-a-component" class="plugin-anchor" href="#step-to-customize-a-component"><i class="fa fa-link" aria-hidden="true"></i></a>Step to customize a component</h4>
+<h4 id="step-to-customize-a-component">Step to customize a component</h4>
 <ol>
 <li>Customize components must extend WXComponent or WXContainer  </li>
 <li>@WXComponentProp(name=value(value is attr or style of dsl)) for it be recognized by weex SDK.</li>
@@ -1698,11 +1694,11 @@ There are label, image, div, scroll, ect. components in weex, you can also custo
      }
     }
 </code></pre>
-<h4 id="register-the-component"><a name="register-the-component" class="plugin-anchor" href="#register-the-component"><i class="fa fa-link" aria-hidden="true"></i></a>Register the Component</h4>
+<h4 id="register-the-component">Register the Component</h4>
 <pre><code class="lang-java">   WXSDKEngine.registerComponent(<span class="hljs-string">&quot;MyView&quot;</span>, MyViewComponent.class);
 </code></pre>
-<h3 id="adapter-extend"><a name="adapter-extend" class="plugin-anchor" href="#adapter-extend"><i class="fa fa-link" aria-hidden="true"></i></a>Adapter extend</h3>
-<h4 id="imagedownloadadapter"><a name="imagedownloadadapter" class="plugin-anchor" href="#imagedownloadadapter"><i class="fa fa-link" aria-hidden="true"></i></a>ImagedownloadAdapter</h4>
+<h3 id="adapter-extend">Adapter extend</h3>
+<h4 id="imagedownloadadapter">ImagedownloadAdapter</h4>
 <p><font color="gray">
 Weex SDK has no image download capability, you need to implement <code>IWXImgLoaderAdapter</code>. Refer to the following examples.</font></p>
 <pre><code class="lang-java">
@@ -1784,7 +1780,7 @@ Weex SDK has no image download capability, you need to implement <code>IWXImgLoa
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Extend to Android","level":"1.2.4.6","depth":3,"next":{"title":"Extend to iOS","level":"1.2.4.7","depth":3,"path":"advanced/extend-to-ios.md","ref":"advanced/extend-to-ios.md","articles":[]},"previous":{"title":"Integrate to web","level":"1.2.4.5","depth":3,"path":"advanced/integrate-to-html5.md","ref":"advanced/integrate-to-html5.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/extend-to-android.md","mtime":"2016-08-22T08:15:22.014Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Extend to Android","level":"1.2.4.6","depth":3,"next":{"title":"Extend to iOS","level":"1.2.4.7","depth":3,"path":"advanced/extend-to-ios.md","ref":"advanced/extend-to-ios.md","articles":[]},"previous":{"title":"Integrate to web","level":"1.2.4.5","depth":3,"path":"advanced/integrate-to-html5.md","ref":"advanced/integrate-to-html5.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/extend-to-android.md","mtime":"2016-08-22T09:20:30.742Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1799,6 +1795,14 @@ Weex SDK has no image download capability, you need to implement <code>IWXImgLoa
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         

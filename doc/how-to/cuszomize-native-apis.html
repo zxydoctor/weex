@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1611,11 +1607,11 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="how-to-customize-native-apis-"><a name="how-to-customize-native-apis-" class="plugin-anchor" href="#how-to-customize-native-apis-"><i class="fa fa-link" aria-hidden="true"></i></a>How to customize native APIs ?</h1>
+                                <h1 id="how-to-customize-native-apis-">How to customize native APIs ?</h1>
 <p><a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
 <p>Weex SDK provides only rendering capability, rather than having other capabilities, such as network, picture, and URL redirection. If you want the these features, you need to implement them yourselves.<br>The example below will describe how to extend weex with native logic or &apos;bridge&apos; your existed native code.</p>
-<h2 id="a-urlhelper-example"><a name="a-urlhelper-example" class="plugin-anchor" href="#a-urlhelper-example"><i class="fa fa-link" aria-hidden="true"></i></a>A URLHelper Example</h2>
-<h3 id="create-your-own-wxmodule-in-native"><a name="create-your-own-wxmodule-in-native" class="plugin-anchor" href="#create-your-own-wxmodule-in-native"><i class="fa fa-link" aria-hidden="true"></i></a>Create your own <code>WXModule</code> in native:</h3>
+<h2 id="a-urlhelper-example">A URLHelper Example</h2>
+<h3 id="create-your-own-wxmodule-in-native">Create your own <code>WXModule</code> in native:</h3>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">URLHelperModule</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WXModule</span></span>{
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String WEEX_CATEGORY=<span class="hljs-string">&quot;com.taobao.android.intent.category.WEEX&quot;</span>;
     <span class="hljs-meta">@WXModuleAnno</span>
@@ -1646,19 +1642,19 @@ If your also want to callback to javascript, you should define a <code>callbackI
     }
 }
 </code></pre>
-<h3 id="register-your-module-to-engine"><a name="register-your-module-to-engine" class="plugin-anchor" href="#register-your-module-to-engine"><i class="fa fa-link" aria-hidden="true"></i></a>Register your module to engine:</h3>
+<h3 id="register-your-module-to-engine">Register your module to engine:</h3>
 <pre><code>try {
      WXSDKEngine.registerModule(&quot;myURL&quot;, URLHelperModule.class);//&apos;myURL&apos; is the name you&apos;ll use in javascript
     } catch (WXException e) {
        WXLogUtils.e(e.getMessage());
     }
-</code></pre><h3 id="now-you-can-use-eventmodule-in-javascript-like-this"><a name="now-you-can-use-eventmodule-in-javascript-like-this" class="plugin-anchor" href="#now-you-can-use-eventmodule-in-javascript-like-this"><i class="fa fa-link" aria-hidden="true"></i></a>Now, you can use eventModule in javascript like this:</h3>
+</code></pre><h3 id="now-you-can-use-eventmodule-in-javascript-like-this">Now, you can use eventModule in javascript like this:</h3>
 <pre><code class="lang-javascript"><span class="hljs-keyword">let</span> URLHelper = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/myURL&apos;</span>);<span class="hljs-comment">//same as you registered</span>
 URLHelper.openURL(<span class="hljs-string">&quot;http://www.taobao.com&quot;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ts</span>)</span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;url is open at &quot;</span>+ts);
 });
 </code></pre>
-<h2 id="things-you-need-to-note"><a name="things-you-need-to-note" class="plugin-anchor" href="#things-you-need-to-note"><i class="fa fa-link" aria-hidden="true"></i></a>Things you need to note:</h2>
+<h2 id="things-you-need-to-note">Things you need to note:</h2>
 <ol>
 <li>Customized components must inherit from <code>WXModule</code>;</li>
 <li>@WXModuleAnno annotation must be added, as it is the only way to be recognized by Weex;</li>
@@ -1711,7 +1707,7 @@ URLHelper.openURL(<span class="hljs-string">&quot;http://www.taobao.com&quot;</s
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Customize native APIs","level":"1.2.3.4","depth":3,"next":{"title":"Debug in html5 renderer","level":"1.2.3.5","depth":3,"path":"how-to/debug-with-html5.md","ref":"how-to/debug-with-html5.md","articles":[]},"previous":{"title":"Customize a native Component","level":"1.2.3.3","depth":3,"path":"how-to/customize-a-native-component.md","ref":"how-to/customize-a-native-component.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"how-to/cuszomize-native-apis.md","mtime":"2016-08-22T08:15:22.018Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Customize native APIs","level":"1.2.3.4","depth":3,"next":{"title":"Debug in html5 renderer","level":"1.2.3.5","depth":3,"path":"how-to/debug-with-html5.md","ref":"how-to/debug-with-html5.md","articles":[]},"previous":{"title":"Customize a native Component","level":"1.2.3.3","depth":3,"path":"how-to/customize-a-native-component.md","ref":"how-to/customize-a-native-component.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"how-to/cuszomize-native-apis.md","mtime":"2016-08-22T09:20:30.930Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1726,6 +1722,14 @@ URLHelper.openURL(<span class="hljs-string">&quot;http://www.taobao.com&quot;</s
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         

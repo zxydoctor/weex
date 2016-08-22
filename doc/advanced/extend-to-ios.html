@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1611,12 +1607,12 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="extend-to-ios"><a name="extend-to-ios" class="plugin-anchor" href="#extend-to-ios"><i class="fa fa-link" aria-hidden="true"></i></a>Extend to iOS</h2>
+                                <h2 id="extend-to-ios">Extend to iOS</h2>
 <p><a href="https://github.com/weexteam/article/issues/17" class="weex-translate" target="_blank">cn</a></p>
-<h3 id="module-extend"><a name="module-extend" class="plugin-anchor" href="#module-extend"><i class="fa fa-link" aria-hidden="true"></i></a>Module extend</h3>
+<h3 id="module-extend">Module extend</h3>
 <p>Weex SDK provides only rendering capabilities, rather than have other capabilities, such as network, picture, and URL redirection. If you want these features, you need to implement it.</p>
 <p>For example: If you want to implement an address jumping function, you can achieve a Module following the steps below.</p>
-<h4 id="step-to-customize-a-module"><a name="step-to-customize-a-module" class="plugin-anchor" href="#step-to-customize-a-module"><i class="fa fa-link" aria-hidden="true"></i></a>Step to customize a module</h4>
+<h4 id="step-to-customize-a-module">Step to customize a module</h4>
 <ol>
 <li>Module 
 customized must implement WXModuleProtocol</li>
@@ -1649,7 +1645,7 @@ customized must implement WXModuleProtocol</li>
 
     @end
 </code></pre>
-<h4 id="register-the-module"><a name="register-the-module" class="plugin-anchor" href="#register-the-module"><i class="fa fa-link" aria-hidden="true"></i></a>Register the module</h4>
+<h4 id="register-the-module">Register the module</h4>
 <p>You can register the customized module by calling the method <code>registerModule:withClass</code> in WXSDKEngine.</p>
 <pre><code class="lang-objective-c">
       WXSDKEngine.h
@@ -1662,9 +1658,9 @@ customized must implement WXModuleProtocol</li>
 
         [WXSDKEngine registerModule:@&quot;event&quot; withClass:[WXEventModule class]];
 </code></pre>
-<h3 id="handler-extend"><a name="handler-extend" class="plugin-anchor" href="#handler-extend"><i class="fa fa-link" aria-hidden="true"></i></a>Handler extend</h3>
+<h3 id="handler-extend">Handler extend</h3>
 <p>Weex SDK doesn&apos;t have capabilitis, such as image download &#x3001;navigator operation&#xFF0C;please implement these protocols by yourself.</p>
-<h4 id="wximgloaderprotocol"><a name="wximgloaderprotocol" class="plugin-anchor" href="#wximgloaderprotocol"><i class="fa fa-link" aria-hidden="true"></i></a>WXImgLoaderProtocol</h4>
+<h4 id="wximgloaderprotocol">WXImgLoaderProtocol</h4>
 <p><font color="gray">
 Weex SDK has no image download capability, you need to implement <code>WXImgLoaderProtocol</code>. Refer to the following examples.</font></p>
 <pre><code class="lang-objective-c">
@@ -1704,7 +1700,7 @@ Weex SDK has no image download capability, you need to implement <code>WXImgLoad
     }
     @end
 </code></pre>
-<h4 id="register-the-handler"><a name="register-the-handler" class="plugin-anchor" href="#register-the-handler"><i class="fa fa-link" aria-hidden="true"></i></a>Register the handler</h4>
+<h4 id="register-the-handler">Register the handler</h4>
 <p>You can register the handler which implements the protocol by calling  <code>registerHandler:withProtocol</code> in WXSDKEngine.</p>
 <pre><code class="lang-objective-c">
       WXSDKEngine.h
@@ -1717,17 +1713,17 @@ Weex SDK has no image download capability, you need to implement <code>WXImgLoad
 
        [WXSDKEngine registerHandler:[WXImgLoaderDefaultImpl new] withProtocol:@protocol(WXImgLoaderProtocol)];
 </code></pre>
-<h2 id="custom-native-components-for-ios"><a name="custom-native-components-for-ios" class="plugin-anchor" href="#custom-native-components-for-ios"><i class="fa fa-link" aria-hidden="true"></i></a>Custom Native Components for iOS</h2>
-<h3 id="component-extend"><a name="component-extend" class="plugin-anchor" href="#component-extend"><i class="fa fa-link" aria-hidden="true"></i></a>Component extend</h3>
+<h2 id="custom-native-components-for-ios">Custom Native Components for iOS</h2>
+<h3 id="component-extend">Component extend</h3>
 <p>There are a lot of native components ready to be used in the Weex SDK,  but users always have their own use cases. You might have written an awesome native UI widget in your previous work and just want to wrap up it and export to Weex. So we provide a way to enable developers to create their own custom fully-native components.</p>
 <p>This guide will use the implementation of existing component <code>image</code> to show you how to build a native component. It will also assume that you are familiar with iOS programming.</p>
-<h4 id="registration"><a name="registration" class="plugin-anchor" href="#registration"><i class="fa fa-link" aria-hidden="true"></i></a>Registration</h4>
+<h4 id="registration">Registration</h4>
 <p>Defining a custom native component is simple. Just call <code>[WXSDKEngine registerComponent:withClass:]</code> with the component&apos;s tag name as first argument.</p>
 <pre><code>[WXSDKEngine registerComponent:@&quot;image&quot; withClass:[WXImageComponent class]];
 </code></pre><p>Then you can create a <code>WXImageComponent</code> class to represent the implementation of image component.</p>
 <p>Now you can use <code>&lt;image&gt;</code> wherever you want in the template.</p>
 <pre><code>&lt;image&gt;&lt;/image&gt;
-</code></pre><h4 id="adding-properties"><a name="adding-properties" class="plugin-anchor" href="#adding-properties"><i class="fa fa-link" aria-hidden="true"></i></a>Adding Properties</h4>
+</code></pre><h4 id="adding-properties">Adding Properties</h4>
 <p>The next thing we can do is to extend some native properties to make the component more powerful. As an image, let&apos;s say we should have a <code>src</code> attribute as image&apos;s remote source and a <code>resize</code> attribute as image&apos;s resize mode(contain/cover/stretch).</p>
 <pre><code>@interface WXImageComponent ()
 
@@ -1750,7 +1746,7 @@ Weex SDK has no image download capability, you need to implement <code>WXImgLoad
 
 @end
 </code></pre><p>The properties getted in the attributes are of <code>id</code> type, so we have to convert them to the type we want using a conversion function.  Basic conversion functions can be found in the <code>WXConvert</code> file,  or you can just add your own conversion function.</p>
-<h4 id="hooking-render-life-cycle"><a name="hooking-render-life-cycle" class="plugin-anchor" href="#hooking-render-life-cycle"><i class="fa fa-link" aria-hidden="true"></i></a>Hooking Render Life Cycle</h4>
+<h4 id="hooking-render-life-cycle">Hooking Render Life Cycle</h4>
 <p>A Native Component has a life cycle managed by Weex. Weex creates it, layout it, renders it and destroys it.</p>
 <p>Weex offers component life cycle hooks that give you visibility into these key moments and the ability to act when they occur.</p>
 <table>
@@ -1883,7 +1879,7 @@ Weex SDK has no image download capability, you need to implement <code>WXImgLoad
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Extend to iOS","level":"1.2.4.7","depth":3,"next":{"title":"Extend to web","level":"1.2.4.8","depth":3,"path":"advanced/extend-to-html5.md","ref":"advanced/extend-to-html5.md","articles":[]},"previous":{"title":"Extend to Android","level":"1.2.4.6","depth":3,"path":"advanced/extend-to-android.md","ref":"advanced/extend-to-android.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/extend-to-ios.md","mtime":"2016-08-22T08:15:22.014Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Extend to iOS","level":"1.2.4.7","depth":3,"next":{"title":"Extend to web","level":"1.2.4.8","depth":3,"path":"advanced/extend-to-html5.md","ref":"advanced/extend-to-html5.md","articles":[]},"previous":{"title":"Extend to Android","level":"1.2.4.6","depth":3,"path":"advanced/extend-to-android.md","ref":"advanced/extend-to-android.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/extend-to-ios.md","mtime":"2016-08-22T09:20:30.742Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1898,6 +1894,14 @@ Weex SDK has no image download capability, you need to implement <code>WXImgLoad
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         

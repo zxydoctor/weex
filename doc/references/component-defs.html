@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1611,7 +1607,7 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="component-definition"><a name="component-definition" class="plugin-anchor" href="#component-definition"><i class="fa fa-link" aria-hidden="true"></i></a>Component Definition</h1>
+                                <h1 id="component-definition">Component Definition</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/issues/31" class="weex-translate" target="_blank">cn</a></p>
 <p>A component definition is a set of options to describe a component. It&apos;s always assigned to <code>module.exports</code> in <code>&lt;script&gt;</code>.</p>
@@ -1619,7 +1615,7 @@ contentLoaded(window,function(){
   <span class="hljs-comment">// a set of options here</span>
 }
 </code></pre>
-<h2 id="data--methods-options"><a name="data--methods-options" class="plugin-anchor" href="#data--methods-options"><i class="fa fa-link" aria-hidden="true"></i></a>Data &amp; Methods options</h2>
+<h2 id="data--methods-options">Data &amp; Methods options</h2>
 <pre><code class="lang-javascript"><span class="hljs-built_in">module</span>.exports = {
   data: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> {x: <span class="hljs-number">1</span>, y: <span class="hljs-number">2</span>}
@@ -1650,7 +1646,7 @@ The <code>methods</code> option is a map which contains all ViewModel methods.</
     }
   }
 &lt;/script&gt;
-</code></pre><h2 id="events-options"><a name="events-options" class="plugin-anchor" href="#events-options"><i class="fa fa-link" aria-hidden="true"></i></a>Events options</h2>
+</code></pre><h2 id="events-options">Events options</h2>
 <pre><code class="lang-javascript"><span class="hljs-built_in">module</span>.exports = {
   data: ...,
   methods: {
@@ -1669,7 +1665,7 @@ The <code>methods</code> option is a map which contains all ViewModel methods.</
 </code></pre>
 <p>The <code>events</code> options could allow you to add custom event listeners when ViewModel created. Then it will listen these type of events and handle them by the function-type value.</p>
 <p>The first argument is a event object which contains event data in <code>e.detail</code>.</p>
-<h2 id="lifecycle-options"><a name="lifecycle-options" class="plugin-anchor" href="#lifecycle-options"><i class="fa fa-link" aria-hidden="true"></i></a>Lifecycle options</h2>
+<h2 id="lifecycle-options">Lifecycle options</h2>
 <pre><code class="lang-javascript"><span class="hljs-built_in">module</span>.exports = {
   data: ...,
   methods: ...,
@@ -1734,7 +1730,7 @@ The <code>methods</code> option is a map which contains all ViewModel methods.</
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Component Definition","level":"1.3.2","depth":2,"next":{"title":"Instance APIs","level":"1.3.3","depth":2,"path":"references/api.md","ref":"references/api.md","articles":[]},"previous":{"title":"Bootstrap","level":"1.3.1","depth":2,"path":"references/bootstrap.md","ref":"references/bootstrap.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/component-defs.md","mtime":"2016-08-22T08:15:22.050Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Component Definition","level":"1.3.2","depth":2,"next":{"title":"Instance APIs","level":"1.3.3","depth":2,"path":"references/api.md","ref":"references/api.md","articles":[]},"previous":{"title":"Bootstrap","level":"1.3.1","depth":2,"path":"references/bootstrap.md","ref":"references/bootstrap.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/component-defs.md","mtime":"2016-08-22T09:20:31.038Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1749,6 +1745,14 @@ The <code>methods</code> option is a map which contains all ViewModel methods.</
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         

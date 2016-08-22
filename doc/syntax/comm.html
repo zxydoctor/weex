@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1611,10 +1607,10 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="communicate-between-components"><a name="communicate-between-components" class="plugin-anchor" href="#communicate-between-components"><i class="fa fa-link" aria-hidden="true"></i></a>Communicate Between Components</h1>
+                                <h1 id="communicate-between-components">Communicate Between Components</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/issues/16" class="weex-translate" target="_blank">cn</a></p>
-<h2 id="for-child-parent-communication"><a name="for-child-parent-communication" class="plugin-anchor" href="#for-child-parent-communication"><i class="fa fa-link" aria-hidden="true"></i></a>For Child-Parent Communication</h2>
+<h2 id="for-child-parent-communication">For Child-Parent Communication</h2>
 <p>Children component can use <code>this.$dispatch([String type], [Object detail])</code> method passing information to parent component. first argument meaning type of message , second argument is the message object. If any parent of the child component register the same type of listener using <code>$on([String type], [Function callback])</code> method , the callback will be execute with one argument , the message object will be <code>detail</code> property of the the argument.</p>
 <p>eg:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">we-element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>
@@ -1654,7 +1650,7 @@ contentLoaded(window,function(){
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<h2 id="for-parent-child-communication"><a name="for-parent-child-communication" class="plugin-anchor" href="#for-parent-child-communication"><i class="fa fa-link" aria-hidden="true"></i></a>For Parent-Child Communication</h2>
+<h2 id="for-parent-child-communication">For Parent-Child Communication</h2>
 <p>Parent component can using <code>this.$([String id])</code> get context of child component. you can access child component information using the context object.</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">we-element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
@@ -1697,7 +1693,7 @@ contentLoaded(window,function(){
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<h2 id="parent-to-children-multi-child-communication"><a name="parent-to-children-multi-child-communication" class="plugin-anchor" href="#parent-to-children-multi-child-communication"><i class="fa fa-link" aria-hidden="true"></i></a>Parent to Children (multi-child) Communication</h2>
+<h2 id="parent-to-children-multi-child-communication">Parent to Children (multi-child) Communication</h2>
 <p>Parent can using <code>this.$broadcast([String type], [Object detail])</code> broadcast message to all of children.</p>
 <p>eg:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">we-element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span>
@@ -1766,7 +1762,7 @@ contentLoaded(window,function(){
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<h2 id="siblings-communication"><a name="siblings-communication" class="plugin-anchor" href="#siblings-communication"><i class="fa fa-link" aria-hidden="true"></i></a>Siblings Communication</h2>
+<h2 id="siblings-communication">Siblings Communication</h2>
 <p>siblings components can using common parent as bridge for passing information</p>
 <p>eg:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">we-element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>
@@ -1857,7 +1853,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Communications","level":"1.2.2.8","depth":3,"next":{"title":"Page Config & Data","level":"1.2.2.9","depth":3,"path":"syntax/config-n-data.md","ref":"syntax/config-n-data.md","articles":[]},"previous":{"title":"Find an Element","level":"1.2.2.7","depth":3,"path":"syntax/id.md","ref":"syntax/id.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"syntax/comm.md","mtime":"2016-08-22T08:15:22.078Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Communications","level":"1.2.2.8","depth":3,"next":{"title":"Page Config & Data","level":"1.2.2.9","depth":3,"path":"syntax/config-n-data.md","ref":"syntax/config-n-data.md","articles":[]},"previous":{"title":"Find an Element","level":"1.2.2.7","depth":3,"path":"syntax/id.md","ref":"syntax/id.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"syntax/comm.md","mtime":"2016-08-22T09:20:31.054Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1872,6 +1868,14 @@ contentLoaded(window,function(){
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         

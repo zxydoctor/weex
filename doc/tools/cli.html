@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1609,18 +1605,18 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="weex-toolkit"><a name="weex-toolkit" class="plugin-anchor" href="#weex-toolkit"><i class="fa fa-link" aria-hidden="true"></i></a>Weex-Toolkit</h1>
+                                <h1 id="weex-toolkit">Weex-Toolkit</h1>
 <p>Please access <a href="https://www.npmjs.com/package/weex-toolkit" target="_blank">npmjs.com</a> for latest version</p>
 <p>Weex CLI tool set</p>
-<h2 id="pre-install"><a name="pre-install" class="plugin-anchor" href="#pre-install"><i class="fa fa-link" aria-hidden="true"></i></a>Pre Install</h2>
+<h2 id="pre-install">Pre Install</h2>
 <p>some dependencies need recent version of npm to install</p>
 <p>if your</p>
 <pre><code>$ npm --version
 </code></pre><p>output less then <code>2.15.1</code>, please run below cmd upgrade your npm at first</p>
 <pre><code>sudo npm install -g npm
-</code></pre><h2 id="install"><a name="install" class="plugin-anchor" href="#install"><i class="fa fa-link" aria-hidden="true"></i></a>Install</h2>
+</code></pre><h2 id="install">Install</h2>
 <pre><code>$npm install -g weex-toolkit
-</code></pre><h2 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h2>
+</code></pre><h2 id="usage">Usage</h2>
 <pre><code>$weex foo/bar/input_path  [options]  
 
 $weex create file_name  [options]
@@ -1638,26 +1634,26 @@ Options:
   -f, --force   [for create sub cmd] force to replace exsisting file(s) 
   --version show version of weex toolkit 
   --help   Show help
-</code></pre><h2 id="examples"><a name="examples" class="plugin-anchor" href="#examples"><i class="fa fa-link" aria-hidden="true"></i></a>Examples</h2>
-<h4 id="crate-a-we-fileweex-source-file-using-standard-template"><a name="crate-a-we-fileweex-source-file-using-standard-template" class="plugin-anchor" href="#crate-a-we-fileweex-source-file-using-standard-template"><i class="fa fa-link" aria-hidden="true"></i></a>crate a <code>we file</code>(weex source file) using standard template</h4>
+</code></pre><h2 id="examples">Examples</h2>
+<h4 id="crate-a-we-fileweex-source-file-using-standard-template">crate a <code>we file</code>(weex source file) using standard template</h4>
 <pre><code>$weex create hello-world-weex
 </code></pre><p>a file named &apos;hello-world-weex.we&apos; we be created in current directory</p>
-<h4 id="transform-a-we-file-to-js-bundle"><a name="transform-a-we-file-to-js-bundle" class="plugin-anchor" href="#transform-a-we-file-to-js-bundle"><i class="fa fa-link" aria-hidden="true"></i></a>transform a <code>we file</code> to JS Bundle</h4>
+<h4 id="transform-a-we-file-to-js-bundle">transform a <code>we file</code> to JS Bundle</h4>
 <pre><code>$weex your_best_weex.we  -o .
 </code></pre><p><code>your_best_weex.we</code> will be transform to JS Bundle file <code>your_best_weex.js</code> , saved in your current directory</p>
-<h4 id="transform-a-we-file-to-js-bundle--watch-this-file-&#xFF0C;auto-run-transformer-if-change-happen"><a name="transform-a-we-file-to-js-bundle--watch-this-file-&#xFF0C;auto-run-transformer-if-change-happen" class="plugin-anchor" href="#transform-a-we-file-to-js-bundle--watch-this-file-&#xFF0C;auto-run-transformer-if-change-happen"><i class="fa fa-link" aria-hidden="true"></i></a>transform a <code>we file</code> to JS Bundle , watch this file &#xFF0C;auto run transformer if change happen.</h4>
+<h4 id="transform-a-we-file-to-js-bundle--watch-this-file-&#xFF0C;auto-run-transformer-if-change-happen">transform a <code>we file</code> to JS Bundle , watch this file &#xFF0C;auto run transformer if change happen.</h4>
 <pre><code>$weex your_best_weex.we  -o . --watch
-</code></pre><h4 id="transform-every-we-file-in-a-directory"><a name="transform-every-we-file-in-a-directory" class="plugin-anchor" href="#transform-every-we-file-in-a-directory"><i class="fa fa-link" aria-hidden="true"></i></a>transform every we file in a directory</h4>
+</code></pre><h4 id="transform-every-we-file-in-a-directory">transform every we file in a directory</h4>
 <pre><code>$weex we/file/storage/path  -o outputpath
 </code></pre><p>every <code>we file</code> in <code>we/file/storage/path</code> we be transform to JS Bundle  , saved in <code>outputpath</code> path</p>
-<h4 id="preview-your-we-file-using-weex-playground-app"><a name="preview-your-we-file-using-weex-playground-app" class="plugin-anchor" href="#preview-your-we-file-using-weex-playground-app"><i class="fa fa-link" aria-hidden="true"></i></a>preview your we file using Weex Playground App</h4>
+<h4 id="preview-your-we-file-using-weex-playground-app">preview your we file using Weex Playground App</h4>
 <p>download &amp; install <a href="http://alibaba.github.io/weex/download.html" target="_blank">weex playground App</a></p>
 <pre><code>$weex your_best_weex.we  --qr
 </code></pre><p>a QR code will display in your terminal , using Playground App scan that.</p>
-<h4 id="start-http-server"><a name="start-http-server" class="plugin-anchor" href="#start-http-server"><i class="fa fa-link" aria-hidden="true"></i></a>start http server</h4>
+<h4 id="start-http-server">start http server</h4>
 <pre><code>$weex -s .
 </code></pre><p>a http server will start running , your current directory(.) will be the document root for the server , every weex .we file will be transforme to JS Bundle when access through the server</p>
-<h2 id="issue--feedback"><a name="issue--feedback" class="plugin-anchor" href="#issue--feedback"><i class="fa fa-link" aria-hidden="true"></i></a>Issue &amp; Feedback</h2>
+<h2 id="issue--feedback">Issue &amp; Feedback</h2>
 <p><a href="https://github.com/weexteam/weex-toolkit/issues" target="_blank">Github Issue List</a></p>
 
                                 
@@ -1698,7 +1694,7 @@ Options:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"CLI","level":"1.5.1","depth":2,"next":{"title":"Devtools","level":"1.5.2","depth":2,"path":"tools/devtools.md","ref":"tools/devtools.md","articles":[{"title":"Weex devtools (Android)","level":"1.5.2.1","depth":3,"path":"tools/devtools-android.md","ref":"tools/devtools-android.md","articles":[]},{"title":"Weex devtools (IOS)","level":"1.5.2.2","depth":3,"path":"tools/devtools-ios.md","ref":"tools/devtools-ios.md","articles":[]}]},"previous":{"title":"Service & Tools","level":"1.5","depth":1,"ref":"","articles":[{"title":"CLI","level":"1.5.1","depth":2,"path":"tools/cli.md","ref":"tools/cli.md","articles":[]},{"title":"Devtools","level":"1.5.2","depth":2,"path":"tools/devtools.md","ref":"tools/devtools.md","articles":[{"title":"Weex devtools (Android)","level":"1.5.2.1","depth":3,"path":"tools/devtools-android.md","ref":"tools/devtools-android.md","articles":[]},{"title":"Weex devtools (IOS)","level":"1.5.2.2","depth":3,"path":"tools/devtools-ios.md","ref":"tools/devtools-ios.md","articles":[]}]},{"title":"Transformer","level":"1.5.3","depth":2,"path":"tools/transformer.md","ref":"tools/transformer.md","articles":[]},{"title":"Playground App","level":"1.5.4","depth":2,"path":"tools/playground-app.md","ref":"tools/playground-app.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"tools/cli.md","mtime":"2016-08-22T08:15:22.078Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"CLI","level":"1.5.1","depth":2,"next":{"title":"Devtools","level":"1.5.2","depth":2,"path":"tools/devtools.md","ref":"tools/devtools.md","articles":[{"title":"Weex devtools (Android)","level":"1.5.2.1","depth":3,"path":"tools/devtools-android.md","ref":"tools/devtools-android.md","articles":[]},{"title":"Weex devtools (IOS)","level":"1.5.2.2","depth":3,"path":"tools/devtools-ios.md","ref":"tools/devtools-ios.md","articles":[]}]},"previous":{"title":"Service & Tools","level":"1.5","depth":1,"ref":"","articles":[{"title":"CLI","level":"1.5.1","depth":2,"path":"tools/cli.md","ref":"tools/cli.md","articles":[]},{"title":"Devtools","level":"1.5.2","depth":2,"path":"tools/devtools.md","ref":"tools/devtools.md","articles":[{"title":"Weex devtools (Android)","level":"1.5.2.1","depth":3,"path":"tools/devtools-android.md","ref":"tools/devtools-android.md","articles":[]},{"title":"Weex devtools (IOS)","level":"1.5.2.2","depth":3,"path":"tools/devtools-ios.md","ref":"tools/devtools-ios.md","articles":[]}]},{"title":"Transformer","level":"1.5.3","depth":2,"path":"tools/transformer.md","ref":"tools/transformer.md","articles":[]},{"title":"Playground App","level":"1.5.4","depth":2,"path":"tools/playground-app.md","ref":"tools/playground-app.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"tools/cli.md","mtime":"2016-08-22T09:20:31.058Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1713,6 +1709,14 @@ Options:
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         

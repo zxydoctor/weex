@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1611,12 +1607,12 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="how-it-works"><a name="how-it-works" class="plugin-anchor" href="#how-it-works"><i class="fa fa-link" aria-hidden="true"></i></a>How it works</h1>
+                                <h1 id="how-it-works">How it works</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/issues/32" class="weex-translate" target="_blank">cn</a></p>
-<h2 id="overview"><a name="overview" class="plugin-anchor" href="#overview"><i class="fa fa-link" aria-hidden="true"></i></a>Overview</h2>
+<h2 id="overview">Overview</h2>
 <p>Weex is a extendable cross-platform solution for dynamic programming and publishing projects. In the source code you can write pages or components with <code>&lt;template&gt;</code>, <code>&lt;style&gt;</code> and <code>&lt;script&gt;</code> tags, and then transform them into bundles for deploying. In server-side we can use these JS bundles for client request. When client get a bundle from server, it will be processed by client-side JavaScript engine and manages the native view rendering, the native API invoking and user interactions.</p>
-<h3 id="whole-workflow"><a name="whole-workflow" class="plugin-anchor" href="#whole-workflow"><i class="fa fa-link" aria-hidden="true"></i></a>Whole Workflow</h3>
+<h3 id="whole-workflow">Whole Workflow</h3>
 <pre><code>Weex file --------------frontend(source code)
 &#x2193; (transform) --------- frontend(build tool)
 JS bundle ------------- frontend(bundle code)
@@ -1632,7 +1628,7 @@ Native view ----------- client(render-engine)
 <li>JS Framework: A JavaScript framework runing in the client which manage Weex instance. The instance which created from a JS bundle builds virtual DOM tree. Also it sends/receives native calls for native view rendering, native APIs and user interactions.</li>
 <li>Native Engine: There are many different ports for different platforms: iOS/Android/HTML5. They have the same components design, module APIs design and rendering effect. So they can work with the one and the same JS Framework and JS bundles.</li>
 </ul>
-<h2 id="transformer"><a name="transformer" class="plugin-anchor" href="#transformer"><i class="fa fa-link" aria-hidden="true"></i></a>Transformer</h2>
+<h2 id="transformer">Transformer</h2>
 <p>The transformer transforms a source code into a bundle code. The whole work could be divided into three parts:</p>
 <ul>
 <li>Transform <code>&lt;template&gt;</code> into a JSON-like tree and transform data-binding attribute into a function prop which return the correct data value. For example: <code>&lt;foo a=&quot;{{x}}&quot; b=&quot;1&quot; /&gt;</code> will be transformed into <code>{type: &quot;foo&quot;, attr: {a: function () {return this.x}, b: 1}}</code>.</li>
@@ -1674,35 +1670,35 @@ Native view ----------- client(render-engine)
 }
 bootstrap(&apos;@weex-component/main&apos;)
 </code></pre><p>Additionally, the transformer could also do more things: combo the bundles, bootstrap with config and external data. For more information, please see the syntax specs.</p>
-<h2 id="notice"><a name="notice" class="plugin-anchor" href="#notice"><i class="fa fa-link" aria-hidden="true"></i></a>NOTICE</h2>
+<h2 id="notice">NOTICE</h2>
 <p>Most of Weex utility output JS Bundle after  <a href="https://webpack.github.io/" target="_blank">Webpack</a> re-bundle. So the eventual format of Weex JSBundle is webpack packed .</p>
-<h2 id="js-framework"><a name="js-framework" class="plugin-anchor" href="#js-framework"><i class="fa fa-link" aria-hidden="true"></i></a>JS Framework</h2>
+<h2 id="js-framework">JS Framework</h2>
 <p>JS Framework will run in native JavaScript engine at the beginning preparation phase. It has <code>define()</code> and <code>bootstrap()</code> functions for each the bunlde code. Once a JS bundle requested from server, the code will be executed. <code>define()</code> will register all modules first, then <code>bootstrap()</code> will start compiling main component into virtual DOM and send rendering calls to native.</p>
 <p>There are two key methods for the bridge between JS and native:</p>
 <ul>
 <li><code>callNative</code> sends commands from JavaScript to native. So it&apos;s called from JavaScript and implemented with native code. All commands are native APIs organized by modules, for example <code>rendering</code>, <code>networking</code>, <code>authorizing</code>, and other client-side features like <code>toast</code> etc.</li>
 <li><code>callJS</code> sends commands from native to JavaScript. So it&apos;s called from native and implemented by JS Framework. All commands are user interactions or native callbacks.</li>
 </ul>
-<h2 id="native-renderengine"><a name="native-renderengine" class="plugin-anchor" href="#native-renderengine"><i class="fa fa-link" aria-hidden="true"></i></a>Native RenderEngine</h2>
+<h2 id="native-renderengine">Native RenderEngine</h2>
 <p>Native RenderEngine will supplies many native components and modules for call.</p>
 <p><strong>Component</strong> is an element in the screen which have a certain view and behavior. It could be configured with some attributes and style properties, and could response user interactions. There are some common components like <code>&lt;div&gt;</code>, <code>&lt;text&gt;</code>, <code>&lt;image&gt;</code> etc.</p>
 <p><strong>Module</strong> is a set of APIs which could be called from JS Framework. Some of them also have to make async callbacks to JS Framework, for example: send HTTP request.</p>
 <p>During a Weex instance works, Native RenderEngine receives all kinds of module API calls from JS Framework. These calls will create or update components for view and use client-side features like <code>toast</code>. When a user interaction or module API callback happens, It will call <code>callJS()</code> from JS Framework. These jobs could walk through the Weex instance lifecycle till the instance is destroyed. As is shown in the architecture figure, H5 RenderEngine is a special RenderEngine with almost the same functions as native RenderEngines. </p>
 <p><img src="http://gtms02.alicdn.com/tps/i2/TB1ootBMpXXXXXrXXXXwi60UVXX-596-397.png" alt="arch"><br>Weex Architecture </p>
-<h3 id="call-native-from-javascript"><a name="call-native-from-javascript" class="plugin-anchor" href="#call-native-from-javascript"><i class="fa fa-link" aria-hidden="true"></i></a>call native from javascript</h3>
+<h3 id="call-native-from-javascript">call native from javascript</h3>
 <pre><code>[JS Framework]
 &#x2193; callNative
 module APIs
   rendering -&gt; components display
   other features
 [Native RenderEngine]
-</code></pre><h3 id="call-javascript-from-native"><a name="call-javascript-from-native" class="plugin-anchor" href="#call-javascript-from-native"><i class="fa fa-link" aria-hidden="true"></i></a>call javascript from native</h3>
+</code></pre><h3 id="call-javascript-from-native">call javascript from native</h3>
 <pre><code>[Native RenderEngine]
 module APIs callbacks
 user interactions
 &#x2193; callJS
 [JS Framework]
-</code></pre><h3 id="render-flow"><a name="render-flow" class="plugin-anchor" href="#render-flow"><i class="fa fa-link" aria-hidden="true"></i></a>Render Flow</h3>
+</code></pre><h3 id="render-flow">Render Flow</h3>
 <p><img src="http://gtms03.alicdn.com/tps/i3/TB1_SA4MXXXXXXGaXXXpZ8UVXXX-519-337.png" alt="render flow"><br>Weex Render Flow </p>
 <ol>
 <li>Input is virtual dom.</li>
@@ -1758,7 +1754,7 @@ user interactions
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"How It Works","level":"1.2.4.1","depth":3,"next":{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},"previous":{"title":"Advanced","level":"1.2.4","depth":2,"path":"advanced/main.md","ref":"advanced/main.md","articles":[{"title":"How It Works","level":"1.2.4.1","depth":3,"path":"advanced/how-it-works.md","ref":"advanced/how-it-works.md","articles":[]},{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"path":"advanced/integrate-to-android.md","ref":"advanced/integrate-to-android.md","articles":[]},{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},{"title":"Integrate to web","level":"1.2.4.5","depth":3,"path":"advanced/integrate-to-html5.md","ref":"advanced/integrate-to-html5.md","articles":[]},{"title":"Extend to Android","level":"1.2.4.6","depth":3,"path":"advanced/extend-to-android.md","ref":"advanced/extend-to-android.md","articles":[]},{"title":"Extend to iOS","level":"1.2.4.7","depth":3,"path":"advanced/extend-to-ios.md","ref":"advanced/extend-to-ios.md","articles":[]},{"title":"Extend to web","level":"1.2.4.8","depth":3,"path":"advanced/extend-to-html5.md","ref":"advanced/extend-to-html5.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/how-it-works.md","mtime":"2016-08-22T08:15:22.014Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"How It Works","level":"1.2.4.1","depth":3,"next":{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},"previous":{"title":"Advanced","level":"1.2.4","depth":2,"path":"advanced/main.md","ref":"advanced/main.md","articles":[{"title":"How It Works","level":"1.2.4.1","depth":3,"path":"advanced/how-it-works.md","ref":"advanced/how-it-works.md","articles":[]},{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"path":"advanced/integrate-to-android.md","ref":"advanced/integrate-to-android.md","articles":[]},{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},{"title":"Integrate to web","level":"1.2.4.5","depth":3,"path":"advanced/integrate-to-html5.md","ref":"advanced/integrate-to-html5.md","articles":[]},{"title":"Extend to Android","level":"1.2.4.6","depth":3,"path":"advanced/extend-to-android.md","ref":"advanced/extend-to-android.md","articles":[]},{"title":"Extend to iOS","level":"1.2.4.7","depth":3,"path":"advanced/extend-to-ios.md","ref":"advanced/extend-to-ios.md","articles":[]},{"title":"Extend to web","level":"1.2.4.8","depth":3,"path":"advanced/extend-to-html5.md","ref":"advanced/extend-to-html5.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/how-it-works.md","mtime":"2016-08-22T09:20:30.742Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1773,6 +1769,14 @@ user interactions
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         

@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1611,14 +1607,14 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="display-logic-control"><a name="display-logic-control" class="plugin-anchor" href="#display-logic-control"><i class="fa fa-link" aria-hidden="true"></i></a>Display Logic Control</h1>
+                                <h1 id="display-logic-control">Display Logic Control</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/issues/12" class="weex-translate" target="_blank">cn</a></p>
 <p>There are two attributes for display logic control: <code>if</code> and <code>repeat</code>. We can create Weex page structure and effects more flexible with them.</p>
 <blockquote>
 <p><strong>Notes:</strong> The display logic could&apos;t apply on the root element within <code>&lt;template&gt;</code>, please don&apos;t use <code>if</code> or <code>repeat</code> directive on it.</p>
 </blockquote>
-<h2 id="if"><a name="if" class="plugin-anchor" href="#if"><i class="fa fa-link" aria-hidden="true"></i></a><code>if</code></h2>
+<h2 id="if"><code>if</code></h2>
 <p><code>if</code> attribute can control the display of a component by a truthy/falsy value. If the value is truthy, then the component will generated, otherwise it will be removed.</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">container</span>&gt;</span>
@@ -1640,7 +1636,7 @@ contentLoaded(window,function(){
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<h2 id="repeat"><a name="repeat" class="plugin-anchor" href="#repeat"><i class="fa fa-link" aria-hidden="true"></i></a><code>repeat</code></h2>
+<h2 id="repeat"><code>repeat</code></h2>
 <p><code>repeat</code> statement is just for array rendering. Every item in an array is also a structed data. This means in <code>repeat</code>ed component, you can bind their item properties directly.</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">container</span>&gt;</span>
@@ -1696,15 +1692,15 @@ contentLoaded(window,function(){
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<h3 id="a-extension-of-repeat-syntax"><a name="a-extension-of-repeat-syntax" class="plugin-anchor" href="#a-extension-of-repeat-syntax"><i class="fa fa-link" aria-hidden="true"></i></a>A extension of repeat syntax</h3>
-<h4 id="use-default-index-for-the-index-of-array"><a name="use-default-index-for-the-index-of-array" class="plugin-anchor" href="#use-default-index-for-the-index-of-array"><i class="fa fa-link" aria-hidden="true"></i></a>use default <code>$index</code> for the index of array.</h4>
+<h3 id="a-extension-of-repeat-syntax">A extension of repeat syntax</h3>
+<h4 id="use-default-index-for-the-index-of-array">use default <code>$index</code> for the index of array.</h4>
 <p><span class="weex-version">0.5</span></p>
 <p>e.g.</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">repeat</span>=<span class="hljs-string">&quot;{{list}}&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">text</span>&gt;</span>No. {{$index + 1}}<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
-<h4 id="specify-the-key-and-value-of-array"><a name="specify-the-key-and-value-of-array" class="plugin-anchor" href="#specify-the-key-and-value-of-array"><i class="fa fa-link" aria-hidden="true"></i></a>specify the key and value of array.</h4>
+<h4 id="specify-the-key-and-value-of-array">specify the key and value of array.</h4>
 <p><span class="weex-version">0.5</span></p>
 <p>e.g.</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">repeat</span>=<span class="hljs-string">&quot;{% raw %}{{v in list}}{% endraw %}&quot;</span>&gt;</span>
@@ -1715,7 +1711,7 @@ contentLoaded(window,function(){
   <span class="hljs-tag">&lt;<span class="hljs-name">text</span>&gt;</span>No. {{k + 1}}, {{v.nickname}}<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
-<h4 id="use-track-by-to-specify-unique-attribute"><a name="use-track-by-to-specify-unique-attribute" class="plugin-anchor" href="#use-track-by-to-specify-unique-attribute"><i class="fa fa-link" aria-hidden="true"></i></a>use <code>track-by</code> to specify unique attribute</h4>
+<h4 id="use-track-by-to-specify-unique-attribute">use <code>track-by</code> to specify unique attribute</h4>
 <p><span class="weex-version">0.5</span></p>
 <p>By default when replacing an array, <code>repeat</code> will cause the entire list to be re-rendered. However you can use <code>track-by</code> to specify an unique attribute as a hint, so that weex can reuse existing elements as much as possible.</p>
 <p><strong>NOTE: DO NOT USE DATA-BINDING SYNTAX FOR <code>track-by</code></strong></p>
@@ -1730,7 +1726,7 @@ contentLoaded(window,function(){
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </code></pre>
 <p>Later on, when you replace the array including an item of the same nickname, it knows it can reuse the existing scope and DOM elements associated with the same nickname.</p>
-<h2 id="omitted-mustache-wrapper"><a name="omitted-mustache-wrapper" class="plugin-anchor" href="#omitted-mustache-wrapper"><i class="fa fa-link" aria-hidden="true"></i></a>Omitted mustache wrapper</h2>
+<h2 id="omitted-mustache-wrapper">Omitted mustache wrapper</h2>
 <p>Particularly for the <code>if</code> and <code>repeat</code> attribute, the <a href="https://mustache.github.io/" target="_blank">mustache</a> wrapper in values could be omitted: just the same as data-binding syntax.</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">container</span>&gt;</span>
@@ -1790,7 +1786,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Display Logic Control","level":"1.2.2.4","depth":3,"next":{"title":"Render Logic Control","level":"1.2.2.5","depth":3,"path":"syntax/render-logic.md","ref":"syntax/render-logic.md","articles":[]},"previous":{"title":"Events","level":"1.2.2.3","depth":3,"path":"syntax/events.md","ref":"syntax/events.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"syntax/display-logic.md","mtime":"2016-08-22T08:15:22.078Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Display Logic Control","level":"1.2.2.4","depth":3,"next":{"title":"Render Logic Control","level":"1.2.2.5","depth":3,"path":"syntax/render-logic.md","ref":"syntax/render-logic.md","articles":[]},"previous":{"title":"Events","level":"1.2.2.3","depth":3,"path":"syntax/events.md","ref":"syntax/events.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"syntax/display-logic.md","mtime":"2016-08-22T09:20:31.058Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1805,6 +1801,14 @@ contentLoaded(window,function(){
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         

@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -1611,44 +1607,44 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="webview"><a name="webview" class="plugin-anchor" href="#webview"><i class="fa fa-link" aria-hidden="true"></i></a>webview</h1>
+                                <h1 id="webview">webview</h1>
 <p><span class="weex-version">0.5</span>
 <a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
-<h2 id="summary"><a name="summary" class="plugin-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>Summary</h2>
+<h2 id="summary">Summary</h2>
 <p>A series of web operation api like <code>goBack</code>, <code>goForward</code>,  and <code>reload</code>.</p>
-<h2 id="api"><a name="api" class="plugin-anchor" href="#api"><i class="fa fa-link" aria-hidden="true"></i></a>API</h2>
-<h3 id="gobackref"><a name="gobackref" class="plugin-anchor" href="#gobackref"><i class="fa fa-link" aria-hidden="true"></i></a>goBack(ref)</h3>
-<h5 id="description"><a name="description" class="plugin-anchor" href="#description"><i class="fa fa-link" aria-hidden="true"></i></a>Description</h5>
+<h2 id="api">API</h2>
+<h3 id="gobackref">goBack(ref)</h3>
+<h5 id="description">Description</h5>
 <p>Loads the previous location in the history stack.</p>
-<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
+<h4 id="arguments">Arguments</h4>
 <ul>
 <li><code>ref</code><em>(string)</em>: the reference of the web component.</li>
 </ul>
-<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h5>
+<h5 id="example">Example</h5>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> webview = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/webview&apos;</span>);
 <span class="hljs-keyword">var</span> webElement = <span class="hljs-keyword">this</span>.$el(<span class="hljs-string">&apos;webview&apos;</span>);
 webview.goBack(webElement.ref);
 </code></pre>
-<h3 id="goforwardref"><a name="goforwardref" class="plugin-anchor" href="#goforwardref"><i class="fa fa-link" aria-hidden="true"></i></a>goForward(ref)</h3>
-<h5 id="description"><a name="description" class="plugin-anchor" href="#description"><i class="fa fa-link" aria-hidden="true"></i></a>Description</h5>
+<h3 id="goforwardref">goForward(ref)</h3>
+<h5 id="description">Description</h5>
 <p>Loads the next location in the history stack.</p>
-<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
+<h4 id="arguments">Arguments</h4>
 <ul>
 <li><code>ref</code><em>(string)</em>: the reference of the web component.</li>
 </ul>
-<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h5>
+<h5 id="example">Example</h5>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> webview = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/webview&apos;</span>);
 <span class="hljs-keyword">var</span> webElement = <span class="hljs-keyword">this</span>.$el(<span class="hljs-string">&apos;webview&apos;</span>);
 webview.goForward(webElement.ref);
 </code></pre>
-<h3 id="reloadref"><a name="reloadref" class="plugin-anchor" href="#reloadref"><i class="fa fa-link" aria-hidden="true"></i></a>reload(ref)</h3>
-<h4 id="description"><a name="description" class="plugin-anchor" href="#description"><i class="fa fa-link" aria-hidden="true"></i></a>Description</h4>
+<h3 id="reloadref">reload(ref)</h3>
+<h4 id="description">Description</h4>
 <p>Reloads the current web page.</p>
-<h4 id="arguments"><a name="arguments" class="plugin-anchor" href="#arguments"><i class="fa fa-link" aria-hidden="true"></i></a>Arguments</h4>
+<h4 id="arguments">Arguments</h4>
 <ul>
 <li><code>ref</code><em>(string)</em>: the reference of the web component.</li>
 </ul>
-<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example</h5>
+<h5 id="example">Example</h5>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> webview = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/webview&apos;</span>);
 <span class="hljs-keyword">var</span> webElement = <span class="hljs-keyword">this</span>.$el(<span class="hljs-string">&apos;webview&apos;</span>);
 webview.reload(webElement.ref);
@@ -1696,7 +1692,7 @@ webview.reload(webElement.ref);
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"webview","level":"1.3.5.5","depth":3,"next":{"title":"navigator","level":"1.3.5.6","depth":3,"path":"modules/navigator.md","ref":"modules/navigator.md","articles":[]},"previous":{"title":"animation","level":"1.3.5.4","depth":3,"path":"modules/animation.md","ref":"modules/animation.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"modules/webview.md","mtime":"2016-08-22T08:15:22.050Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T08:27:28.138Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"webview","level":"1.3.5.5","depth":3,"next":{"title":"navigator","level":"1.3.5.6","depth":3,"path":"modules/navigator.md","ref":"modules/navigator.md","articles":[]},"previous":{"title":"animation","level":"1.3.5.4","depth":3,"path":"modules/animation.md","ref":"modules/animation.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"modules/webview.md","mtime":"2016-08-22T09:20:31.034Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1711,6 +1707,14 @@ webview.reload(webElement.ref);
     
         
         <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-heading-anchors/anchor-style.js"></script>
         
     
         
