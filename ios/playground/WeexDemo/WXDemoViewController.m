@@ -47,8 +47,8 @@
     [self setupNaviBar];
     [self setupRightBarItem];
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    _weexHeight = self.view.frame.size.height - 64;
+    [self.navigationController.navigationBar setHidden:YES];
+    _weexHeight = self.view.frame.size.height - CGRectGetMaxY([UIApplication sharedApplication].statusBarFrame);
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationRefreshInstance:) name:@"RefreshInstance" object:nil];
     

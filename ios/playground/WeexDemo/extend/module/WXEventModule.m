@@ -15,6 +15,7 @@
 @synthesize weexInstance;
 
 WX_EXPORT_METHOD(@selector(openURL:))
+WX_EXPORT_METHOD(@selector(openBrowser:))
 
 - (void)openURL:(NSString *)url
 {
@@ -30,6 +31,19 @@ WX_EXPORT_METHOD(@selector(openURL:))
     ((WXDemoViewController *)controller).url = [NSURL URLWithString:newURL];
     
     [[weexInstance.viewController navigationController] pushViewController:controller animated:YES];
+}
+
+- (void)openBrowser:(NSString *)url
+{
+    NSURL * URL = [NSURL URLWithString:[url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+    if (URL) {
+        [[UIApplication sharedApplication] openURL:URL];
+    }
+}
+
+- (void)refresh:(NSString*)url
+{
+    
 }
 
 @end
