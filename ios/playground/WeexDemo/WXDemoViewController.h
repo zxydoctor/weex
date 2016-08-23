@@ -17,5 +17,6 @@
 @property (nonatomic, strong) SRWebSocket *hotReloadSocket;
 @property (nonatomic, strong) NSString *source;
 
+- (void)refreshWeex;
 @end
 

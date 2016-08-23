@@ -21,7 +21,7 @@
         },
         methods: {
             scan: function (event) {
-                require('@weex-module/camara').openScan();
+                require('@weex-module/event').openScan();
             },
             refresh: function (event) {
                 require("@weex-module/event").refresh('js_framework_reload');

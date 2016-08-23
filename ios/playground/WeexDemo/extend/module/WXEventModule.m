@@ -8,6 +8,7 @@
 
 #import "WXEventModule.h"
 #import "WXDemoViewController.h"
+#import "WXScannerVC.h"
 #import <WeexSDK/WXBaseViewController.h>
 
 @implementation WXEventModule
@@ -16,6 +17,8 @@
 
 WX_EXPORT_METHOD(@selector(openURL:))
 WX_EXPORT_METHOD(@selector(openBrowser:))
+WX_EXPORT_METHOD(@selector(openScan))
+WX_EXPORT_METHOD(@selector(refresh:))
 
 - (void)openURL:(NSString *)url
 {
@@ -41,9 +44,15 @@ WX_EXPORT_METHOD(@selector(openBrowser:))
     }
 }
 
-- (void)refresh:(NSString*)url
+- (void)refresh:(NSString *)url
 {
-    
+    ((WXDemoViewController*)weexInstance.viewController).url = [NSURL URLWithString:url];
+    [((WXDemoViewController*)weexInstance.viewController) refreshWeex];
+}
+
+- (void)openScan
+{
+    [[weexInstance.viewController navigationController] pushViewController:[[WXScannerVC alloc] init] animated:YES];
 }
 
 @end
