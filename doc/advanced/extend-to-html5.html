@@ -1612,101 +1612,117 @@ contentLoaded(window,function(){
 <a href="https://github.com/weexteam/article/issues/11" class="weex-translate" target="_blank">cn</a></p>
 <h3 id="intro">Intro</h3>
 <p>Weex is a extendable cross-platform solution for dynamic programming and publishing projects. You can build your own components on web platform or native platform by extending the components system. Also you can extend weex by adding new methods for one module, new moudles or new bundle loaders. Follow the steps bellow you can dive into the journy of creating multiple builtin components, APIs and loaders.</p>
-<h3 id="create-new-component">Create new component</h3>
+<p>First of all, components, APIs and loaders are extensions to weex, so you can create your extensions without requiring the weex package, that means your extensions can be totally standalone. </p>
+<p>Second, you should always implement a extension for all the three platforms (android, ios and web), except that you only use it on one specific platform. After all weex is a cross platform framework and the equality of user expierence in all platforms is very important. Although you can create components separately on one platform by another, or welcome other developers on other platforms to join your work (You can always find coders who want the same feature with you in the commity). Here are docs about how to create native extensions on <a href="extend-to-ios.html">ios</a> and <a href="extend-to-android.html">android</a>. </p>
+<p>You should publish your extensions somewhere weex developers can easily find, somewhere popular, independent and easy to search and use, such as, npm. Npm is what we strongly recommended.</p>
+<p>The most important thing is, you&apos;d better name your extension appropriately: it should begin with a &apos;weex-&apos; if it is a weex extension. Here is a demonstrating component <a href="https://github.com/MrRaindrop/weex-hello" target="_blank"><code>&lt;weex-hello&gt;</code></a> to show how to define your own component.</p>
+<h3 id="create-a-new-component">Create a new component</h3>
 <p>Steps:</p>
 <ol>
-<li>Require <code>weex-html5</code> package as <code>Weex</code> (or any other name you like).</li>
 <li>Extend <code>Weex.Component</code>, override methods of component class.</li>
 <li>Use <code>Weex.registerComponent</code> to register your customized component in the <code>init</code> method of the installation module.</li>
+<li>export the <code>init</code> method for the installation (Every weex-html5 extension has to have a <code>init</code> method in the export object, which is for another weex project to install.)</li>
 </ol>
-<p>You can override any method of class <code>Component</code> to customize your component&apos;s behavior. The typical methods of class <code>Component</code> you should override are:</p>
+<p>Here&apos;s a example to create a weex component for web platform (weex-html5):</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> attr = {
+  <span class="hljs-comment">// ...</span>
+}
+<span class="hljs-keyword">const</span> style = {
+  <span class="hljs-comment">// ...</span>
+}
+<span class="hljs-keyword">const</span> event = {
+  <span class="hljs-comment">// ...</span>
+}
+<span class="hljs-comment">// every extension file should have a init method.</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span> (<span class="hljs-params">Weex</span>) </span>{
+  <span class="hljs-keyword">const</span> Component = Weex.Component
+  <span class="hljs-keyword">const</span> extend = Weex.utils.extend
+
+  <span class="hljs-comment">// the component&apos;s constructor</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span> (<span class="hljs-params">data</span>) </span>{
+    Component.call(<span class="hljs-keyword">this</span>, data)
+  }
+
+  <span class="hljs-comment">// extend the prototype</span>
+  Hello.prototype = <span class="hljs-built_in">Object</span>.create(Component.prototype)
+  extend(Hello.prototype, proto)
+
+  <span class="hljs-comment">// config the attributes, styles and events.</span>
+  extend(Hello.prototype, { attr })
+  extend(Hello.prototype, {
+    style: extend(<span class="hljs-built_in">Object</span>.create(Component.prototype.style), style)
+  })
+  extend(Hello.prototype, { event })
+
+  Weex.registerComponent(<span class="hljs-string">&apos;weex-hello&apos;</span>, Hello)
+}
+
+<span class="hljs-comment">// export the init method.</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> { init }
+</code></pre>
+<p>The code above is extracted from <a href="https://github.com/MrRaindrop/weex-hello/blob/master/src/index.js#L46-L65" target="_blank">weex-hello/src/index.js</a>.</p>
+<p>This demo has overrided the <code>create</code> method of the base class <code>Component</code>. You can also override other methods to customize your component&apos;s behavior. The typical methods of class <code>Component</code> you may override are:</p>
 <ul>
-<li>create</li>
-<li>createChildren</li>
-<li>insertBefore</li>
-<li>removeChild</li>
-<li>bindEvents</li>
+<li><code>create</code>: to create the node of the component, and return it.</li>
+<li><code>createChildren</code> to create the children&apos;s nodes.</li>
+<li><code>insertBefore</code> to insert a child before another child.</li>
+<li><code>appendChild</code> to append a child in the children list.</li>
+<li><code>removeChild</code> to remove a child in the children list.</li>
 </ul>
-<p><strong>Here is a example for creating a new component</strong></p>
-<p>The component&apos;s implementation file <code>new-component.js</code>:</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// require weex-html5</span>
-<span class="hljs-keyword">var</span> Weex = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;weex-html5&apos;</span>)
-<span class="hljs-keyword">var</span> Component = Weex.Component
-
-<span class="hljs-comment">// The constructor of your component.</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">NewComponent</span>(<span class="hljs-params">data</span>) </span>{
-  <span class="hljs-keyword">this</span>.someAttr = data.attr.someAttr
-  Component.call(<span class="hljs-keyword">this</span>, data)
-}
-
-<span class="hljs-comment">// Extend from Weex.Component.</span>
-NewComponent.prototype = <span class="hljs-built_in">Object</span>.create(Component.prototype)
-
-<span class="hljs-comment">// Override the &quot;create&quot; method to build elements for the component.</span>
-NewComponent.prototype.create = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">var</span> node = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&apos;div&apos;</span>)
-  node.setAttribute(<span class="hljs-string">&apos;data-some-attr&apos;</span>, <span class="hljs-keyword">this</span>.someAttr)
-  <span class="hljs-keyword">return</span> node
-}
-
-<span class="hljs-comment">// Setup setters for updatable attributes.</span>
-NewComponent.prototype.attr = {
-  updatableAttr: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>{
-    <span class="hljs-keyword">this</span>.node.setAttribute(<span class="hljs-string">&apos;data-updatable-attr&apos;</span>, value)
-  }
-}
-
-<span class="hljs-built_in">module</span>.exports = NewComponent
+<p><strong>Advanced</strong>: Need more code demonstrations about overriding the component&apos;s methods ? Just take a look at the <a href="https://github.com/alibaba/weex/tree/dev/html5/browser/extend/components" target="_blank">weex repo&apos;s code</a>. Basically the most of the built-in components are defined this way.</p>
+<p>Important! To register your component in the <code>init</code> method, use <code>Weex.registerComponent</code>. Here&apos;s the demo code:</p>
+<pre><code class="lang-javascript">Weex.registerComponent(<span class="hljs-string">&apos;weex-hello&apos;</span>, Hello)
 </code></pre>
-<p>Register your component in the init method of the installation module <code>installModule.js</code></p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> NewComponent = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;new-component.js&apos;</span>)
-<span class="hljs-built_in">module</span>.exports = {
-  init: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Weex</span>) </span>{
-    Weex.registerComponent(<span class="hljs-string">&apos;new-component&apos;</span>, NewComponent)
-  }
-}
+<p>The code above is from <a href="https://github.com/MrRaindrop/weex-hello/blob/master/src/index.js#L62" target="_blank">weex-hello/src/index.js</a></p>
+<p>Install the component using <code>Weex.install</code>.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// import the original weex-html5.</span>
+<span class="hljs-keyword">import</span> weex <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;weex-html5&apos;</span>
+<span class="hljs-keyword">import</span> hello <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;weex-hello&apos;</span>
+<span class="hljs-comment">// install the component.</span>
+weex.install(hello)
 </code></pre>
-<p>Install your module:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Weex = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;weex-html5&apos;</span>)
-<span class="hljs-keyword">var</span> installationModule = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;installModule.js&apos;</span>)
-
-Weex.install(installationModule)
+<p>The code above is from <a href="https://github.com/MrRaindrop/weex_extend_demo/blob/master/src/main.js#L1-L5" target="_blank">weex_extend_demo/src/main.js</a></p>
+<p>use the component in your <code>.we</code> file:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">weex-hello</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hello&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;txt-color:#fff;bg-color:green&quot;</span>
+      <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;WEEX&quot;</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;handleClick&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">weex-hello</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 </code></pre>
-<h3 id="add-new-api">Add new API</h3>
-<p>You can add new API modules, or just add a new API for any existing API modules. For example, you can add a new module <code>user</code> with APIs like &apos;login&apos;, &apos;logout&apos; etc. Or you can just add a single new method such as <code>setTitle</code> for the exsiting module <code>pageInfo</code>. Whichever way you use, the developer can invoke the API by using <code>require(&apos;@weex-module/moduleName)[methodName](arg1, arg2, ...)</code> (<a href="../references/api.html">Module APIs</a>).</p>
+<p>The code above is from <a href="https://github.com/MrRaindrop/weex_extend_demo/blob/master/demo/index.we#L10-L15" target="_blank">weex_extend_demo/demo/index.we</a></p>
+<h3 id="add-a-new-api">Add a new API</h3>
+<p>You can add new API modules, or just add a new API for any existing API modules. For example, you can add a new module <code>user</code> with APIs like &apos;login&apos;, &apos;logout&apos; etc. The developer can invoke the API by using <code>require(&apos;@weex-module/moduleName)[methodName](arg1, arg2, ...)</code> (<a href="../references/api.html">Module APIs</a>).</p>
 <p>Steps:</p>
 <ol>
-<li>Require <code>weex-html5</code> package as <code>Weex</code> (or any other name you like).</li>
-<li>Require your API modules.</li>
+<li>Implement your API modules.</li>
 <li>Use <code>Weex.registerAPIModules</code> to register your API modules in the init method of your installation module.</li>
-<li>Or use <code>Weex.registerAPI</code> to register your API for existing API modules in the init method of your installation module.</li>
 </ol>
 <p><strong>Here is a example for register a new API module</strong></p>
 <p>First create a file named <code>user.js</code> for a new module, then define <code>login/logout</code> methods.</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> user = {
-  login: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callbackId</span>) </span>{
-    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>
-    <span class="hljs-comment">// your logic code.</span>
-    login.then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) </span>{
-      self.sender.performCallback(callbackId, res)
-    }).catch(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{
-      self.sender.performCallback(callbackId, err)
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> user = {
+  <span class="hljs-comment">// for user to login.</span>
+  login (callbackId) {
+    login.then(res =&gt; {
+      <span class="hljs-keyword">this</span>.sender.performCallback(callbackId, res)
+    }).catch(err =&gt; {
+      <span class="hljs-keyword">this</span>.sender.performCallback(callbackId, err)
     })
   },
 
-  logout: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callbackId</span>) </span>{
-    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>
-    <span class="hljs-comment">// your logic code.</span>
-    logout.then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) </span>{
-      self.sender.performCallback(callbackId, res)
-    }).catch(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{
-      self.sender.performCallback(callbackId, err)
+  <span class="hljs-comment">// for user to logout.</span>
+  logout (callbackId) {
+    logout.then(res =&gt; {
+      <span class="hljs-keyword">this</span>.sender.performCallback(callbackId, res)
+    }).catch(err =&gt; {
+      <span class="hljs-keyword">this</span>.sender.performCallback(callbackId, err)
     })
   }
 }
 
 <span class="hljs-comment">// add meta info to user module.</span>
-user._meta = {
+<span class="hljs-keyword">const</span> meta = {
   user: [{
     name: <span class="hljs-string">&apos;login&apos;</span>,
     args: [<span class="hljs-string">&apos;function&apos;</span>]
@@ -1716,55 +1732,46 @@ user._meta = {
   }]
 }
 
-<span class="hljs-built_in">module</span>.exports = user
-</code></pre>
-<p>Register your <code>user</code> module in the <code>installationModule.js</code>:</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Require your module file, which is user.js.</span>
-<span class="hljs-keyword">var</span> user = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./user&apos;</span>)
-
-<span class="hljs-built_in">module</span>.exports = {
-  init: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Weex</span>) </span>{
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  init (Weex) {
     <span class="hljs-comment">// Register your new module. The last parameter is your</span>
     <span class="hljs-comment">// new API module&apos;s meta info.</span>
-    Weex.registerApiModule(<span class="hljs-string">&apos;user&apos;</span>, user, user._meta)
+    Weex.registerApiModule(<span class="hljs-string">&apos;user&apos;</span>, user, meta)
   }
 }
 </code></pre>
-<p>Install your module:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Weex = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;weex-html5&apos;</span>)
-<span class="hljs-keyword">var</span> installationModule = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;installationModule.js&apos;</span>)
+<p>After above coding work, you can publish this user helper API to npm now, for example, with the name of <code>weex-user-helper</code>.</p>
+<p>Install the component using <code>Weex.install</code> in your new weex project.</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> Weex <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;weex-html5&apos;</span>
+<span class="hljs-keyword">import</span> user <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;weex-user-helper&apos;</span>
 
-Weex.install(installationModule)
+Weex.install(user)
 </code></pre>
-<p><strong>Another example for register a API to a exsiting API module</strong></p>
-<p>First create a file named <code>pageInfo.js</code>, then define <code>setTitle</code> method:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> pageInfo = {
-  setTitle: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">title</span>) </span>{
-    <span class="hljs-built_in">document</span>.title = title
+<p>Use the user helper API in your dsl code (xxx.we):</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn&quot;</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;handleClick&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">text</span>&gt;</span>LOGIN<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">var</span> userHelper = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/user&apos;</span>)
+  <span class="hljs-built_in">module</span>.exports = {
+    methods: {
+      handleClick: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        userHelper.login(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+          <span class="hljs-comment">// ... do sth. in callback.</span>
+        })
+      }
+    }
   }
-}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<p>Register <code>setTitle</code> method to the <code>pageInfo</code> module in the <code>installationModule.js</code>:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> weex = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;weex-html5&apos;</span>)
-
-<span class="hljs-comment">// Require your module file, which is pageInfo.js.</span>
-<span class="hljs-keyword">var</span> pageInfo = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./pageInfo&apos;</span>)
-
-<span class="hljs-built_in">module</span>.exports = {
-  init: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Weex</span>) </span>{
-    <span class="hljs-comment">// Register your new method. The last parameter is your API&apos;s meta info.</span>
-    Weex.registerApi(<span class="hljs-string">&apos;pageInfo&apos;</span>, <span class="hljs-string">&apos;setTitle&apos;</span>, pageInfo.setTitle, [<span class="hljs-string">&apos;string&apos;</span>, <span class="hljs-string">&apos;string&apos;</span>])
-  }
-}
-</code></pre>
-<p>install the isntallation module:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Weex = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;weex-html5&apos;</span>)
-<span class="hljs-keyword">var</span> installationModule = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;installationModule.js&apos;</span>)
-
-Weex.install(installationModule)
-</code></pre>
-<h3 id="add-new-loader">Add new loader</h3>
-<p>The type of buildin loaders to load a weex bundle are <code>loadByXHR</code>, <code>loadByJsonp</code> and <code>loadBySourceCode</code>. You can register your own loader by using <code>weex.registerLoader</code>. For example, you got a service method named <code>myServe.getWeexBundle</code>, which can load a weex bundle file throught some magical tunnel:</p>
+<h3 id="add-a-new-loader">Add a new loader</h3>
+<p><strong>Loader is only a type of extension for weex-html5 (web platform), native platform is not needing this.</strong></p>
+<p>Weex&apos;s builtin loaders to load a weex bundle are <code>xhr</code>, <code>jsonp</code> and <code>source</code>. The default loader is <code>xhr</code>. You can register your own loader by using <code>weex.registerLoader</code>. For example, you got a service method named <code>myServe.getWeexBundle</code>, which can load a weex bundle file through some magical tunnel:</p>
 <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadByMyServe</span>(<span class="hljs-params">pageId, callback</span>) </span>{
   myServe.getWeexBundle(pageId).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">bundle</span>) </span>{
     callback(bundle)
@@ -1773,27 +1780,38 @@ Weex.install(installationModule)
   })
 }
 
-<span class="hljs-built_in">module</span>.exports = {
-  loadByMyServe: loadByMyServe
-}
-</code></pre>
-<p>Register your loader in your installation module <code>loaderMod.js</code> and then install it:</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Require your new loader.</span>
-<span class="hljs-keyword">var</span> loadByMyServe = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./loader&apos;</span>).loadByMyServe
-
-<span class="hljs-built_in">module</span>.exports = {
-  init: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Weex</span>) </span>{
-    <span class="hljs-comment">// Register your new loader.</span>
+<span class="hljs-comment">// export the init method to enable weex install this loader.</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  init (Weex) {
     Weex.registerLoader(<span class="hljs-string">&apos;myserve&apos;</span>, loadByMyServe)
   }
 }
 </code></pre>
-<p>install:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Weex = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;weex-html5&apos;</span>)
-<span class="hljs-keyword">var</span> loaderMod = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;loaderMod.js&apos;</span>)
+<p>install and use your loader in your project&apos;s entry file:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> Weex <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;weex-html5&apos;</span>
 
-Weex.install(loaderMod)
+<span class="hljs-comment">// or import from &apos;./myserve.js&apos;, no matter where you can import your loader file.</span>
+<span class="hljs-keyword">import</span> loader <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;myLoader&apos;</span>
+
+Weex.install(loader)
+
+<span class="hljs-comment">// use your loader in the init function:</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getUrlParam</span> (<span class="hljs-params">key</span>) </span>{
+    <span class="hljs-keyword">const</span> reg = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">&apos;[?|&amp;]&apos;</span> + key + <span class="hljs-string">&apos;=([^&amp;]+)&apos;</span>)
+    <span class="hljs-keyword">const</span> match = location.search.match(reg)
+    <span class="hljs-keyword">return</span> match &amp;&amp; match[<span class="hljs-number">1</span>]
+  }
+  <span class="hljs-keyword">const</span> page = getUrlParam(<span class="hljs-string">&apos;page&apos;</span>) || <span class="hljs-string">&apos;examples/build/index.js&apos;</span>
+  Weex.init({
+    appId: location.href,
+    loader: <span class="hljs-string">&apos;myserve&apos;</span>,  <span class="hljs-comment">// use the loader type you defined.</span>
+    source: page,
+    rootId: <span class="hljs-string">&apos;weex&apos;</span>
+  })
+})();
 </code></pre>
+<p>That&apos;s the major extension feature weex brought to you. The deep details can be found in the <a href="https://github.com/alibaba/weex" target="_blank">weex&apos;s repo</a> and the weex&apos;s community.</p>
 
                                 
                                 </section>
@@ -1837,7 +1855,7 @@ Weex.install(loaderMod)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Extend to web","level":"1.2.4.8","depth":3,"next":{"title":"References","level":"1.3","depth":1,"path":"references/main.md","ref":"references/main.md","articles":[{"title":"Bootstrap","level":"1.3.1","depth":2,"path":"references/bootstrap.md","ref":"references/bootstrap.md","articles":[]},{"title":"Component Definition","level":"1.3.2","depth":2,"path":"references/component-defs.md","ref":"references/component-defs.md","articles":[]},{"title":"Instance APIs","level":"1.3.3","depth":2,"path":"references/api.md","ref":"references/api.md","articles":[]},{"title":"Built-in Components","level":"1.3.4","depth":2,"path":"components/main.md","ref":"components/main.md","articles":[{"title":"Common Attributes","level":"1.3.4.1","depth":3,"path":"references/common-attrs.md","ref":"references/common-attrs.md","articles":[]},{"title":"Common Style","level":"1.3.4.2","depth":3,"path":"references/common-style.md","ref":"references/common-style.md","articles":[{"title":"Text Style","level":"1.3.4.2.1","depth":4,"path":"references/text-style.md","ref":"references/text-style.md","articles":[]},{"title":"Color","level":"1.3.4.2.2","depth":4,"path":"references/color-names.md","ref":"references/color-names.md","articles":[]}]},{"title":"Common Event","level":"1.3.4.3","depth":3,"path":"references/common-event.md","ref":"references/common-event.md","articles":[]},{"title":"Special Element","level":"1.3.4.4","depth":3,"path":"components/special-element.md","ref":"components/special-element.md","articles":[]},{"title":"div","level":"1.3.4.5","depth":3,"path":"components/div.md","ref":"components/div.md","articles":[]},{"title":"scroller","level":"1.3.4.6","depth":3,"path":"components/scroller.md","ref":"components/scroller.md","articles":[]},{"title":"list","level":"1.3.4.7","depth":3,"path":"components/list.md","ref":"components/list.md","articles":[{"title":"cell","level":"1.3.4.7.1","depth":4,"path":"components/cell.md","ref":"components/cell.md","articles":[]}]},{"title":"text","level":"1.3.4.8","depth":3,"path":"components/text.md","ref":"components/text.md","articles":[]},{"title":"image","level":"1.3.4.9","depth":3,"path":"components/image.md","ref":"components/image.md","articles":[]},{"title":"input","level":"1.3.4.10","depth":3,"path":"components/input.md","ref":"components/input.md","articles":[]},{"title":"switch","level":"1.3.4.11","depth":3,"path":"components/switch.md","ref":"components/switch.md","articles":[]},{"title":"slider","level":"1.3.4.12","depth":3,"path":"components/slider.md","ref":"components/slider.md","articles":[{"title":"indicator","level":"1.3.4.12.1","depth":4,"path":"components/indicator.md","ref":"components/indicator.md","articles":[]}]},{"title":"video","level":"1.3.4.13","depth":3,"path":"components/video.md","ref":"components/video.md","articles":[]},{"title":"a","level":"1.3.4.14","depth":3,"path":"components/a.md","ref":"components/a.md","articles":[]},{"title":"web","level":"1.3.4.15","depth":3,"path":"components/web.md","ref":"components/web.md","articles":[]},{"title":"wxc-tabbar","level":"1.3.4.16","depth":3,"path":"components/wxc-tabbar.md","ref":"components/wxc-tabbar.md","articles":[]},{"title":"wxc-navpage","level":"1.3.4.17","depth":3,"path":"components/wxc-navpage.md","ref":"components/wxc-navpage.md","articles":[]}]},{"title":"Built-in Modules","level":"1.3.5","depth":2,"path":"modules/main.md","ref":"modules/main.md","articles":[{"title":"dom","level":"1.3.5.1","depth":3,"path":"modules/dom.md","ref":"modules/dom.md","articles":[]},{"title":"stream","level":"1.3.5.2","depth":3,"path":"modules/stream.md","ref":"modules/stream.md","articles":[]},{"title":"modal","level":"1.3.5.3","depth":3,"path":"modules/modal.md","ref":"modules/modal.md","articles":[]},{"title":"animation","level":"1.3.5.4","depth":3,"path":"modules/animation.md","ref":"modules/animation.md","articles":[]},{"title":"webview","level":"1.3.5.5","depth":3,"path":"modules/webview.md","ref":"modules/webview.md","articles":[]},{"title":"navigator","level":"1.3.5.6","depth":3,"path":"modules/navigator.md","ref":"modules/navigator.md","articles":[]},{"title":"storage","level":"1.3.5.7","depth":3,"path":"modules/storage.md","ref":"modules/storage.md","articles":[]},{"title":"timer","level":"1.3.5.8","depth":3,"path":"modules/timer.md","ref":"modules/timer.md","articles":[]},{"title":"clipboard","level":"1.3.5.9","depth":3,"path":"modules/clipboard.md","ref":"modules/clipboard.md","articles":[]}]},{"title":"Low-level Specs","level":"1.3.6","depth":2,"ref":"","articles":[{"title":"JS Bundle Format","level":"1.3.6.1","depth":3,"path":"specs/js-bundle-format.md","ref":"specs/js-bundle-format.md","articles":[]},{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},{"title":"Virtual DOM APIs","level":"1.3.6.3","depth":3,"path":"specs/virtual-dom-apis.md","ref":"specs/virtual-dom-apis.md","articles":[]}]}]},"previous":{"title":"Extend to iOS","level":"1.2.4.7","depth":3,"path":"advanced/extend-to-ios.md","ref":"advanced/extend-to-ios.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/extend-to-html5.md","mtime":"2016-08-22T09:20:30.742Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-22T09:24:47.655Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Extend to web","level":"1.2.4.8","depth":3,"next":{"title":"References","level":"1.3","depth":1,"path":"references/main.md","ref":"references/main.md","articles":[{"title":"Bootstrap","level":"1.3.1","depth":2,"path":"references/bootstrap.md","ref":"references/bootstrap.md","articles":[]},{"title":"Component Definition","level":"1.3.2","depth":2,"path":"references/component-defs.md","ref":"references/component-defs.md","articles":[]},{"title":"Instance APIs","level":"1.3.3","depth":2,"path":"references/api.md","ref":"references/api.md","articles":[]},{"title":"Built-in Components","level":"1.3.4","depth":2,"path":"components/main.md","ref":"components/main.md","articles":[{"title":"Common Attributes","level":"1.3.4.1","depth":3,"path":"references/common-attrs.md","ref":"references/common-attrs.md","articles":[]},{"title":"Common Style","level":"1.3.4.2","depth":3,"path":"references/common-style.md","ref":"references/common-style.md","articles":[{"title":"Text Style","level":"1.3.4.2.1","depth":4,"path":"references/text-style.md","ref":"references/text-style.md","articles":[]},{"title":"Color","level":"1.3.4.2.2","depth":4,"path":"references/color-names.md","ref":"references/color-names.md","articles":[]}]},{"title":"Common Event","level":"1.3.4.3","depth":3,"path":"references/common-event.md","ref":"references/common-event.md","articles":[]},{"title":"Special Element","level":"1.3.4.4","depth":3,"path":"components/special-element.md","ref":"components/special-element.md","articles":[]},{"title":"div","level":"1.3.4.5","depth":3,"path":"components/div.md","ref":"components/div.md","articles":[]},{"title":"scroller","level":"1.3.4.6","depth":3,"path":"components/scroller.md","ref":"components/scroller.md","articles":[]},{"title":"list","level":"1.3.4.7","depth":3,"path":"components/list.md","ref":"components/list.md","articles":[{"title":"cell","level":"1.3.4.7.1","depth":4,"path":"components/cell.md","ref":"components/cell.md","articles":[]}]},{"title":"text","level":"1.3.4.8","depth":3,"path":"components/text.md","ref":"components/text.md","articles":[]},{"title":"image","level":"1.3.4.9","depth":3,"path":"components/image.md","ref":"components/image.md","articles":[]},{"title":"input","level":"1.3.4.10","depth":3,"path":"components/input.md","ref":"components/input.md","articles":[]},{"title":"switch","level":"1.3.4.11","depth":3,"path":"components/switch.md","ref":"components/switch.md","articles":[]},{"title":"slider","level":"1.3.4.12","depth":3,"path":"components/slider.md","ref":"components/slider.md","articles":[{"title":"indicator","level":"1.3.4.12.1","depth":4,"path":"components/indicator.md","ref":"components/indicator.md","articles":[]}]},{"title":"video","level":"1.3.4.13","depth":3,"path":"components/video.md","ref":"components/video.md","articles":[]},{"title":"a","level":"1.3.4.14","depth":3,"path":"components/a.md","ref":"components/a.md","articles":[]},{"title":"web","level":"1.3.4.15","depth":3,"path":"components/web.md","ref":"components/web.md","articles":[]},{"title":"wxc-tabbar","level":"1.3.4.16","depth":3,"path":"components/wxc-tabbar.md","ref":"components/wxc-tabbar.md","articles":[]},{"title":"wxc-navpage","level":"1.3.4.17","depth":3,"path":"components/wxc-navpage.md","ref":"components/wxc-navpage.md","articles":[]}]},{"title":"Built-in Modules","level":"1.3.5","depth":2,"path":"modules/main.md","ref":"modules/main.md","articles":[{"title":"dom","level":"1.3.5.1","depth":3,"path":"modules/dom.md","ref":"modules/dom.md","articles":[]},{"title":"stream","level":"1.3.5.2","depth":3,"path":"modules/stream.md","ref":"modules/stream.md","articles":[]},{"title":"modal","level":"1.3.5.3","depth":3,"path":"modules/modal.md","ref":"modules/modal.md","articles":[]},{"title":"animation","level":"1.3.5.4","depth":3,"path":"modules/animation.md","ref":"modules/animation.md","articles":[]},{"title":"webview","level":"1.3.5.5","depth":3,"path":"modules/webview.md","ref":"modules/webview.md","articles":[]},{"title":"navigator","level":"1.3.5.6","depth":3,"path":"modules/navigator.md","ref":"modules/navigator.md","articles":[]},{"title":"storage","level":"1.3.5.7","depth":3,"path":"modules/storage.md","ref":"modules/storage.md","articles":[]},{"title":"timer","level":"1.3.5.8","depth":3,"path":"modules/timer.md","ref":"modules/timer.md","articles":[]},{"title":"clipboard","level":"1.3.5.9","depth":3,"path":"modules/clipboard.md","ref":"modules/clipboard.md","articles":[]}]},{"title":"Low-level Specs","level":"1.3.6","depth":2,"ref":"","articles":[{"title":"JS Bundle Format","level":"1.3.6.1","depth":3,"path":"specs/js-bundle-format.md","ref":"specs/js-bundle-format.md","articles":[]},{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},{"title":"Virtual DOM APIs","level":"1.3.6.3","depth":3,"path":"specs/virtual-dom-apis.md","ref":"specs/virtual-dom-apis.md","articles":[]}]}]},"previous":{"title":"Extend to iOS","level":"1.2.4.7","depth":3,"path":"advanced/extend-to-ios.md","ref":"advanced/extend-to-ios.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"advanced/extend-to-html5.md","mtime":"2016-08-23T08:55:33.729Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-23T08:55:42.708Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
