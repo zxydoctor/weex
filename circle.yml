@@ -1,6 +1,7 @@
-mgachine:
+machine:
   node:
     version: 4.2.1
+
 
 general:
   branches:
