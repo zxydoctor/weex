@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/*公共样式*/
+/*common style*/
 html {
     /*font-family: Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;*/
     font-family: sans-serif;
@@ -166,12 +166,10 @@ body {
     text-decoration: none;
 }
 /*
-* 说明: 需要根据不同尺寸做适配,因此分为几种尺寸
-* 0. >= 1020,三列
-* 1. 768 ~ 1019 超大屏移动设备,显示3列
-* 2. 600 ~ 768 显示3列
-* 3. 414 ~ 599 iphone6plus 显示2列
-* 4. ~413 iphone6- 显示1列
+* Three kind of size of screen Adaptation
+* 1. >= 1020px   pc screen default
+* 2. 601 ~ 1019px  big mobile screen, show 3 column in a row
+* 3. < 600px show 2 column in a row
 */
 
 @media (min-width: 1020px){
@@ -204,7 +202,6 @@ body {
     }
     .demo_img>img{
         max-height:420px;
-        /*box-shadow: 2px 2px 1px #ddd;*/
     }
     .mobile_footer_hr{
         width:1020px;
@@ -259,7 +256,7 @@ body {
 }
 
 
-/*2列*/
+/*2 column*/
 @media(max-width:600px){
     /***************header******************/
     .container{
@@ -367,7 +364,7 @@ body {
 
 
 }
-/*增强小屏*/
+/*iphone6 plus ~ 600px*/
 @media(min-width:414px) and (max-width:600px){
     .mobile_row{
         height:300px;
