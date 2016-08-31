@@ -76,11 +76,11 @@
         if (transformNodeId > 2) {
             transformNodeId -= 2;
         }
-        NSString *nodeKey = [NSString stringWithFormat:@"%ld",transformNodeId];
+        NSString *nodeKey = [NSString stringWithFormat:@"%ld",(long)transformNodeId];
         NSString *nodeName = nil;
         
         /********actual********/
-        UIView *selectedView = [[[WXDOMDomainController defaultInstance] getObjectsForComponentRefs] objectForKey:[NSString stringWithFormat:@"%ld",nodeId.integerValue]];
+        UIView *selectedView = [[[WXDOMDomainController defaultInstance] getObjectsForComponentRefs] objectForKey:[NSString stringWithFormat:@"%ld",(long)nodeId.integerValue]];
         NSArray *actualAttrs = [[WXDOMDomainController defaultInstance] attributesArrayForObject:selectedView];
         
         WXCSSSelectorListData *selectorData = [[WXCSSSelectorListData alloc] init];
@@ -276,7 +276,7 @@
     }];
      */
     if ([WXDebugger isVDom]) {
-        UIView *selectedView = [[[WXDOMDomainController defaultInstance] getObjectsForComponentRefs] objectForKey:[NSString stringWithFormat:@"%ld",nodeId.integerValue]];
+        UIView *selectedView = [[[WXDOMDomainController defaultInstance] getObjectsForComponentRefs] objectForKey:[NSString stringWithFormat:@"%ld",(long)nodeId.integerValue]];
         NSArray *actualAttrs = [[WXDOMDomainController defaultInstance] attributesArrayForObject:selectedView];
         __block NSArray *position;
         [actualAttrs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

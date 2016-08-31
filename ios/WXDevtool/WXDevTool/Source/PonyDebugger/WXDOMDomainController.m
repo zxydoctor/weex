@@ -245,7 +245,7 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
 - (void)domain:(WXDOMDomain *)domain highlightNodeWithNodeId:(NSNumber *)nodeId highlightConfig:(WXDOMHighlightConfig *)highlightConfig callback:(void (^)(id))callback;
 {
     NSInteger transformNodeId = nodeId.integerValue;
-    NSString *nodeKey = [NSString stringWithFormat:@"%ld",transformNodeId];
+    NSString *nodeKey = [NSString stringWithFormat:@"%ld",(long)transformNodeId];
     id objectForNodeId;
     if ([WXDebugger isVDom]) {
         objectForNodeId = [self.objectsForComponentRefs objectForKey:nodeKey];
@@ -826,7 +826,7 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
     elementNode.children = children;
     elementNode.childNodeCount = @([children count]);
     elementNode.nodeId = [NSNumber numberWithFloat:[component.ref integerValue] + 2];
-    NSString *ref = [NSString stringWithFormat:@"%ld",[component.ref integerValue] + 2];
+    NSString *ref = [NSString stringWithFormat:@"%ld",(long)([component.ref integerValue] + 2)];
     elementNode.attributes = [self attributesArrayForObject:[self.objectsForComponentRefs objectForKey:ref]];
     return elementNode;
 }
@@ -896,7 +896,7 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
                 if ([key isEqualToString:@"_root"]) {
                     [self.objectsForComponentRefs setObject:parentView forKey:@"2"];
                 }else {
-                    NSString *newKey = [NSString stringWithFormat:@"%ld",[key integerValue] + 2];
+                    NSString *newKey = [NSString stringWithFormat:@"%ld",(long)([key integerValue] + 2)];
                    [self.objectsForComponentRefs setObject:parentView forKey:newKey];
                 }
             }
@@ -1044,7 +1044,7 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
     WXComponent *previousComponent = nil;
     NSNumber *parentNodeId = [self _getRealNodeIdWithComponentRef:parentComponent.ref];
     NSNumber *previousNodeId = nil;
-    if (parentComponent && [self.objectsForComponentRefs objectForKey:[NSString stringWithFormat:@"%ld",parentNodeId.integerValue]]) {
+    if (parentComponent && [self.objectsForComponentRefs objectForKey:[NSString stringWithFormat:@"%ld",(long)parentNodeId.integerValue]]) {
         WXDOMNode *node = [self nodeForComponent:corrComponent];
         NSUInteger indexOfComponent = [parentComponent.subcomponents indexOfObject:corrComponent];
         if (indexOfComponent <[parentComponent.subcomponents count] - 1) {
@@ -1083,7 +1083,7 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
         } else {
             nodeId = [NSNumber numberWithInteger:[ref integerValue] + 2];
         }
-        NSString *nodeIdKey = [NSString stringWithFormat:@"%ld",[nodeId integerValue]];
+        NSString *nodeIdKey = [NSString stringWithFormat:@"%ld",(long)[nodeId integerValue]];
         if (![viewRefs objectForKey:nodeIdKey]) {
             NSArray *attributes = [self attributesArrayForObject:view];
             for (int i = 0; i < attributes.count; i++) {
@@ -1093,7 +1093,7 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
                 }
             }
         }
-        [viewRefs setObject:view forKey:[NSString stringWithFormat:@"%ld",[nodeId integerValue]]];
+        [viewRefs setObject:view forKey:[NSString stringWithFormat:@"%ld",(long)[nodeId integerValue]]];
         if (self.componentForRefs.count > 0) {
             if (![self.componentForRefs objectForKey:ref]) {
                 WXComponent *component = [self _getComponentFromRef:ref];
@@ -1112,7 +1112,7 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
     if (ref) {
         NSNumber *nodeId = [self _getRealNodeIdWithComponentRef:ref];
         NSMutableDictionary *viewRefs =  self.objectsForComponentRefs;
-        ref = [NSString stringWithFormat:@"%ld",[nodeId integerValue]];
+        ref = [NSString stringWithFormat:@"%ld",(long)[nodeId integerValue]];
         if ([viewRefs objectForKey:ref] && [viewRefs objectForKey:ref] == view) {
             [viewRefs removeObjectForKey:ref];
             NSArray *attributes = @[@"class", @"frame", @"hidden", @"alpha", @"opaque"];
