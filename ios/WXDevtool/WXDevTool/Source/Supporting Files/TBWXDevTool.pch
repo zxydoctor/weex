@@ -17,5 +17,3 @@
 #else
 # define NSLog(...)
 #endif
-
-#define VDom 1

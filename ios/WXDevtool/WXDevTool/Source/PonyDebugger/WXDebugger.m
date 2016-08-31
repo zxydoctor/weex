@@ -40,7 +40,7 @@
 #import <sys/utsname.h>
 
 static NSString *const WXBonjourServiceType = @"_ponyd._tcp";
-static BOOL WXIsVDom = NO;
+static BOOL WXIsVDom = YES;
 
 
 void _WXLogObjectsImpl(NSString *severity, NSArray *arguments)
