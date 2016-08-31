@@ -195,19 +195,6 @@
 
 - (void)handleMethodWithName:(NSString *)methodName parameters:(NSDictionary *)params responseCallback:(WXResponseCallback)responseCallback;
 {
-#if VDom
-    if ([methodName isEqualToString:@"getDocument"] && [self.delegate respondsToSelector:@selector(domain:getVirtualDocumentWithCallback:)]) {
-        [self.delegate domain:self getVirtualDocumentWithCallback:^(WXDOMNode *root, id error) {
-            NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:1];
-            
-            if (root != nil) {
-                [params setObject:root forKey:@"root"];
-            }
-            
-            responseCallback(params, error);
-        }];
-    }
-#else
     if ([methodName isEqualToString:@"getDocument"] && [self.delegate respondsToSelector:@selector(domain:getDocumentWithCallback:)]) {
         [self.delegate domain:self getDocumentWithCallback:^(WXDOMNode *root, id error) {
             NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:1];
@@ -218,9 +205,7 @@
             
             responseCallback(params, error);
         }];
-    }
-#endif
-    else if ([methodName isEqualToString:@"requestChildNodes"] && [self.delegate respondsToSelector:@selector(domain:requestChildNodesWithNodeId:callback:)]) {
+    } else if ([methodName isEqualToString:@"requestChildNodes"] && [self.delegate respondsToSelector:@selector(domain:requestChildNodesWithNodeId:callback:)]) {
         [self.delegate domain:self requestChildNodesWithNodeId:[params objectForKey:@"nodeId"] callback:^(id error) {
             responseCallback(nil, error);
         }];

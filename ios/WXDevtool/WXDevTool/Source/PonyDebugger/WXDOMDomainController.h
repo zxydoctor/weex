@@ -21,7 +21,7 @@
 @property (nonatomic, strong) WXDOMNode *rootDomNode;
 
 + (WXDOMDomainController *)defaultInstance;
-+ (void)startMonitoringUIViewChanges;
+//+ (void)startMonitoringUIViewChanges;
 + (void)startMonitoringWeexComponentChanges;
 
 // The key paths will be reflected as attributes of the DOM node

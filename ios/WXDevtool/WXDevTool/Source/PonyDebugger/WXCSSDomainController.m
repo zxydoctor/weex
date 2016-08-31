@@ -70,180 +70,181 @@
 - (void)domain:(WXCSSDomain *)domain getMatchedStylesForNodeWithNodeId:(NSNumber *)nodeId includePseudo:(NSNumber *)includePseudo includeInherited:(NSNumber *)includeInherited callback:(void (^)(NSArray *matchedCSSRules, NSArray *pseudoElements, NSArray *inherited, id error))callback {
     NSArray *inherited = @[];
     NSArray *pseudoElements = @[];
-#if VDom
-    NSInteger transformNodeId = nodeId.integerValue;
-    if (transformNodeId > 2) {
-        transformNodeId -= 2;
-    }
-    NSString *nodeKey = [NSString stringWithFormat:@"%ld",transformNodeId];
-    NSString *nodeName = nil;
-    
-    /********actual********/
-    UIView *selectedView = [[[WXDOMDomainController defaultInstance] getObjectsForComponentRefs] objectForKey:[NSString stringWithFormat:@"%ld",nodeId.integerValue]];
-    NSArray *actualAttrs = [[WXDOMDomainController defaultInstance] attributesArrayForObject:selectedView];
-    
-    WXCSSSelectorListData *selectorData = [[WXCSSSelectorListData alloc] init];
-    //assembling object of cssStyle
-    WXCSSCSSStyle *style = [[WXCSSCSSStyle alloc] init];
-    NSMutableArray *cssProperties = [NSMutableArray array];
-    NSMutableString *cssText = [[NSMutableString alloc] init];
-    for (int i = 0; i < actualAttrs.count; i++) {
-        if (i & 1) {
-            if (![actualAttrs[i-1] isEqualToString:@"frame"]) {
-                WXCSSCSSProperty *cssProperty = [[WXCSSCSSProperty alloc] init];
-                [cssText appendFormat:@"%@;",actualAttrs[i]];
-                cssProperty.name = actualAttrs[i-1];
-                cssProperty.value = actualAttrs[i];
-                [cssProperties addObject:[cssProperty WX_JSONObject]];
-            }else {
-                NSArray *names = @[@"width",@"height",@"top",@"left"];
-                NSArray *position = [self p_formateFrame:actualAttrs[i]];
-                if (position.count == 4) {
-                    NSDictionary *property = @{@"left":position[0],
-                                               @"top":position[1],
-                                               @"width":position[2],
-                                               @"height":position[3]};
-                    for (int i = 0; i < property.count; i++) {
-                        WXCSSCSSProperty *cssProperty = [[WXCSSCSSProperty alloc] init];
-                        cssProperty.name = names[i];
-                        cssProperty.value = property[names[i]];
-                        [cssText appendString:[NSString stringWithFormat:@"%@:%@;",cssProperty.name,cssProperty.value]];
-                        [cssProperties addObject:[cssProperty WX_JSONObject]];
-                    }
-                }
-            }
-        }else {
-            if (![actualAttrs[i] isEqualToString:@"frame"]) {
-                [cssText appendFormat:@"%@:",actualAttrs[i]];
-                if ([actualAttrs[i] isEqualToString:@"class"]) {
-                    nodeName = actualAttrs[i+1];
-                }
-            }
+
+    if ([WXDebugger isVDom]) {
+        NSInteger transformNodeId = nodeId.integerValue;
+        if (transformNodeId > 2) {
+            transformNodeId -= 2;
         }
-    }
-    selectorData.text = nodeName ? : @"";
-    selectorData.selectors = @[@{@"text":nodeName ? : @""},@{@"text":@"actual value"}];
-    style.shorthandEntries = @[];
-    style.cssText = cssText;
-    style.cssProperties = [NSArray arrayWithArray:cssProperties];
-    WXCSSCSSRule *rule = [[WXCSSCSSRule alloc] init];
-    rule.media = @[];
-    rule.origin = @"inspector";
-    rule.selectorList = selectorData;
-    rule.style = style;
-    /********vdom********/
-    WXCSSSelectorListData *vdomSelectorData = [[WXCSSSelectorListData alloc] init];
-    vdomSelectorData.text = nodeName ? : @"";
-    vdomSelectorData.selectors = @[@{@"text":nodeName ? : @""},@{@"text":@"vdom value"}];
-    //assembling object of cssStyle
-    WXCSSCSSStyle *vdomStyle = [[WXCSSCSSStyle alloc] init];
-    NSMutableArray *vdomCssProperties = [NSMutableArray array];
-    NSMutableString *vdomCssText = [[NSMutableString alloc] init];
-    WXComponent *component = [[WXDOMDomainController defaultInstance] _getComponentFromRef:nodeKey];
-    if (component) {
-        NSDictionary *vdomStyles = component.styles;
-        if (vdomStyles.allKeys > 0) {
-            for (NSString *key in vdomStyles.allKeys) {
-                WXCSSCSSProperty *cssProperty = [[WXCSSCSSProperty alloc] init];
-                cssProperty.name = key;
-                if ([[vdomStyles objectForKey:key] isKindOfClass:[NSString class]]) {
-                    cssProperty.value = [vdomStyles objectForKey:key];
+        NSString *nodeKey = [NSString stringWithFormat:@"%ld",transformNodeId];
+        NSString *nodeName = nil;
+        
+        /********actual********/
+        UIView *selectedView = [[[WXDOMDomainController defaultInstance] getObjectsForComponentRefs] objectForKey:[NSString stringWithFormat:@"%ld",nodeId.integerValue]];
+        NSArray *actualAttrs = [[WXDOMDomainController defaultInstance] attributesArrayForObject:selectedView];
+        
+        WXCSSSelectorListData *selectorData = [[WXCSSSelectorListData alloc] init];
+        //assembling object of cssStyle
+        WXCSSCSSStyle *style = [[WXCSSCSSStyle alloc] init];
+        NSMutableArray *cssProperties = [NSMutableArray array];
+        NSMutableString *cssText = [[NSMutableString alloc] init];
+        for (int i = 0; i < actualAttrs.count; i++) {
+            if (i & 1) {
+                if (![actualAttrs[i-1] isEqualToString:@"frame"]) {
+                    WXCSSCSSProperty *cssProperty = [[WXCSSCSSProperty alloc] init];
+                    [cssText appendFormat:@"%@;",actualAttrs[i]];
+                    cssProperty.name = actualAttrs[i-1];
+                    cssProperty.value = actualAttrs[i];
+                    [cssProperties addObject:[cssProperty WX_JSONObject]];
                 }else {
-                    cssProperty.value = [NSString stringWithFormat:@"%@",[vdomStyles objectForKey:key]];
+                    NSArray *names = @[@"width",@"height",@"top",@"left"];
+                    NSArray *position = [self p_formateFrame:actualAttrs[i]];
+                    if (position.count == 4) {
+                        NSDictionary *property = @{@"left":position[0],
+                                                   @"top":position[1],
+                                                   @"width":position[2],
+                                                   @"height":position[3]};
+                        for (int i = 0; i < property.count; i++) {
+                            WXCSSCSSProperty *cssProperty = [[WXCSSCSSProperty alloc] init];
+                            cssProperty.name = names[i];
+                            cssProperty.value = property[names[i]];
+                            [cssText appendString:[NSString stringWithFormat:@"%@:%@;",cssProperty.name,cssProperty.value]];
+                            [cssProperties addObject:[cssProperty WX_JSONObject]];
+                        }
+                    }
                 }
-                [vdomCssText appendString:[NSString stringWithFormat:@"%@:%@;",cssProperty.name,cssProperty.value]];
-                [vdomCssProperties addObject:[cssProperty WX_JSONObject]];
-            }
-        }
-    }
-    
-    vdomStyle.shorthandEntries = @[];
-    vdomStyle.cssText = vdomCssText;
-    vdomStyle.cssProperties = [NSArray arrayWithArray:vdomCssProperties];
-    
-    WXCSSCSSRule *vdomRule = [[WXCSSCSSRule alloc] init];
-    vdomRule.media = @[];
-    vdomRule.origin = @"inspector";
-    vdomRule.selectorList = vdomSelectorData;
-    vdomRule.style = vdomStyle;
-    
-    
-    if ([rule WX_JSONObject] && [vdomRule WX_JSONObject]) {
-        NSDictionary *ruleMatch = @{@"matchingSelectors":@[[NSNumber numberWithInteger:0]],@"rule":[rule WX_JSONObject]};
-        NSDictionary *vdomRuleMatch = @{@"matchingSelectors":@[[NSNumber numberWithInteger:0]],@"rule":[vdomRule WX_JSONObject]};
-        NSArray *matchCSSRules = @[ruleMatch, vdomRuleMatch];
-        callback(matchCSSRules,pseudoElements,inherited,nil);
-    }else {
-        callback(nil,pseudoElements,inherited,nil);
-    }
-#else
-    //assembling object of rule
-    WXDOMNode *rootDomNode = [WXDOMDomainController defaultInstance].rootDomNode;
-    WXDOMNode *node = [self p_getNodeFromNodeId:nodeId rootNode:rootDomNode];
-    if (!node) {
-        rootDomNode = [WXDOMDomainController defaultInstance].rootNode;
-        node = [self p_getNodeFromNodeId:nodeId rootNode:rootDomNode];
-        if (!node) {
-            callback(nil,pseudoElements,inherited,nil);
-            return;
-        }
-    }
-    WXCSSSelectorListData *selectorData = [[WXCSSSelectorListData alloc] init];
-    selectorData.text = node.nodeName;
-    selectorData.selectors = @[@{@"text":node.nodeName}];
-    
-    //assembling object of cssStyle
-    WXCSSCSSStyle *style = [[WXCSSCSSStyle alloc] init];
-    NSMutableArray *cssProperties = [NSMutableArray array];
-    NSMutableString *cssText = [[NSMutableString alloc] init];
-    for (int i = 0; i < node.attributes.count; i++) {
-        if (i & 1) {
-            if (![node.attributes[i-1] isEqualToString:@"frame"]) {
-                WXCSSCSSProperty *cssProperty = [[WXCSSCSSProperty alloc] init];
-                [cssText appendFormat:@"%@;",node.attributes[i]];
-                cssProperty.name = node.attributes[i-1];
-                cssProperty.value = node.attributes[i];
-                [cssProperties addObject:[cssProperty WX_JSONObject]];
             }else {
-                NSArray *names = @[@"width",@"height",@"top",@"left"];
-                NSArray *position = [self p_formateFrame:node.attributes[i]];
-                if (position.count == 4) {
-                    NSDictionary *property = @{@"left":position[0],
-                                               @"top":position[1],
-                                               @"width":position[2],
-                                               @"height":position[3]};
-                    for (int i = 0; i < property.count; i++) {
-                        WXCSSCSSProperty *cssProperty = [[WXCSSCSSProperty alloc] init];
-                        cssProperty.name = names[i];
-                        cssProperty.value = property[names[i]];
-                        [cssText appendString:[NSString stringWithFormat:@"%@:%@;",cssProperty.name,cssProperty.value]];
-                        [cssProperties addObject:[cssProperty WX_JSONObject]];
+                if (![actualAttrs[i] isEqualToString:@"frame"]) {
+                    [cssText appendFormat:@"%@:",actualAttrs[i]];
+                    if ([actualAttrs[i] isEqualToString:@"class"]) {
+                        nodeName = actualAttrs[i+1];
                     }
                 }
             }
-        }else {
-            if (![node.attributes[i] isEqualToString:@"frame"]) {
-                [cssText appendFormat:@"%@:",node.attributes[i]];
+        }
+        selectorData.text = nodeName ? : @"";
+        selectorData.selectors = @[@{@"text":nodeName ? : @""},@{@"text":@"actual value"}];
+        style.shorthandEntries = @[];
+        style.cssText = cssText;
+        style.cssProperties = [NSArray arrayWithArray:cssProperties];
+        WXCSSCSSRule *rule = [[WXCSSCSSRule alloc] init];
+        rule.media = @[];
+        rule.origin = @"inspector";
+        rule.selectorList = selectorData;
+        rule.style = style;
+        /********vdom********/
+        WXCSSSelectorListData *vdomSelectorData = [[WXCSSSelectorListData alloc] init];
+        vdomSelectorData.text = nodeName ? : @"";
+        vdomSelectorData.selectors = @[@{@"text":nodeName ? : @""},@{@"text":@"vdom value"}];
+        //assembling object of cssStyle
+        WXCSSCSSStyle *vdomStyle = [[WXCSSCSSStyle alloc] init];
+        NSMutableArray *vdomCssProperties = [NSMutableArray array];
+        NSMutableString *vdomCssText = [[NSMutableString alloc] init];
+        WXComponent *component = [[WXDOMDomainController defaultInstance] _getComponentFromRef:nodeKey];
+        if (component) {
+            NSDictionary *vdomStyles = component.styles;
+            if (vdomStyles.allKeys > 0) {
+                for (NSString *key in vdomStyles.allKeys) {
+                    WXCSSCSSProperty *cssProperty = [[WXCSSCSSProperty alloc] init];
+                    cssProperty.name = key;
+                    if ([[vdomStyles objectForKey:key] isKindOfClass:[NSString class]]) {
+                        cssProperty.value = [vdomStyles objectForKey:key];
+                    }else {
+                        cssProperty.value = [NSString stringWithFormat:@"%@",[vdomStyles objectForKey:key]];
+                    }
+                    [vdomCssText appendString:[NSString stringWithFormat:@"%@:%@;",cssProperty.name,cssProperty.value]];
+                    [vdomCssProperties addObject:[cssProperty WX_JSONObject]];
+                }
             }
         }
+        
+        vdomStyle.shorthandEntries = @[];
+        vdomStyle.cssText = vdomCssText;
+        vdomStyle.cssProperties = [NSArray arrayWithArray:vdomCssProperties];
+        
+        WXCSSCSSRule *vdomRule = [[WXCSSCSSRule alloc] init];
+        vdomRule.media = @[];
+        vdomRule.origin = @"inspector";
+        vdomRule.selectorList = vdomSelectorData;
+        vdomRule.style = vdomStyle;
+        
+        
+        if ([rule WX_JSONObject] && [vdomRule WX_JSONObject]) {
+            NSDictionary *ruleMatch = @{@"matchingSelectors":@[[NSNumber numberWithInteger:0]],@"rule":[rule WX_JSONObject]};
+            NSDictionary *vdomRuleMatch = @{@"matchingSelectors":@[[NSNumber numberWithInteger:0]],@"rule":[vdomRule WX_JSONObject]};
+            NSArray *matchCSSRules = @[ruleMatch, vdomRuleMatch];
+            callback(matchCSSRules,pseudoElements,inherited,nil);
+        }else {
+            callback(nil,pseudoElements,inherited,nil);
+        }
+    } else {
+        //assembling object of rule
+        WXDOMNode *rootDomNode = [WXDOMDomainController defaultInstance].rootDomNode;
+        WXDOMNode *node = [self p_getNodeFromNodeId:nodeId rootNode:rootDomNode];
+        if (!node) {
+            rootDomNode = [WXDOMDomainController defaultInstance].rootNode;
+            node = [self p_getNodeFromNodeId:nodeId rootNode:rootDomNode];
+            if (!node) {
+                callback(nil,pseudoElements,inherited,nil);
+                return;
+            }
+        }
+        WXCSSSelectorListData *selectorData = [[WXCSSSelectorListData alloc] init];
+        selectorData.text = node.nodeName;
+        selectorData.selectors = @[@{@"text":node.nodeName}];
+        
+        //assembling object of cssStyle
+        WXCSSCSSStyle *style = [[WXCSSCSSStyle alloc] init];
+        NSMutableArray *cssProperties = [NSMutableArray array];
+        NSMutableString *cssText = [[NSMutableString alloc] init];
+        for (int i = 0; i < node.attributes.count; i++) {
+            if (i & 1) {
+                if (![node.attributes[i-1] isEqualToString:@"frame"]) {
+                    WXCSSCSSProperty *cssProperty = [[WXCSSCSSProperty alloc] init];
+                    [cssText appendFormat:@"%@;",node.attributes[i]];
+                    cssProperty.name = node.attributes[i-1];
+                    cssProperty.value = node.attributes[i];
+                    [cssProperties addObject:[cssProperty WX_JSONObject]];
+                }else {
+                    NSArray *names = @[@"width",@"height",@"top",@"left"];
+                    NSArray *position = [self p_formateFrame:node.attributes[i]];
+                    if (position.count == 4) {
+                        NSDictionary *property = @{@"left":position[0],
+                                                   @"top":position[1],
+                                                   @"width":position[2],
+                                                   @"height":position[3]};
+                        for (int i = 0; i < property.count; i++) {
+                            WXCSSCSSProperty *cssProperty = [[WXCSSCSSProperty alloc] init];
+                            cssProperty.name = names[i];
+                            cssProperty.value = property[names[i]];
+                            [cssText appendString:[NSString stringWithFormat:@"%@:%@;",cssProperty.name,cssProperty.value]];
+                            [cssProperties addObject:[cssProperty WX_JSONObject]];
+                        }
+                    }
+                }
+            }else {
+                if (![node.attributes[i] isEqualToString:@"frame"]) {
+                    [cssText appendFormat:@"%@:",node.attributes[i]];
+                }
+            }
+        }
+        style.shorthandEntries = @[];
+        style.cssText = cssText;
+        style.cssProperties = [NSArray arrayWithArray:cssProperties];
+        
+        WXCSSCSSRule *rule = [[WXCSSCSSRule alloc] init];
+        rule.media = @[];
+        rule.origin = @"inspector";
+        rule.selectorList = selectorData;
+        rule.style = style;
+        if ([rule WX_JSONObject]) {
+            NSDictionary *ruleMatch = @{@"matchingSelectors":@[[NSNumber numberWithInteger:0]],@"rule":[rule WX_JSONObject]};
+            NSArray *matchCSSRules = @[ruleMatch];
+            callback(matchCSSRules,pseudoElements,inherited,nil);
+        }else {
+            callback(nil,pseudoElements,inherited,nil);
+        }
     }
-    style.shorthandEntries = @[];
-    style.cssText = cssText;
-    style.cssProperties = [NSArray arrayWithArray:cssProperties];
-    
-    WXCSSCSSRule *rule = [[WXCSSCSSRule alloc] init];
-    rule.media = @[];
-    rule.origin = @"inspector";
-    rule.selectorList = selectorData;
-    rule.style = style;
-    if ([rule WX_JSONObject]) {
-        NSDictionary *ruleMatch = @{@"matchingSelectors":@[[NSNumber numberWithInteger:0]],@"rule":[rule WX_JSONObject]};
-        NSArray *matchCSSRules = @[ruleMatch];
-        callback(matchCSSRules,pseudoElements,inherited,nil);
-    }else {
-        callback(nil,pseudoElements,inherited,nil);
-    }
-#endif
 }
 
 - (void)domain:(WXCSSDomain *)domain getInlineStylesForNodeWithNodeId:(NSNumber *)nodeId callback:(void (^)(WXCSSCSSStyle *inlineStyle, WXCSSCSSStyle *attributesStyle, id error))callback {
@@ -274,105 +275,105 @@
         }
     }];
      */
-#if VDom
-    UIView *selectedView = [[[WXDOMDomainController defaultInstance] getObjectsForComponentRefs] objectForKey:[NSString stringWithFormat:@"%ld",nodeId.integerValue]];
-    NSArray *actualAttrs = [[WXDOMDomainController defaultInstance] attributesArrayForObject:selectedView];
-    __block NSArray *position;
-    [actualAttrs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        if ([obj isEqualToString:@"frame"]) {
-            *stop = YES;
-            position = [self p_formateFrame:actualAttrs[idx + 1]];
+    if ([WXDebugger isVDom]) {
+        UIView *selectedView = [[[WXDOMDomainController defaultInstance] getObjectsForComponentRefs] objectForKey:[NSString stringWithFormat:@"%ld",nodeId.integerValue]];
+        NSArray *actualAttrs = [[WXDOMDomainController defaultInstance] attributesArrayForObject:selectedView];
+        __block NSArray *position;
+        [actualAttrs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([obj isEqualToString:@"frame"]) {
+                *stop = YES;
+                position = [self p_formateFrame:actualAttrs[idx + 1]];
+            }
+        }];
+        
+        NSString *width = @"";
+        NSString *height = @"";
+        NSString *top = @"";
+        NSString *left = @"";
+        if (position.count == 4) {
+            width = position[2];
+            height = position[3];
+            top = position[1];
+            left = position[0];
+            width = [NSString stringWithFormat:@"%lf",[width floatValue]/WXScreenResizeRadio()];
+            height = [NSString stringWithFormat:@"%lf",[height floatValue]/WXScreenResizeRadio()];
         }
-    }];
-    
-    NSString *width = @"";
-    NSString *height = @"";
-    NSString *top = @"";
-    NSString *left = @"";
-    if (position.count == 4) {
-        width = position[2];
-        height = position[3];
-        top = position[1];
-        left = position[0];
-        width = [NSString stringWithFormat:@"%lf",[width floatValue]/WXScreenResizeRadio()];
-        height = [NSString stringWithFormat:@"%lf",[height floatValue]/WXScreenResizeRadio()];
-    }
-    NSMutableArray *computedStyles = [[NSMutableArray alloc] init];
-    NSArray *layout = @[@{@"name":@"width",@"value":width},
-                        @{@"name":@"height",@"value":height},
-                        @{@"name":@"padding-top",@"value":@"0px"},
-                        @{@"name":@"padding-left",@"value":@"0px"},
-                        @{@"name":@"padding-right",@"value":@"0px"},
-                        @{@"name":@"padding-bottom",@"value":@""},
-                        @{@"name":@"border-top-width",@"value":@""},
-                        @{@"name":@"border-left-width",@"value":@""},
-                        @{@"name":@"border-right-width",@"value":@""},
-                        @{@"name":@"border-bottom-width",@"value":@""},
-                        @{@"name":@"margin-bottom",@"value":@"0px"},
-                        @{@"name":@"margin-left",@"value":@"0px"},
-                        @{@"name":@"margin-right",@"value":@"0px"},
-                        @{@"name":@"margin-top",@"value":@"0px"},
-                        @{@"name":@"top",@"value":top},
-                        @{@"name":@"right",@"value":@"0px"},
-                        @{@"name":@"left",@"value":left},
-                        @{@"name":@"bottom",@"value":@"0px"}];
-    for (int i = 0; i < layout.count; i++) {
-        WXCSSCSSComputedStyleProperty *computedStyleProperty = [[WXCSSCSSComputedStyleProperty alloc] init];
-        computedStyleProperty.name = layout[i][@"name"];
-        computedStyleProperty.value = layout[i][@"value"];
-        [computedStyles addObject:[computedStyleProperty WX_JSONObject]];
-    }
-    
-    callback(computedStyles,nil);
-#else
-    WXDOMNode *rootDomNode = [WXDOMDomainController defaultInstance].rootDomNode;
-    WXDOMNode *node = [self p_getNodeFromNodeId:nodeId rootNode:rootDomNode];
-    
-    __block NSArray *position;
-    [node.attributes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        if ([obj isEqualToString:@"frame"]) {
-            *stop = YES;
-            position = [self p_formateFrame:node.attributes[idx + 1]];
+        NSMutableArray *computedStyles = [[NSMutableArray alloc] init];
+        NSArray *layout = @[@{@"name":@"width",@"value":width},
+                            @{@"name":@"height",@"value":height},
+                            @{@"name":@"padding-top",@"value":@"0px"},
+                            @{@"name":@"padding-left",@"value":@"0px"},
+                            @{@"name":@"padding-right",@"value":@"0px"},
+                            @{@"name":@"padding-bottom",@"value":@""},
+                            @{@"name":@"border-top-width",@"value":@""},
+                            @{@"name":@"border-left-width",@"value":@""},
+                            @{@"name":@"border-right-width",@"value":@""},
+                            @{@"name":@"border-bottom-width",@"value":@""},
+                            @{@"name":@"margin-bottom",@"value":@"0px"},
+                            @{@"name":@"margin-left",@"value":@"0px"},
+                            @{@"name":@"margin-right",@"value":@"0px"},
+                            @{@"name":@"margin-top",@"value":@"0px"},
+                            @{@"name":@"top",@"value":top},
+                            @{@"name":@"right",@"value":@"0px"},
+                            @{@"name":@"left",@"value":left},
+                            @{@"name":@"bottom",@"value":@"0px"}];
+        for (int i = 0; i < layout.count; i++) {
+            WXCSSCSSComputedStyleProperty *computedStyleProperty = [[WXCSSCSSComputedStyleProperty alloc] init];
+            computedStyleProperty.name = layout[i][@"name"];
+            computedStyleProperty.value = layout[i][@"value"];
+            [computedStyles addObject:[computedStyleProperty WX_JSONObject]];
         }
-    }];
-    NSString *width = @"";
-    NSString *height = @"";
-    NSString *top = @"";
-    NSString *left = @"";
-    if (position.count == 4) {
-        width = position[2];
-        height = position[3];
-        top = position[1];
-        left = position[0];
+        
+        callback(computedStyles,nil);
+    } else {
+        WXDOMNode *rootDomNode = [WXDOMDomainController defaultInstance].rootDomNode;
+        WXDOMNode *node = [self p_getNodeFromNodeId:nodeId rootNode:rootDomNode];
+        
+        __block NSArray *position;
+        [node.attributes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([obj isEqualToString:@"frame"]) {
+                *stop = YES;
+                position = [self p_formateFrame:node.attributes[idx + 1]];
+            }
+        }];
+        NSString *width = @"";
+        NSString *height = @"";
+        NSString *top = @"";
+        NSString *left = @"";
+        if (position.count == 4) {
+            width = position[2];
+            height = position[3];
+            top = position[1];
+            left = position[0];
+        }
+        NSMutableArray *computedStyles = [[NSMutableArray alloc] init];
+        NSArray *layout = @[@{@"name":@"width",@"value":width},
+                            @{@"name":@"height",@"value":height},
+                            @{@"name":@"padding-top",@"value":@"0px"},
+                            @{@"name":@"padding-left",@"value":@"0px"},
+                            @{@"name":@"padding-right",@"value":@"0px"},
+                            @{@"name":@"padding-bottom",@"value":@""},
+                            @{@"name":@"border-top-width",@"value":@""},
+                            @{@"name":@"border-left-width",@"value":@""},
+                            @{@"name":@"border-right-width",@"value":@""},
+                            @{@"name":@"border-bottom-width",@"value":@""},
+                            @{@"name":@"margin-bottom",@"value":@"0px"},
+                            @{@"name":@"margin-left",@"value":@"0px"},
+                            @{@"name":@"margin-right",@"value":@"0px"},
+                            @{@"name":@"margin-top",@"value":@"0px"},
+                            @{@"name":@"top",@"value":top},
+                            @{@"name":@"right",@"value":@"0px"},
+                            @{@"name":@"left",@"value":left},
+                            @{@"name":@"bottom",@"value":@"0px"}];
+        for (int i = 0; i < layout.count; i++) {
+            WXCSSCSSComputedStyleProperty *computedStyleProperty = [[WXCSSCSSComputedStyleProperty alloc] init];
+            computedStyleProperty.name = layout[i][@"name"];
+            computedStyleProperty.value = layout[i][@"value"];
+            [computedStyles addObject:[computedStyleProperty WX_JSONObject]];
+        }
+        
+        callback(computedStyles,nil);
     }
-    NSMutableArray *computedStyles = [[NSMutableArray alloc] init];
-    NSArray *layout = @[@{@"name":@"width",@"value":width},
-                        @{@"name":@"height",@"value":height},
-                        @{@"name":@"padding-top",@"value":@"0px"},
-                        @{@"name":@"padding-left",@"value":@"0px"},
-                        @{@"name":@"padding-right",@"value":@"0px"},
-                        @{@"name":@"padding-bottom",@"value":@""},
-                        @{@"name":@"border-top-width",@"value":@""},
-                        @{@"name":@"border-left-width",@"value":@""},
-                        @{@"name":@"border-right-width",@"value":@""},
-                        @{@"name":@"border-bottom-width",@"value":@""},
-                        @{@"name":@"margin-bottom",@"value":@"0px"},
-                        @{@"name":@"margin-left",@"value":@"0px"},
-                        @{@"name":@"margin-right",@"value":@"0px"},
-                        @{@"name":@"margin-top",@"value":@"0px"},
-                        @{@"name":@"top",@"value":top},
-                        @{@"name":@"right",@"value":@"0px"},
-                        @{@"name":@"left",@"value":left},
-                        @{@"name":@"bottom",@"value":@"0px"}];
-    for (int i = 0; i < layout.count; i++) {
-        WXCSSCSSComputedStyleProperty *computedStyleProperty = [[WXCSSCSSComputedStyleProperty alloc] init];
-        computedStyleProperty.name = layout[i][@"name"];
-        computedStyleProperty.value = layout[i][@"value"];
-        [computedStyles addObject:[computedStyleProperty WX_JSONObject]];
-    }
-    
-    callback(computedStyles,nil);
-#endif
 }
 
 - (void)domain:(WXCSSDomain *)domain getSupportedCSSPropertiesWithCallback:(void (^)(NSArray *cssProperties, id error))callback {

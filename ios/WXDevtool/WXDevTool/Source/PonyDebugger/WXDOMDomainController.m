@@ -141,53 +141,30 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
         original = class_getInstanceMethod(viewClass, @selector(removeFromSuperview));
         swizzle = class_getInstanceMethod(viewClass, sel_registerName("devtool_swizzled_removeFromSuperview"));
         method_exchangeImplementations(original, swizzle);
-    });
-}
-
-+ (void)startMonitoringUIViewChanges;
-{
-    // Swizzle UIView add/remove methods to monitor changes in the view hierarchy
-    // Only do it once to avoid swapping back if this method is called again
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Method original, swizzle;
-        Class viewClass = [UIView class];
-
-        // Using sel_registerName() because compiler complains about the swizzled selectors not being found.
-        original = class_getInstanceMethod(viewClass, @selector(addSubview:));
-        swizzle = class_getInstanceMethod(viewClass, sel_registerName("pd_swizzled_addSubview:"));
-        method_exchangeImplementations(original, swizzle);
         
         original = class_getInstanceMethod(viewClass, @selector(bringSubviewToFront:));
-        swizzle = class_getInstanceMethod(viewClass, sel_registerName("pd_swizzled_bringSubviewToFront:"));
+        swizzle = class_getInstanceMethod(viewClass, sel_registerName("devtool_swizzled_bringSubviewToFront:"));
         method_exchangeImplementations(original, swizzle);
         
         original = class_getInstanceMethod(viewClass, @selector(sendSubviewToBack:));
-        swizzle = class_getInstanceMethod(viewClass, sel_registerName("pd_swizzled_sendSubviewToBack:"));
-        method_exchangeImplementations(original, swizzle);
-        
-        original = class_getInstanceMethod(viewClass, @selector(removeFromSuperview));
-        swizzle = class_getInstanceMethod(viewClass, sel_registerName("pd_swizzled_removeFromSuperview"));
-        method_exchangeImplementations(original, swizzle);
-        
-        original = class_getInstanceMethod(viewClass, @selector(insertSubview:atIndex:));
-        swizzle = class_getInstanceMethod(viewClass, sel_registerName("pd_swizzled_insertSubview:atIndex:"));
+        swizzle = class_getInstanceMethod(viewClass, sel_registerName("devtool_swizzled_sendSubviewToBack:"));
         method_exchangeImplementations(original, swizzle);
         
         original = class_getInstanceMethod(viewClass, @selector(insertSubview:aboveSubview:));
-        swizzle = class_getInstanceMethod(viewClass, sel_registerName("pd_swizzled_insertSubview:aboveSubview:"));
+        swizzle = class_getInstanceMethod(viewClass, sel_registerName("devtool_swizzled_insertSubview:aboveSubview:"));
         method_exchangeImplementations(original, swizzle);
         
         original = class_getInstanceMethod(viewClass, @selector(insertSubview:belowSubview:));
-        swizzle = class_getInstanceMethod(viewClass, sel_registerName("pd_swizzled_insertSubview:belowSubview:"));
+        swizzle = class_getInstanceMethod(viewClass, sel_registerName("devtool_swizzled_insertSubview:belowSubview:"));
         method_exchangeImplementations(original, swizzle);
         
         original = class_getInstanceMethod(viewClass, @selector(exchangeSubviewAtIndex:withSubviewAtIndex:));
-        swizzle = class_getInstanceMethod(viewClass, sel_registerName("pd_swizzled_exchangeSubviewAtIndex:withSubviewAtIndex:"));
+        swizzle = class_getInstanceMethod(viewClass, sel_registerName("devtool_swizzled_exchangeSubviewAtIndex:withSubviewAtIndex:"));
         method_exchangeImplementations(original, swizzle);
+        
     });
 }
-
+ 
 + (Class)domainClass;
 {
     return [WXDOMDomain class];
@@ -207,19 +184,6 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
         // Refresh the DOM tree to see the new attributes
         [self.domain documentUpdated];
     }
-}
-
-#pragma mark - VirtualDomainDelegate
-- (void)domain:(WXDOMDomain *)domain getVirtualDocumentWithCallback:(void (^)(WXDOMNode *root, id error))callback
-{
-    [self stopTrackingAllViews];
-    WXDOMNode *rootNode = [[WXDOMNode alloc] init];
-    rootNode.nodeId = [NSNumber numberWithInt:1];
-    rootNode.nodeType = @(kWXDOMNodeTypeDocument);
-    rootNode.nodeName = @"#document";
-    rootNode.children = @[ [self rootVirElementWithInstance:nil] ];
-    self.rootDomNode = rootNode;
-    callback(rootNode, nil);
 }
 
 /*
@@ -260,22 +224,34 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
 
 - (void)domain:(WXDOMDomain *)domain getDocumentWithCallback:(void (^)(WXDOMNode *root, id error))callback;
 {
-    [self stopTrackingAllViews];
-    self.objectsForNodeIds = [[NSMutableDictionary alloc] init];
-    self.nodeIdsForObjects = [[NSMutableDictionary alloc] init];
-    self.nodeIdCounter = 3;
-    callback([self rootNode], nil);
+    if ([WXDebugger isVDom]) {
+        [self stopTrackingAllViews];
+        WXDOMNode *rootNode = [[WXDOMNode alloc] init];
+        rootNode.nodeId = [NSNumber numberWithInt:1];
+        rootNode.nodeType = @(kWXDOMNodeTypeDocument);
+        rootNode.nodeName = @"#document";
+        rootNode.children = @[ [self rootVirElementWithInstance:nil] ];
+        self.rootDomNode = rootNode;
+        callback(rootNode, nil);
+    } else {
+        [self stopTrackingAllViews];
+        self.objectsForNodeIds = [[NSMutableDictionary alloc] init];
+        self.nodeIdsForObjects = [[NSMutableDictionary alloc] init];
+        self.nodeIdCounter = 3;
+        callback([self rootNode], nil);
+    }
 }
 
 - (void)domain:(WXDOMDomain *)domain highlightNodeWithNodeId:(NSNumber *)nodeId highlightConfig:(WXDOMHighlightConfig *)highlightConfig callback:(void (^)(id))callback;
 {
-#if VDom
     NSInteger transformNodeId = nodeId.integerValue;
     NSString *nodeKey = [NSString stringWithFormat:@"%ld",transformNodeId];
-    id objectForNodeId = [self.objectsForComponentRefs objectForKey:nodeKey];
-#else
-    id objectForNodeId = [self.objectsForNodeIds objectForKey:nodeId];
-#endif
+    id objectForNodeId;
+    if ([WXDebugger isVDom]) {
+        objectForNodeId = [self.objectsForComponentRefs objectForKey:nodeKey];
+    } else {
+        objectForNodeId = [self.objectsForNodeIds objectForKey:nodeId];
+    }
     if ([objectForNodeId isKindOfClass:[UIView class]]) {
         [self configureHighlightOverlayWithConfig:highlightConfig];
         [self revealHighlightOverlayForView:objectForNodeId allowInteractions:YES];
@@ -1403,73 +1379,63 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
     [[WXDOMDomainController defaultInstance] removeVDomTreeWithView:self];
 }
 
-#pragma mark -
-- (void)pd_swizzled_addSubview:(UIView *)subview;
-{
-    [[WXDOMDomainController defaultInstance] removeView:subview];
-    [self pd_swizzled_addSubview:subview];
-    [[WXDOMDomainController defaultInstance] addView:subview];
-}
 
-- (void)pd_swizzled_bringSubviewToFront:(UIView *)view;
+- (void)devtool_swizzled_bringSubviewToFront:(UIView *)view;
 {
-    [[WXDOMDomainController  defaultInstance] removeView:view];
-    [self pd_swizzled_bringSubviewToFront:view];
-    [[WXDOMDomainController defaultInstance] addView:view];
-}
-
-- (void)pd_swizzled_sendSubviewToBack:(UIView *)view;
-{
-    [[WXDOMDomainController  defaultInstance] removeView:view];
-    [self pd_swizzled_sendSubviewToBack:view];
-    [[WXDOMDomainController defaultInstance] addView:view];
-}
-
-- (void)pd_swizzled_removeFromSuperview;
-{
-    [[WXDOMDomainController defaultInstance] removeView:self];
-    [self pd_swizzled_removeFromSuperview];
-}
-
-- (void)pd_swizzled_insertSubview:(UIView *)view atIndex:(NSInteger)index;
-{
-    [[WXDOMDomainController  defaultInstance] removeView:view];
-    [self pd_swizzled_insertSubview:view atIndex:index];
-    [[WXDOMDomainController defaultInstance] addView:view];
-}
-
-- (void)pd_swizzled_insertSubview:(UIView *)view aboveSubview:(UIView *)siblingSubview;
-{
-    [[WXDOMDomainController  defaultInstance] removeView:view];
-    [self pd_swizzled_insertSubview:view aboveSubview:siblingSubview];
-    [[WXDOMDomainController defaultInstance] addView:view];
-}
-
-- (void)pd_swizzled_insertSubview:(UIView *)view belowSubview:(UIView *)siblingSubview;
-{
-    [[WXDOMDomainController  defaultInstance] removeView:view];
-    [self pd_swizzled_insertSubview:view belowSubview:siblingSubview];
-    [[WXDOMDomainController defaultInstance] addView:view];
-}
-
-- (void)pd_swizzled_exchangeSubviewAtIndex:(NSInteger)index1 withSubviewAtIndex:(NSInteger)index2;
-{
-    // Guard against calls with out-of-bounds indices.
-    // exchangeSubviewAtIndex:withSubviewAtIndex: doesn't crash in this case, so neither should we.
-    if (index1 >= 0 && index1 < [[self subviews] count]) {
-        [[WXDOMDomainController defaultInstance] removeView:[[self subviews] objectAtIndex:index1]];
+    if (![WXDebugger isVDom]) {
+        [[WXDOMDomainController  defaultInstance] removeView:view];
+        [self devtool_swizzled_bringSubviewToFront:view];
+        [[WXDOMDomainController defaultInstance] addView:view];
     }
-    if (index2 >= 0 && index2 < [[self subviews] count]) {
-        [[WXDOMDomainController defaultInstance] removeView:[[self subviews] objectAtIndex:index2]];
+}
+
+- (void)devtool_swizzled_sendSubviewToBack:(UIView *)view;
+{
+    if (![WXDebugger isVDom]) {
+        [[WXDOMDomainController  defaultInstance] removeView:view];
+        [self devtool_swizzled_sendSubviewToBack:view];
+        [[WXDOMDomainController defaultInstance] addView:view];
     }
-    
-    [self pd_swizzled_exchangeSubviewAtIndex:index1 withSubviewAtIndex:index2];
-    
-    if (index1 >= 0 && index1 < [[self subviews] count]) {
-        [[WXDOMDomainController defaultInstance] addView:[[self subviews] objectAtIndex:index1]];
+}
+
+- (void)devtool_swizzled_insertSubview:(UIView *)view aboveSubview:(UIView *)siblingSubview;
+{
+    if (![WXDebugger isVDom]) {
+        [[WXDOMDomainController  defaultInstance] removeView:view];
+        [self devtool_swizzled_insertSubview:view aboveSubview:siblingSubview];
+        [[WXDOMDomainController defaultInstance] addView:view];
     }
-    if (index2 >= 0 && index2 < [[self subviews] count]) {
-        [[WXDOMDomainController defaultInstance] addView:[[self subviews] objectAtIndex:index2]];
+}
+
+- (void)devtool_swizzled_insertSubview:(UIView *)view belowSubview:(UIView *)siblingSubview;
+{
+    if (![WXDebugger isVDom]) {
+        [[WXDOMDomainController  defaultInstance] removeView:view];
+        [self devtool_swizzled_insertSubview:view belowSubview:siblingSubview];
+        [[WXDOMDomainController defaultInstance] addView:view];
+    }
+}
+
+- (void)devtool_swizzled_exchangeSubviewAtIndex:(NSInteger)index1 withSubviewAtIndex:(NSInteger)index2;
+{
+    if (![WXDebugger isVDom]) {
+        // Guard against calls with out-of-bounds indices.
+        // exchangeSubviewAtIndex:withSubviewAtIndex: doesn't crash in this case, so neither should we.
+        if (index1 >= 0 && index1 < [[self subviews] count]) {
+            [[WXDOMDomainController defaultInstance] removeView:[[self subviews] objectAtIndex:index1]];
+        }
+        if (index2 >= 0 && index2 < [[self subviews] count]) {
+            [[WXDOMDomainController defaultInstance] removeView:[[self subviews] objectAtIndex:index2]];
+        }
+        
+        [self devtool_swizzled_exchangeSubviewAtIndex:index1 withSubviewAtIndex:index2];
+        
+        if (index1 >= 0 && index1 < [[self subviews] count]) {
+            [[WXDOMDomainController defaultInstance] addView:[[self subviews] objectAtIndex:index1]];
+        }
+        if (index2 >= 0 && index2 < [[self subviews] count]) {
+            [[WXDOMDomainController defaultInstance] addView:[[self subviews] objectAtIndex:index2]];
+        }
     }
 }
 

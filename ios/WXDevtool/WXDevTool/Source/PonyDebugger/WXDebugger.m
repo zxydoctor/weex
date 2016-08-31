@@ -40,6 +40,7 @@
 #import <sys/utsname.h>
 
 static NSString *const WXBonjourServiceType = @"_ponyd._tcp";
+static BOOL WXIsVDom = NO;
 
 
 void _WXLogObjectsImpl(NSString *severity, NSArray *arguments)
@@ -368,6 +369,15 @@ void _WXLogObjectsImpl(NSString *severity, NSArray *arguments)
     _socket = nil;
 }
 
+#pragma mark - set get method
++ (void)setVDom:(BOOL)isVDom {
+    WXIsVDom = isVDom;
+}
+
++ (BOOL)isVDom {
+    return WXIsVDom;
+}
+
 #pragma mark - Public Interface
 
 #pragma mark Network Debugging
@@ -433,11 +443,7 @@ void _WXLogObjectsImpl(NSString *severity, NSArray *arguments)
     // Choosing frame, alpha, and hidden as the default key paths to display
     [[WXDOMDomainController defaultInstance] setViewKeyPathsToDisplay:@[@"frame", @"alpha", @"hidden"]];
     
-#if VDom
     [WXDOMDomainController startMonitoringWeexComponentChanges];
-#else
-    [WXDOMDomainController startMonitoringUIViewChanges];
-#endif
 }
 
 - (void)setDisplayedViewAttributeKeyPaths:(NSArray *)keyPaths;
