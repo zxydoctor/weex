@@ -1,5 +1,5 @@
 <template>
-  <scroller class="list" append="tree">
+  <scroller class="list" append="node">
 
     <refresh class="refresh-view" display="{{refresh_display}}" onrefresh="onrefresh">
       <loading-indicator style="height:60;width:60" ></loading-indicator>
