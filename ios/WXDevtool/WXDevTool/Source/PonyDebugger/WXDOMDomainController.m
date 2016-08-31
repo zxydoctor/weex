@@ -12,9 +12,8 @@
 #import "WXDOMDomainController.h"
 #import "WXInspectorDomainController.h"
 #import "WXRuntimeTypes.h"
-#import <WeexSDK/WXSDKManager.h>
-#import <WeexSDK/WXSDKInstance.h>
-#import <WeexSDK/WXBridgeManager.h>
+
+#import <WeexSDK/WeexSDK.h>
 
 #import <objc/runtime.h>
 #import <QuartzCore/QuartzCore.h>

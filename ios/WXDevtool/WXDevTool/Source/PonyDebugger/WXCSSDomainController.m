@@ -9,9 +9,7 @@
 #import "WXCSSDomainController.h"
 #import "WXDOMDomainController.h"
 #import "WXCSSTypes.h"
-#import <WeexSDK/WXComponent.h>
-#import <WeexSDK/WXSDKInstance.h>
-#import <WeexSDK/WXUtility.h>
+#import <WeexSDK/WeexSDK.h>
 
 @implementation WXCSSDomainController
 @dynamic domain;

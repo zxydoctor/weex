@@ -30,10 +30,8 @@
 #import "WXDebugDomainController.h"
 #import "WXDevToolType.h"
 
-#import <WeexSDK/WXAppConfiguration.h>
 #import "WXDeviceInfo.h"
-#import <WeexSDK/WXSDKEngine.h>
-#import <WeexSDK/WXUtility.h>
+#import <WeexSDK/WeexSDK.h>
 
 #import <objc/runtime.h>
 #import <objc/message.h>
