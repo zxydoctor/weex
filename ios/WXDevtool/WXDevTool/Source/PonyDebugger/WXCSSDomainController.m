@@ -262,16 +262,16 @@
 
 - (void)domain:(WXCSSDomain *)domain getComputedStyleForNodeWithNodeId:(NSNumber *)nodeId callback:(void (^)(NSArray *computedStyle, id error))callback {
     /*
-    WXDOMNode *rootDomNode = [WXDOMDomainController defaultInstance].rootDomNode;
-    WXDOMNode *node = [self p_getNodeFromNodeId:nodeId rootNode:rootDomNode];
-    
-    __block NSArray *position;
-    [node.attributes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        if ([obj isEqualToString:@"frame"]) {
-            *stop = YES;
-            position = [self p_formateFrame:node.attributes[idx + 1]];
-        }
-    }];
+     WXDOMNode *rootDomNode = [WXDOMDomainController defaultInstance].rootDomNode;
+     WXDOMNode *node = [self p_getNodeFromNodeId:nodeId rootNode:rootDomNode];
+     
+     __block NSArray *position;
+     [node.attributes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+     if ([obj isEqualToString:@"frame"]) {
+     *stop = YES;
+     position = [self p_formateFrame:node.attributes[idx + 1]];
+     }
+     }];
      */
     if ([WXDebugger isVDom]) {
         UIView *selectedView = [[[WXDOMDomainController defaultInstance] getObjectsForComponentRefs] objectForKey:[NSString stringWithFormat:@"%ld",(long)nodeId.integerValue]];
@@ -381,6 +381,7 @@
     NSArray *cssProperties = @[cssPropertyInfo];
     callback(cssProperties,nil);
 }
+
 
 
 @end
