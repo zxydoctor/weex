@@ -562,42 +562,6 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
 
 - (void)addView:(UIView *)view;
 {
-/*
-    if ([self shouldIgnoreView:view]) {
-        return;
-    }
-    NSValue *value = nil;
-    @try {
-        value = [view valueForKeyPath:@"wx_ref"];
-        if (value) {
-            NSString *key = [self stringForValue:value atKeyPath:@"wx_ref" onObject:view];
-            WXComponent *corrComponent = [self _getComponentFromRef:key];
-            WXComponent *parentComponent = corrComponent.supercomponent;
-            WXComponent *previousComponent = nil;
-            NSNumber *parentNodeId = [NSNumber numberWithFloat:[parentComponent.ref floatValue]];
-            NSNumber *previousNodeId = nil;
-            if (parentComponent && [self.objectsForComponentRefs objectForKey:parentComponent.ref]) {
-                WXDOMNode *node = [self nodeForComponent:corrComponent];
-                NSUInteger indexOfComponent = [parentComponent.subcomponents indexOfObject:corrComponent];
-                if (indexOfComponent <[parentComponent.subcomponents count] - 1) {
-                    previousComponent = [parentComponent.subcomponents objectAtIndex:indexOfComponent + 1];
-                    previousNodeId = [NSNumber numberWithFloat:[previousComponent.ref floatValue]];
-                }
-                [self.domain childNodeInsertedWithParentNodeId:parentNodeId previousNodeId:previousNodeId node:node];
-            } else if ([corrComponent.ref isEqualToString:@"_root"]) {
-                WXDOMNode *node = [self rootVirElementWithInstance:nil];
-                [self startTrackingView:view withComponentRef:corrComponent.ref];
-                [self.domain childNodeInsertedWithParentNodeId:@(1) previousNodeId:previousNodeId node:node];
-            }
-        }
-    }
-    @catch (NSException *exception) {
-        
-    }
-    @finally {
-        
-    }
-*/
     // Bail early if we're ignoring this view or if the document hasn't been requested yet
     if ([self shouldIgnoreView:view] || !self.objectsForNodeIds) {
         return;
@@ -1362,20 +1326,37 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
 
 - (void)devtool_swizzled_addSubview:(UIView *)subview
 {
-    [self devtool_swizzled_addSubview:subview];
-    [[WXDOMDomainController defaultInstance] addVDomTreeWithView:subview];
+    if (![WXDebugger isVDom]) {
+        [[WXDOMDomainController defaultInstance] removeView:subview];
+        [self devtool_swizzled_addSubview:subview];
+        [[WXDOMDomainController defaultInstance] addView:subview];
+    } else {
+        [self devtool_swizzled_addSubview:subview];
+        [[WXDOMDomainController defaultInstance] addVDomTreeWithView:subview];
+    }
 }
 
 - (void)devtool_swizzled_insertSubview:(UIView *)view atIndex:(NSInteger)index;
 {
-    [self devtool_swizzled_insertSubview:view atIndex:index];
-    [[WXDOMDomainController defaultInstance] addVDomTreeWithView:view];
+    if (![WXDebugger isVDom]) {
+        [[WXDOMDomainController  defaultInstance] removeView:view];
+        [self devtool_swizzled_insertSubview:view atIndex:index];
+        [[WXDOMDomainController defaultInstance] addView:view];
+    } else {
+        [self devtool_swizzled_insertSubview:view atIndex:index];
+        [[WXDOMDomainController defaultInstance] addVDomTreeWithView:view];
+    }
 }
 
 - (void)devtool_swizzled_removeFromSuperview
 {
-    [self devtool_swizzled_removeFromSuperview];
-    [[WXDOMDomainController defaultInstance] removeVDomTreeWithView:self];
+    if (![WXDebugger isVDom]) {
+        [[WXDOMDomainController defaultInstance] removeView:self];
+        [self devtool_swizzled_removeFromSuperview];
+    } else {
+        [self devtool_swizzled_removeFromSuperview];
+        [[WXDOMDomainController defaultInstance] removeVDomTreeWithView:self];
+    }
 }
 
 
