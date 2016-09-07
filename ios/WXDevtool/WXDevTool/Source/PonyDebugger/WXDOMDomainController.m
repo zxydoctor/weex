@@ -12,6 +12,8 @@
 #import "WXDOMDomainController.h"
 #import "WXInspectorDomainController.h"
 #import "WXRuntimeTypes.h"
+#import "WXPageDomainController.h"
+#import "WXPageDomainUtility.h"
 
 #import <WeexSDK/WeexSDK.h>
 
@@ -338,6 +340,85 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
 - (void)domain:(WXDOMDomain *)domain requestNodeWithObjectId:(NSString *)objectId callback:(void (^)(NSNumber *, id))callback;
 {
     callback(@([objectId intValue]), nil);
+}
+
+- (void)domain:(WXDOMDomain *)domain getBoxModelNodeId:(NSString *)nodeId callback:(void (^)(WXDOMBoxModel *boxModel, id error))callback
+{
+    CGFloat scale = [WXPageDomainController defaultInstance].domain.screenScaleFactor;
+    UIView *objectForNodeId;
+    if ([WXDebugger isVDom]) {
+        NSString *nodeIdStr = [NSString stringWithFormat:@"%ld",[nodeId integerValue]];
+        objectForNodeId = [self.objectsForComponentRefs objectForKey:nodeIdStr];
+    } else {
+        objectForNodeId = [self.objectsForNodeIds objectForKey:nodeId];
+    }
+    UIView *view = [WXPageDomainUtility getCurrentVC].view;
+    CGRect changeRect = [objectForNodeId.superview convertRect:objectForNodeId.frame toView:view];
+    NSNumber *width = [NSNumber numberWithInteger:objectForNodeId.frame.size.width / WXScreenResizeRadio()];
+    NSNumber *height = [NSNumber numberWithInteger:objectForNodeId.frame.size.height / WXScreenResizeRadio()];
+    CGFloat left = changeRect.origin.x * scale;
+    CGFloat top = changeRect.origin.y * scale;
+    CGFloat right = left + objectForNodeId.frame.size.width * scale;
+    CGFloat bottom = top + objectForNodeId.frame.size.height * scale;
+    
+    CGFloat paddingLeft = 0;
+    CGFloat paddingRight = 0;
+    CGFloat paddingTop = 0;
+    CGFloat paddingBottom = 0;
+    
+//    UIEdgeInsets marginView = [objectForNodeId layoutMargins];
+    CGFloat marginLeft = 0;//marginView.left * scale;
+    CGFloat marginRight = 0;//marginView.right * scale;
+    CGFloat marginTop = 0;//marginView.top * scale;
+    CGFloat marginBottom = 0;//marginView.bottom * scale;
+    
+    CGFloat borderLeftWidth = 0;
+    CGFloat borderRightWidth = 0;
+    CGFloat borderTopWidth = 0;
+    CGFloat borderBottomWidth = 0;
+    
+    NSArray *content = @[@(left + borderLeftWidth + paddingLeft),
+                         @(top + borderTopWidth + paddingTop),
+                         @(right - borderRightWidth - paddingRight),
+                         @(top + borderTopWidth + paddingTop),
+                         @(right - borderRightWidth - paddingRight),
+                         @(bottom - borderBottomWidth - paddingBottom),
+                         @(left + borderLeftWidth + paddingLeft),
+                         @(bottom - borderBottomWidth - paddingBottom)];
+    NSArray *padding = @[@(left + borderLeftWidth),
+                         @(top + borderTopWidth),
+                         @(right - borderRightWidth),
+                         @(top + borderTopWidth),
+                         @(right - borderRightWidth),
+                         @(bottom - borderBottomWidth),
+                         @(left + borderLeftWidth),
+                         @(bottom - borderBottomWidth)];
+    NSArray *border = @[@(left),
+                        @(top),
+                        @(right),
+                        @(top),
+                        @(right),
+                        @(bottom),
+                        @(left),
+                        @(bottom)];
+    NSArray *margin = @[@(left - marginLeft),
+                       @(top - marginTop),
+                       @(right + marginRight),
+                       @(top - marginTop),
+                       @(right + marginRight),
+                       @(bottom + marginBottom),
+                       @(left - marginLeft),
+                       @(bottom + marginBottom)];
+    
+    WXDOMBoxModel *model = [[WXDOMBoxModel alloc] init];
+    model.width = width;
+    model.height = height;
+    model.content = content;
+    model.padding = padding;
+    model.margin = margin;
+    model.border = border;
+    callback(model, nil);
+    
 }
 
 #pragma mark - Gesture Moving and Resizing
