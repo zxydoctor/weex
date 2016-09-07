@@ -279,6 +279,15 @@
     
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    WXLogError(@"List:scrollViewWillBeginDragging");
+}
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    WXLogError(@"List:scrollViewDidEndDecelerating");
+}
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    WXLogError(@"List:scrollViewDidEndDragging");
+}
 
 - (void)cellDidRemove:(WXCellComponent *)cell
 {

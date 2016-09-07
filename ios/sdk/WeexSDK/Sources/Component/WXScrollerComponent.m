@@ -435,6 +435,14 @@
     [scrollView setContentInset:inset];
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    WXLogError(@"ScrollView:scrollViewWillBeginDragging");
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    WXLogError(@"ScrollView:scrollViewDidEndDecelerating");
+}
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     [_loadingComponent.view setHidden:NO];
