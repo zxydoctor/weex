@@ -437,9 +437,10 @@ body {
           .download .content .line .intro .qr img {
             width: 180px;
             height: 180px; }
-        .download .content .line .intro .link {
+        .download .content .line .intro .link.android {
+          cursor: pointer;
           margin-top: 19px; }
-          .download .content .line .intro .link img {
+          .download .content .line .intro .link.android img {
             width: 308px;
             height: 60px; }
         .download .content .line .intro .apple {
@@ -460,8 +461,8 @@ body {
       width: 100px;
       position: relative;
       margin-right: 12px; }
+  .download .version {
+    font-size: 14px; }
 
 a[title="站长统计"] {
   display: none; }
-
-

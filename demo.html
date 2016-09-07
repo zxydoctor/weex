@@ -1,292 +1,219 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
-  <title>Weex Demo</title>
-  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-  <link rel="stylesheet" href="css/showcase.css">
-</head>
-<body>
-  <div class="container">
-    <!--header-->
-    <div class="header">
-      <div class="fl">
-        <a class="fl header_logo" href="http://alibaba.github.io/weex/doc/" style="display:block;"></a>
-        <div class="fl header_item"><a href="http://alibaba.github.io/weex/doc/">Docs</a></div>
-        <div class="fl header_item header_item_select">Showcase</div>
-        <div class="fl header_item"><a href="http://alibaba.github.io/weex/download.html">Download</a></div>
-      </div>
-      <div class="fr mq_376_header">
-        <div class="fl header_right_item">
-          <!--svg内容无需关注-->
-          <div class="fl header_right">
-            <svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <!-- Generator: Sketch 3.7 (28169) - http://www.bohemiancoding.com/sketch-->
-              <desc>Created with Sketch.</desc>
-              <defs>
-                <polygon id="path-1" points="0 0.387077352 0 11.3806629 8.43561525 11.3806629 8.43561525 0.387077352 2.39609128e-20 0.387077352"></polygon>
-              </defs>
-              <g id="Group-12" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <path d="M13.7115728,7.69515663 C13.7115728,7.95360067 13.6879995,8.20556889 13.6532287,8.45459356 C12.3997144,6.82563077 10.4384094,5.77124973 8.22722659,5.77124973 C6.01545445,5.77124973 4.05414945,6.82563077 2.80063511,8.45459356 C2.76586437,8.20556889 2.742291,7.95360067 2.742291,7.69515663 C2.742291,5.65762854 3.85082907,3.88325419 5.49389348,2.93425238 C5.48976814,2.87184903 5.48446413,2.81121182 5.48446413,2.74821976 C5.48446413,1.22993461 6.71263709,0.00011774216 8.22722659,0.00011774216 C9.74181609,0.00011774216 10.9693997,1.22993461 10.9693997,2.74821976 C10.9693997,2.81121182 10.9640957,2.87184903 10.9599704,2.93425238 C12.6030348,3.88325419 13.7115728,5.65762854 13.7115728,7.69515663"
-                      id="Fill-1" fill="#3199F4"></path>
-                <g id="Group-5" transform="translate(0.000000, 6.208367)">
-                  <mask id="mask-2" fill="white">
-                    <use xlink:href="#path-1"></use>
-                  </mask>
-                  <g id="Clip-4"></g>
-                  <path d="M5.75885824,5.8838701 C5.75885824,8.10036627 6.80964154,10.0660716 8.43561525,11.3223805 C8.18750545,11.3565257 7.93585964,11.3806629 7.6783205,11.3806629 C5.64629536,11.3806629 3.87534538,10.2697656 2.92828494,8.62314146 C2.86640483,8.62785115 2.80511405,8.63256084 2.74205526,8.63256084 C1.22746576,8.63256084 -0.000117866887,7.40215526 -0.000117866887,5.8838701 C-0.000117866887,4.36558495 1.22746576,3.13576808 2.74205526,3.13576808 C2.80511405,3.13576808 2.86640483,3.14047777 2.92828494,3.14518746 C3.87534538,1.49856334 5.64629536,0.387077352 7.6783205,0.387077352 C7.93585964,0.387077352 8.18750545,0.411214495 8.43561525,0.445359721 C6.81082021,1.70166857 5.75885824,3.66737394 5.75885824,5.8838701"
-                        id="Fill-3" fill="#4CC08C" mask="url(#mask-2)"></path>
-                </g>
-                <g id="Group-8" transform="translate(6.482679, 11.506765)" fill="#F4CE33">
-                  <path d="M8.31668756,5.89658626 C8.3208129,5.95781218 8.32611691,6.01962682 8.32611691,6.08203016 C8.32611691,7.60031532 7.09853328,8.83072089 5.58335444,8.83072089 C4.06935428,8.83072089 2.84118131,7.60031532 2.84118131,6.08203016 C2.84118131,6.01962682 2.84589599,5.95781218 2.85061067,5.89658626 C1.20754626,4.94758445 0.0990081852,3.17262138 0.0990081852,1.13568201 C0.0990081852,0.877237965 0.122581563,0.624681031 0.157352294,0.376245073 C1.41086664,2.00520786 3.37217164,3.0590002 5.58335444,3.0590002 C7.79512658,3.0590002 9.75643158,2.00520786 11.0099459,0.376245073 C11.0447167,0.624681031 11.06829,0.877237965 11.06829,1.13568201 C11.06829,3.17262138 9.95916263,4.94758445 8.31668756,5.89658626"
-                        id="Fill-6"></path>
-                </g>
-                <path d="M17.550851,10.9932323 C17.4883815,10.9932323 17.4265014,10.9885226 17.3652106,10.9838129 C16.4175608,12.630437 14.6477895,13.7413343 12.6145857,13.7413343 C12.3570466,13.7413343 12.1054008,13.7177859 11.857291,13.6830519 C13.482086,12.4267431 14.534048,10.4610377 14.534048,8.24454155 C14.534048,6.02804538 13.482086,4.06292872 11.857291,2.80603116 C12.1054008,2.77188594 12.3570466,2.74774879 12.6145857,2.74774879 C14.6477895,2.74774879 16.4175608,3.85923479 17.3652106,5.5058589 C17.4265014,5.50173792 17.4883815,5.49643953 17.550851,5.49643953 C19.0654405,5.49643953 20.2930241,6.7268451 20.2930241,8.24454155 C20.2930241,9.7628267 19.0654405,10.9932323 17.550851,10.9932323"
-                      id="Fill-9" fill="#F77823"></path>
-              </g>
-            </svg>
+<!doctype html>
+<html class="no-js" lang="en">
+    
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width = device-width">
+        <title>Weex</title>
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="css/vendor/foundation.min.css" />
+        <link rel="stylesheet" href="css/site.css" />
+    </head>
+    
+    <body>
+        <div class="header">
+            <div class="top-bar">
+                <div class="top-bar-wrap">
+                    <div class="top-bar-title"></div>
+                    <div class="top-bar-left">
+                        <ul class="dropdown menu" data-dropdown-menu>
+                            <li> <a href="http://alibaba.github.io/weex/doc/">Docs</a>
+
+                            </li>
+                            <li>
+                                <script>
+                                    if( location.pathname.indexOf("demo.html") != -1 ){
+                                    document.write("<span class='current'>Showcase</span>")          
+                                    }else{
+                                    document.write("<a href='demo.html'>Showcase</a>")          
+                                    }
+                                </script>
+                            </li>
+                            <li>
+                                <script>
+                                    if( location.pathname.indexOf("download.html") != -1 ){
+                                    document.write("<span class='current'>Download</span>")          
+                                    }else{
+                                    document.write("<a href='download.html'>Download</a>")          
+                                    }
+                                </script>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="baichuan">
+                        <svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <!-- Generator: Sketch 3.7 (28169) - http://www.bohemiancoding.com/sketch
+                            -->
+                            <desc>Created with Sketch.</desc>
+                            <defs>
+                                <polygon id="path-1" points="0 0.387077352 0 11.3806629 8.43561525 11.3806629 8.43561525 0.387077352 2.39609128e-20 0.387077352"></polygon>
+                            </defs>
+                            <g id="Group-12" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <path d="M13.7115728,7.69515663 C13.7115728,7.95360067 13.6879995,8.20556889 13.6532287,8.45459356 C12.3997144,6.82563077 10.4384094,5.77124973 8.22722659,5.77124973 C6.01545445,5.77124973 4.05414945,6.82563077 2.80063511,8.45459356 C2.76586437,8.20556889 2.742291,7.95360067 2.742291,7.69515663 C2.742291,5.65762854 3.85082907,3.88325419 5.49389348,2.93425238 C5.48976814,2.87184903 5.48446413,2.81121182 5.48446413,2.74821976 C5.48446413,1.22993461 6.71263709,0.00011774216 8.22722659,0.00011774216 C9.74181609,0.00011774216 10.9693997,1.22993461 10.9693997,2.74821976 C10.9693997,2.81121182 10.9640957,2.87184903 10.9599704,2.93425238 C12.6030348,3.88325419 13.7115728,5.65762854 13.7115728,7.69515663"
+                                id="Fill-1" fill="#3199F4"></path>
+                                <g id="Group-5" transform="translate(0.000000, 6.208367)">
+                                    <mask id="mask-2" fill="white">
+                                        <use xlink:href="#path-1"></use>
+                                    </mask>
+                                    <g id="Clip-4"></g>
+                                    <path d="M5.75885824,5.8838701 C5.75885824,8.10036627 6.80964154,10.0660716 8.43561525,11.3223805 C8.18750545,11.3565257 7.93585964,11.3806629 7.6783205,11.3806629 C5.64629536,11.3806629 3.87534538,10.2697656 2.92828494,8.62314146 C2.86640483,8.62785115 2.80511405,8.63256084 2.74205526,8.63256084 C1.22746576,8.63256084 -0.000117866887,7.40215526 -0.000117866887,5.8838701 C-0.000117866887,4.36558495 1.22746576,3.13576808 2.74205526,3.13576808 C2.80511405,3.13576808 2.86640483,3.14047777 2.92828494,3.14518746 C3.87534538,1.49856334 5.64629536,0.387077352 7.6783205,0.387077352 C7.93585964,0.387077352 8.18750545,0.411214495 8.43561525,0.445359721 C6.81082021,1.70166857 5.75885824,3.66737394 5.75885824,5.8838701"
+                                    id="Fill-3" fill="#4CC08C" mask="url(#mask-2)"></path>
+                                </g>
+                                <g id="Group-8" transform="translate(6.482679, 11.506765)" fill="#F4CE33">
+                                    <path d="M8.31668756,5.89658626 C8.3208129,5.95781218 8.32611691,6.01962682 8.32611691,6.08203016 C8.32611691,7.60031532 7.09853328,8.83072089 5.58335444,8.83072089 C4.06935428,8.83072089 2.84118131,7.60031532 2.84118131,6.08203016 C2.84118131,6.01962682 2.84589599,5.95781218 2.85061067,5.89658626 C1.20754626,4.94758445 0.0990081852,3.17262138 0.0990081852,1.13568201 C0.0990081852,0.877237965 0.122581563,0.624681031 0.157352294,0.376245073 C1.41086664,2.00520786 3.37217164,3.0590002 5.58335444,3.0590002 C7.79512658,3.0590002 9.75643158,2.00520786 11.0099459,0.376245073 C11.0447167,0.624681031 11.06829,0.877237965 11.06829,1.13568201 C11.06829,3.17262138 9.95916263,4.94758445 8.31668756,5.89658626"
+                                    id="Fill-6"></path>
+                                </g>
+                                <path d="M17.550851,10.9932323 C17.4883815,10.9932323 17.4265014,10.9885226 17.3652106,10.9838129 C16.4175608,12.630437 14.6477895,13.7413343 12.6145857,13.7413343 C12.3570466,13.7413343 12.1054008,13.7177859 11.857291,13.6830519 C13.482086,12.4267431 14.534048,10.4610377 14.534048,8.24454155 C14.534048,6.02804538 13.482086,4.06292872 11.857291,2.80603116 C12.1054008,2.77188594 12.3570466,2.74774879 12.6145857,2.74774879 C14.6477895,2.74774879 16.4175608,3.85923479 17.3652106,5.5058589 C17.4265014,5.50173792 17.4883815,5.49643953 17.550851,5.49643953 C19.0654405,5.49643953 20.2930241,6.7268451 20.2930241,8.24454155 C20.2930241,9.7628267 19.0654405,10.9932323 17.550851,10.9932323"
+                                id="Fill-9" fill="#F77823"></path>
+                            </g>
+                        </svg> <span class="baichuan-text">AliBaichuan</span>
+
+                    </div>
+                    <div class="top-bar-right">
+                        <ul class="menu">
+                            <li><a href="//github.com/alibaba/weex">
+            <script>
+              if( location.pathname.indexOf("demo.html") != -1  || location.pathname.indexOf("download.html") != -1 ){
+              document.write(" <img class='github' src='img/github.png' alt='github' ><span class='text'>Github</span>")                    
+              }else{
+              document.write(" <img class='github' src='img/github-light.png' alt='github' ><span class='text'>Github</span>")          
+              }
+            </script>          
+        </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="showcase">
+            <div class="wrap">
+                <div class="title">Showcase</div>
+                <div class="intro">Our Showcase are a good starting point for exploring Weex capabilities.</div>
+                <div
+                class="demo-cover">
+                    <div class="row">
+                        <div class="small-4 columns" data-url="http://alibaba.github.io/weex/doc/demo/hello-world.html">
+                            <div class="screenshot">
+                                <img src="img/demo/start-1.png" />
+                            </div>
+                            <div class="demo-title">Hello World</div>
+                            <div class="view-code">View Code</div>
+                        </div>
+                        <div class="small-4 columns" data-url="http://alibaba.github.io/weex/doc/demo/list.html">
+                            <div class="screenshot">
+                                <img src="http://gtms01.alicdn.com/tps/i1/TB1dQ8iMFXXXXXtXpXX9it9VpXX-278-357.gif"
+                                />
+                            </div>
+                            <div class="demo-title">List</div>
+                            <div class="view-code">View Code</div>
+                        </div>
+                        <div class="small-4 columns" data-url="http://alibaba.github.io/weex/doc/demo/modal.html">
+                            <div class="screenshot">
+                                <img src="http://gtms02.alicdn.com/tps/i2/TB1GDVeMFXXXXbjXpXXp.9cVpXX-278-424.gif"
+                                />
+                            </div>
+                            <div class="demo-title">Modal Collection</div>
+                            <div class="view-code">View Code</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-4 columns" data-url="https://github.com/alibaba/weex/tree/dev/examples">
+                            <div class="screenshot">
+                                <img src="http://gtms03.alicdn.com/tps/i3/TB1gCc.MpXXXXXAXFXXHO6y1XXX-319-615.png"
+                                />
+                            </div>
+                            <div class="demo-title">Panel</div>
+                            <div class="view-code">View Code</div>
+                        </div>
+                        <div class="small-4 columns" data-url="https://github.com/alibaba/weex/tree/dev/examples">
+                            <div class="screenshot">
+                                <img src="http://gtms04.alicdn.com/tps/i4/TB1exs5MpXXXXbwXFXXnTPSZVXX-320-367.png"
+                                />
+                            </div>
+                            <div class="demo-title">Tips</div>
+                            <div class="view-code">View Code</div>
+                        </div>
+                        <div class="small-4 columns" data-url="http://alibaba.github.io/weex/doc/demo/animation.html">
+                            <div class="screenshot">
+                                <img src="http://gtms04.alicdn.com/tps/i4/TB19A30MpXXXXa.XVXXp.9cVpXX-278-424.gif"
+                                />
+                            </div>
+                            <div class="demo-title">Animation</div>
+                            <div class="view-code">View Code</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-4 columns" data-url="https://github.com/alibaba/weex/tree/dev/examples">
+                            <div class="screenshot">
+                                <img src="http://gtms04.alicdn.com/tps/i4/TB1dX3LMXXXXXbDXVXXcprE6XXX-618-1103.jpg"
+                                />
+                            </div>
+                            <div class="demo-title">Mine Sweeper</div>
+                            <div class="view-code">View Code</div>
+                        </div>
+                        <div class="small-4 columns" data-url="https://github.com/alibaba/weex/tree/dev/examples">
+                            <div class="screenshot">
+                                <img src="http://gtms03.alicdn.com/tps/i3/TB1pQENMXXXXXaLXVXXkIFHLVXX-624-1105.jpg"
+                                />
+                            </div>
+                            <div class="demo-title">Weex Calcuator</div>
+                            <div class="view-code">View Code</div>
+                        </div>
+                        <div class="small-4 columns" data-url="https://github.com/alibaba/weex/tree/dev/examples">
+                            <div class="screenshot">
+                                <img src="http://gtms04.alicdn.com/tps/i4/TB1ehtqMFXXXXcOXXXX1odaOXXX-370-664.gif"
+                                />
+                            </div>
+                            <div class="demo-title">Skeleton Animation</div>
+                            <div class="view-code">View Code</div>
+                        </div>
+                        <div class="small-4 columns"></div>
+                    </div>
+            </div>
+        </div>
+        </div>
+        <div class="footer-nav" ">
+
+          <div class="copy-right "> 
+              <p>
+                  Released under <a href="http://www.apache.org/licenses/LICENSE-2.0.txt "> Apache License 2.0 </a>
+              </p>
+              <p>
+                  Copyright(c) 2016  <a href="http://www.alibabagroup.com/en/global/home
+        ">Alibaba Group</a>  &nbsp;&nbsp;&nbsp; Proudly Produced by <span style="color:#999999 " class="baichuan-text ">Alibaichuan</span> <img class="baichuan-icon
+        " src="img/baichuan@3x.png " alt="aliBaichuan "> 
+              </p>
           </div>
-          <span class="header_right_text header_baichuan">AliBaichuan</span>
-        </div>
-        <div class="fl github_hover header_md_2">
-          <a href="https://github.com/alibaba/weex">
-            <div class="fl header_right"><img class='github' src='img/github.png' alt='github'/></div>
-            <span class='header_right_text'>Github</span>
-          </a>
-        </div>
       </div>
-    </div>
+              
+  </body>
+  <script src="js/vendor/jquery.min.js "></script>
+<script src="js/vendor/what-input.min.js "></script>
+<script src="js/vendor/foundation.min.js "></script>
+<script>
+ $(document).foundation();
 
-    <div class="content">
-      <div class="content_title">Showcase</div>
-      <div class="content_title_desc">Our Showcase are a good starting point for exploring Weex capabilities.</div>
-      <!--1行3列-->
-      <!--1行3列,宽度和高度变小-->
-      <div class="demo_list_3 display_none">
-        <div class="list_row">
-          <div class="fl demo_list_item">
-            <div class="demo_img">
-              <img src="img/demo/start-1.png" />
-            </div>
-            <div class="demo_list_item_title">
-              <span>Hello World</span>
-            </div>
-            <a class="demo_btn" href="http://alibaba.github.io/weex/doc/demo/hello-world.html">View Code</a>
-          </div>
+ $('.top-bar-title').click(function(){
+    location = 'index.html'
+ })
 
-          <div class="fl demo_list_item">
-            <div class="demo_img">
-              <img src="http://gtms01.alicdn.com/tps/i1/TB1dQ8iMFXXXXXtXpXX9it9VpXX-278-357.gif" />
-            </div>
-            <div class="demo_list_item_title">
-              <span>List</span>
-            </div>
-            <a class="demo_btn" href="http://alibaba.github.io/weex/doc/demo/list.html">
-              View Code
-            </a>
-          </div>
+ if( location.pathname.indexOf('download.html') != -1  || location.pathname.indexOf('demo.html') != -1   ){
+       $('.top-bar').addClass('non-index')
+ }
 
-          <div class="fr demo_list_item">
-            <div class="demo_img">
-              <img src="http://gtms02.alicdn.com/tps/i2/TB1GDVeMFXXXXbjXpXXp.9cVpXX-278-424.gif" />
-            </div>
-            <div class="demo_list_item_title">
-              <span>Modal Collection</span>
-            </div>
-            <a class="demo_btn" href="http://alibaba.github.io/weex/doc/demo/modal.html">View Code</a>
-          </div>
-        </div>
+</script>
 
-        <div class="list_row">
-          <div class="fl demo_list_item">
-            <div class="demo_img">
-              <img src="http://gtms03.alicdn.com/tps/i3/TB1gCc.MpXXXXXAXFXXHO6y1XXX-319-615.png" />
-            </div>
-            <div class="demo_list_item_title">
-              <span>Panel</span>
-            </div>
-            <a class="demo_btn" href="https://github.com/alibaba/weex/tree/dev/examples">View Code</a>
-          </div>
+<script src="http://s95.cnzz.com/z_stat.php?id=1258852176&web_id=1258852176 " ></script>
 
-          <div class="fl demo_list_item item_middle">
-            <div class="demo_img">
-              <img src="http://gtms04.alicdn.com/tps/i4/TB1exs5MpXXXXbwXFXXnTPSZVXX-320-367.png" />
-            </div>
-            <div class="demo_list_item_title">
-              <span>Tips</span>
-            </div>
-            <a class="demo_btn" href="https://github.com/alibaba/weex/tree/dev/examples">
-              View Code
-            </a>
-          </div>
 
-          <div class="fl demo_list_item">
-            <div class="demo_img">
-              <img src="http://gtms04.alicdn.com/tps/i4/TB19A30MpXXXXa.XVXXp.9cVpXX-278-424.gif" />
-            </div>
-            <div class="demo_list_item_title">
-              <span>Animation</span>
-            </div>
-            <a class="demo_btn" href="http://alibaba.github.io/weex/doc/demo/animation.html">View Code</a>
-          </div>
-        </div>
-
-        <div class="list_row">
-          <div class="fl demo_list_item">
-            <div class="demo_img">
-              <img src="http://gtms04.alicdn.com/tps/i4/TB1dX3LMXXXXXbDXVXXcprE6XXX-618-1103.jpg" />
-            </div>
-            <div class="demo_list_item_title">
-              <span>Mine Sweeper</span>
-            </div>
-            <a class="demo_btn" href="https://github.com/alibaba/weex/tree/dev/examples">View Code</a>
-          </div>
-
-          <div class="fl demo_list_item item_middle">
-            <div class="demo_img">
-              <img src="http://gtms03.alicdn.com/tps/i3/TB1pQENMXXXXXaLXVXXkIFHLVXX-624-1105.jpg" />
-            </div>
-            <div class="demo_list_item_title">
-              <span>Weex Calcuator</span>
-            </div>
-            <a class="demo_btn" href="https://github.com/alibaba/weex/tree/dev/examples">View Code</a>
-          </div>
-
-          <div class="fl demo_list_item">
-            <div class="demo_img">
-              <img src="http://gtms04.alicdn.com/tps/i4/TB1ehtqMFXXXXcOXXXX1odaOXXX-370-664.gif" />
-            </div>
-            <div class="demo_list_item_title">
-              <span>Skeleton Animation</span>
-            </div>
-            <a class="demo_btn" href="https://github.com/alibaba/weex/tree/dev/examples">View Code</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="weex_desc display_none">
-    <div class="weex_desc_links">
-      <a href="http://alibaba.github.io/weex/doc/">Docs</a>
-      <a href="http://alibaba.github.io/weex/download.html">Download</a>
-    </div>
-  </div>
-  <div class="mobile display_none">
-    <div class="mobile_row">
-      <div class="fl mobile_item">
-        <div class="mobile_img">
-          <img src="img/demo/start-1.png"/>
-        </div>
-        <a class="mobile_title" href="http://alibaba.github.io/weex/doc/demo/hello-world.html">Hello world</a>
-      </div>
-      <div class="fl mobile_item">
-        <div class="mobile_img">
-          <img src="http://gtms01.alicdn.com/tps/i1/TB1dQ8iMFXXXXXtXpXX9it9VpXX-278-357.gif"/>
-        </div>
-        <a class="mobile_title" href="http://alibaba.github.io/weex/doc/demo/list.html">List</a>
-      </div>
-    </div>
-
-    <div class="mobile_row">
-      <div class="fl mobile_item">
-        <div class="mobile_img">
-          <img src="http://gtms02.alicdn.com/tps/i2/TB1GDVeMFXXXXbjXpXXp.9cVpXX-278-424.gif" />
-        </div>
-        <a class="mobile_title" href="http://alibaba.github.io/weex/doc/demo/modal.html">Modal Collection</a>
-      </div>
-      <div class="fl mobile_item">
-        <div class="mobile_img">
-          <img src="http://gtms03.alicdn.com/tps/i3/TB1gCc.MpXXXXXAXFXXHO6y1XXX-319-615.png" />
-        </div>
-        <a class="mobile_title" href="https://github.com/alibaba/weex/tree/dev/examples">Panel</a>
-      </div>
-    </div>
-
-    <div class="mobile_row">
-      <div class="fl mobile_item">
-        <div class="mobile_img">
-          <img src="http://gtms04.alicdn.com/tps/i4/TB1exs5MpXXXXbwXFXXnTPSZVXX-320-367.png" />
-        </div>
-        <a class="mobile_title" href="https://github.com/alibaba/weex/tree/dev/examples">Tips</a>
-      </div>
-      <div class="fl mobile_item">
-        <div class="mobile_img">
-          <img src="http://gtms04.alicdn.com/tps/i4/TB19A30MpXXXXa.XVXXp.9cVpXX-278-424.gif" />
-        </div>
-        <a class="mobile_title" href="http://alibaba.github.io/weex/doc/demo/animation.html">Animation</a>
-      </div>
-    </div>
-
-    <div class="mobile_row">
-      <div class="fl mobile_item">
-        <div class="mobile_img">
-          <img src="http://gtms04.alicdn.com/tps/i4/TB1dX3LMXXXXXbDXVXXcprE6XXX-618-1103.jpg" />
-        </div>
-        <a class="mobile_title" href="https://github.com/alibaba/weex/tree/dev/examples">Mine Sweeper</a>
-      </div>
-      <div class="fl mobile_item">
-        <div class="mobile_img">
-          <img src="http://gtms03.alicdn.com/tps/i3/TB1pQENMXXXXXaLXVXXkIFHLVXX-624-1105.jpg" />
-        </div>
-        <a class="mobile_title" href="https://github.com/alibaba/weex/tree/dev/examples">Weex Calcuator</a>
-      </div>
-    </div>
-
-    <div class="mobile_row">
-      <div class="fl mobile_item">
-        <div class="mobile_img">
-          <img src="http://gtms04.alicdn.com/tps/i4/TB1ehtqMFXXXXcOXXXX1odaOXXX-370-664.gif" />
-        </div>
-        <a class="mobile_title" href="https://github.com/alibaba/weex/tree/dev/examples">Skeleton Animation</a>
-      </div>
-      <div class="fl mobile_item"></div>
-    </div>
-
-  </div>
-  <!--footer-->
-  <div class="mobile_footer">
-    <div class="mobile_footer_hr"></div>
-    <div class="mobile_footer_icon">
-      <div class="fl">
-        <svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <!-- Generator: Sketch 3.7 (28169) - http://www.bohemiancoding.com/sketch-->
-          <desc>Created with Sketch.</desc>
-          <defs>
-            <polygon id="path-1" points="0 0.387077352 0 11.3806629 8.43561525 11.3806629 8.43561525 0.387077352 2.39609128e-20 0.387077352"></polygon>
-          </defs>
-          <g id="Group-12" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <path d="M13.7115728,7.69515663 C13.7115728,7.95360067 13.6879995,8.20556889 13.6532287,8.45459356 C12.3997144,6.82563077 10.4384094,5.77124973 8.22722659,5.77124973 C6.01545445,5.77124973 4.05414945,6.82563077 2.80063511,8.45459356 C2.76586437,8.20556889 2.742291,7.95360067 2.742291,7.69515663 C2.742291,5.65762854 3.85082907,3.88325419 5.49389348,2.93425238 C5.48976814,2.87184903 5.48446413,2.81121182 5.48446413,2.74821976 C5.48446413,1.22993461 6.71263709,0.00011774216 8.22722659,0.00011774216 C9.74181609,0.00011774216 10.9693997,1.22993461 10.9693997,2.74821976 C10.9693997,2.81121182 10.9640957,2.87184903 10.9599704,2.93425238 C12.6030348,3.88325419 13.7115728,5.65762854 13.7115728,7.69515663"
-                  id="Fill-1" fill="#3199F4"></path>
-            <g id="Group-5" transform="translate(0.000000, 6.208367)">
-              <mask id="mask-2" fill="white">
-                <use xlink:href="#path-1"></use>
-              </mask>
-              <g id="Clip-4"></g>
-              <path d="M5.75885824,5.8838701 C5.75885824,8.10036627 6.80964154,10.0660716 8.43561525,11.3223805 C8.18750545,11.3565257 7.93585964,11.3806629 7.6783205,11.3806629 C5.64629536,11.3806629 3.87534538,10.2697656 2.92828494,8.62314146 C2.86640483,8.62785115 2.80511405,8.63256084 2.74205526,8.63256084 C1.22746576,8.63256084 -0.000117866887,7.40215526 -0.000117866887,5.8838701 C-0.000117866887,4.36558495 1.22746576,3.13576808 2.74205526,3.13576808 C2.80511405,3.13576808 2.86640483,3.14047777 2.92828494,3.14518746 C3.87534538,1.49856334 5.64629536,0.387077352 7.6783205,0.387077352 C7.93585964,0.387077352 8.18750545,0.411214495 8.43561525,0.445359721 C6.81082021,1.70166857 5.75885824,3.66737394 5.75885824,5.8838701"
-                    id="Fill-3" fill="#4CC08C" mask="url(#mask-2)"></path>
-            </g>
-            <g id="Group-8" transform="translate(6.482679, 11.506765)" fill="#F4CE33">
-              <path d="M8.31668756,5.89658626 C8.3208129,5.95781218 8.32611691,6.01962682 8.32611691,6.08203016 C8.32611691,7.60031532 7.09853328,8.83072089 5.58335444,8.83072089 C4.06935428,8.83072089 2.84118131,7.60031532 2.84118131,6.08203016 C2.84118131,6.01962682 2.84589599,5.95781218 2.85061067,5.89658626 C1.20754626,4.94758445 0.0990081852,3.17262138 0.0990081852,1.13568201 C0.0990081852,0.877237965 0.122581563,0.624681031 0.157352294,0.376245073 C1.41086664,2.00520786 3.37217164,3.0590002 5.58335444,3.0590002 C7.79512658,3.0590002 9.75643158,2.00520786 11.0099459,0.376245073 C11.0447167,0.624681031 11.06829,0.877237965 11.06829,1.13568201 C11.06829,3.17262138 9.95916263,4.94758445 8.31668756,5.89658626"
-                    id="Fill-6"></path>
-            </g>
-            <path d="M17.550851,10.9932323 C17.4883815,10.9932323 17.4265014,10.9885226 17.3652106,10.9838129 C16.4175608,12.630437 14.6477895,13.7413343 12.6145857,13.7413343 C12.3570466,13.7413343 12.1054008,13.7177859 11.857291,13.6830519 C13.482086,12.4267431 14.534048,10.4610377 14.534048,8.24454155 C14.534048,6.02804538 13.482086,4.06292872 11.857291,2.80603116 C12.1054008,2.77188594 12.3570466,2.74774879 12.6145857,2.74774879 C14.6477895,2.74774879 16.4175608,3.85923479 17.3652106,5.5058589 C17.4265014,5.50173792 17.4883815,5.49643953 17.550851,5.49643953 C19.0654405,5.49643953 20.2930241,6.7268451 20.2930241,8.24454155 C20.2930241,9.7628267 19.0654405,10.9932323 17.550851,10.9932323"
-                  id="Fill-9" fill="#F77823"></path>
-          </g>
-        </svg>
-      </div>
-      <a class="fr" href="https://github.com/alibaba/weex">
-        <img class='github' src='img/github.png' alt='github'/>
-      </a>
-    </div>
-    <div class="mobile_footer_cp">Copyright(c) 2016 Alibaba Group</div>
-  </div>
-  <style type="text/css">
-    .a_cnzz a{visibility: hidden;}
-  </style>
-  <div class="a_cnzz">
-    <script src="http://s95.cnzz.com/z_stat.php?id=1258852176&web_id=1258852176 " ></script>
-  </div>
-</body>
+  <script>
+   $(".demo-cover [data-url] ").click(function(e){
+       var targetUrl = $(e.currentTarget).data('url')
+       window.location =  targetUrl
+       //window.location =  e.currentTarget.dataset["url "]
+   })
+  </script>
 </html>

@@ -19,16 +19,19 @@
                         <div>Weex Playground</div>
                         <div>Weex Native Runtime showcase & Weex we file preview with hot reload supported </div>
                         <div class="qr">
-                            <!-- to update donwnload link , DO NOT modify this QR , update playground_download.html instead -->
+                            <!-- to update donwnload link , DO NOT modify this QR ,  update data source http://h5.m.taobao.com/js/weex/playground/app/info.js instead -->
                             <img src="img/weex_download_qr.png" alt="playground qr" />
                         </div>
-                        <div class="link">
-                            <a href="http://appdownload.alicdn.com/publish/weex_playgroud/latest/weex_playgroud_10006024.apk"><img src="img/android_download.png" alt="playground apk link" /></a>                            
+                        
+                        <div class="link android">  <!-- Android Apk link area , download address will set by script -->
+                            <img src="img/android_download.png" alt="playground apk link" />                            
                         </div>
+                        <div class="version android">latest version: <span>0.0.0</span></div>
 
-                        <div class="go-store"  onclick="window.open('https://itunes.apple.com/cn/app/weex-playground/id1130862662?mt=8')" >
+                        <div class="go-store link ios" > <!-- iOS App Store , App Store address will set by script -->
                             <img src="img/badge-download-on-the-app-store.svg" > Weex Playground for iOS 
                         </div>
+                        <div class="version ios">latest version: <span>0.0.0</span></div>                        
                         
                     </div>
                     
@@ -45,4 +48,6 @@
         <%= footer  %>        
     </body>
     <%= footer_resource %>
+    <script src="js/download.js"></script>
+    <script src="http://h5.m.taobao.com/js/weex/playground/app/info.js"></script>
 </html>

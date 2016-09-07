@@ -8,6 +8,14 @@
         <meta name="description" content="weex project website">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <script src="js/vendor/mobile-detect.min.js"></script>
+        <script>
+            function parseWeexVersion(data){
+                 window.androidURL = data.androidDownload;
+                 window.iosURL = data.iosDownload;
+             }
+             window.parseWeexVersion = parseWeexVersion;
+        </script>
+        <script src="http://h5.m.taobao.com/js/weex/playground/app/info.js"></script>
     </head>
     
     <body>
@@ -16,9 +24,9 @@
     <script>
         var md = new MobileDetect(window.navigator.userAgent);         
             if ( md.is("iPhone") )  {
-                location = "https://itunes.apple.com/cn/app/weex-playground/id1130862662?mt=8"
+                location = window.iosURL;
             }else{
-                location = "http://appdownload.alicdn.com/publish/weex_playgroud/latest/weex_playgroud_10006024.apk"
+                location = window.androidURL;
             }
     </script>
 
