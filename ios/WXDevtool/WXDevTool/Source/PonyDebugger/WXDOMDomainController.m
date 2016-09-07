@@ -425,14 +425,17 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
 {
     UIView *selectView;
     UIView *rootView;
+    NSNumber *nodeId = nil;
+    CGPoint point = CGPointMake(locationX.floatValue, locationY.floatValue);
+    rootView = [WXPageDomainUtility getCurrentVC].view;
+    selectView = [self p_point:point withRootView:rootView];
     if ([WXDebugger isVDom]) {
-        
+        if (selectView.wx_ref) {
+            nodeId = [self _getRealNodeIdWithComponentRef:selectView.wx_ref];
+        }
+        callback(nodeId, nil);
     } else {
-        CGPoint point = CGPointMake(locationX.floatValue, locationY.floatValue);
-        rootView = [WXPageDomainUtility getCurrentVC].view;
-        selectView = [self p_point:point withRootView:rootView];
-        NSNumber *nodeId = [self.nodeIdsForObjects objectForKey:[NSValue valueWithNonretainedObject:selectView]];
-        NSLog(@"screencast nodeId:%ld",nodeId.integerValue);
+        nodeId = [self.nodeIdsForObjects objectForKey:[NSValue valueWithNonretainedObject:selectView]];
         callback(nodeId, nil);
     }
 }
