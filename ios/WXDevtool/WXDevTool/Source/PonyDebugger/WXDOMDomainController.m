@@ -421,6 +421,54 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
     
 }
 
+- (void)domain:(WXDOMDomain *)domain getNodeForLocationX:(NSNumber *)locationX locationY:(NSNumber *)locationY callback:(void (^)(NSNumber *nodeId, id error))callback
+{
+    UIView *selectView;
+    UIView *rootView;
+    if ([WXDebugger isVDom]) {
+        
+    } else {
+        CGPoint point = CGPointMake(locationX.floatValue, locationY.floatValue);
+        rootView = [WXPageDomainUtility getCurrentVC].view;
+        selectView = [self p_point:point withRootView:rootView];
+        NSNumber *nodeId = [self.nodeIdsForObjects objectForKey:[NSValue valueWithNonretainedObject:selectView]];
+        NSLog(@"screencast nodeId:%ld",nodeId.integerValue);
+        callback(nodeId, nil);
+    }
+}
+
+
+- (UIView *)p_point:(CGPoint)point withRootView:(UIView *)rootView;
+{
+    if (!rootView || (!CGRectEqualToRect(rootView.frame, CGRectZero) && !CGRectContainsPoint([self changeRectFromView:rootView], point))) {
+        return nil;
+    }
+    if (rootView.subviews.count > 0) {
+        UIView *tempView;
+        for (UIView *subView in [rootView.subviews reverseObjectEnumerator]) {
+            if (CGRectEqualToRect(subView.frame, CGRectZero) || CGRectContainsPoint([self changeRectFromView:subView], point)) {
+                UIView *returnView = [self p_point:point withRootView:subView];
+                if (!returnView) {
+                    tempView = subView;
+                }else {
+                    return returnView;
+                }
+            }
+        }
+        return tempView;
+    }
+    return nil;
+}
+
+- (CGRect)changeRectFromView:(UIView *)view
+{
+    UIView *toView = [WXPageDomainUtility getCurrentVC].view;
+    if ([view isEqual:toView]) {
+        return view.frame;
+    }
+    return [view.superview convertRect:view.frame toView:toView];
+}
+
 #pragma mark - Gesture Moving and Resizing
 
 - (void)handleMovePanGesure:(UIPanGestureRecognizer *)panGR;
