@@ -170,6 +170,8 @@
 		0AFA10101D2CEC3B006E30BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA100F1D2CEC3B006E30BB /* UIKit.framework */; };
 		0AFA10121D2CEC42006E30BB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA10111D2CEC42006E30BB /* CoreGraphics.framework */; };
 		0AFA10141D2CEC49006E30BB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFA10131D2CEC49006E30BB /* CoreData.framework */; };
+		0AFE81D61D8102B800C99208 /* WXPageDomainUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AFE81D41D8102B800C99208 /* WXPageDomainUtility.h */; };
+		0AFE81D71D8102B800C99208 /* WXPageDomainUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE81D51D8102B800C99208 /* WXPageDomainUtility.m */; };
 		75C1C0A17938023E1B39089E /* libPods-TBWXDevTool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A04B5D4DF9E863CD1DE1B075 /* libPods-TBWXDevTool.a */; };
 /* End PBXBuildFile section */
 
@@ -340,6 +342,8 @@
 		0AFA10111D2CEC42006E30BB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0AFA10131D2CEC49006E30BB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		0AFA10151D2CEC58006E30BB /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		0AFE81D41D8102B800C99208 /* WXPageDomainUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPageDomainUtility.h; sourceTree = "<group>"; };
+		0AFE81D51D8102B800C99208 /* WXPageDomainUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXPageDomainUtility.m; sourceTree = "<group>"; };
 		421E7FD57E17C231508BA514 /* Pods-TBWXDevTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBWXDevTool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TBWXDevTool/Pods-TBWXDevTool.debug.xcconfig"; sourceTree = "<group>"; };
 		A04B5D4DF9E863CD1DE1B075 /* libPods-TBWXDevTool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TBWXDevTool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7CA78A41D406A09A4D0B154 /* Pods-TBWXDevTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBWXDevTool.release.xcconfig"; path = "Pods/Target Support Files/Pods-TBWXDevTool/Pods-TBWXDevTool.release.xcconfig"; sourceTree = "<group>"; };
@@ -425,6 +429,8 @@
 				0ADE97FC1D767BA5005781C1 /* WXPageDomain.m */,
 				0ADE97FD1D767BA5005781C1 /* WXPageTypes.h */,
 				0ADE97FE1D767BA5005781C1 /* WXPageTypes.m */,
+				0AFE81D41D8102B800C99208 /* WXPageDomainUtility.h */,
+				0AFE81D51D8102B800C99208 /* WXPageDomainUtility.m */,
 				0ADE97FF1D767BA5005781C1 /* WXProfilerDomain.h */,
 				0ADE98001D767BA5005781C1 /* WXProfilerDomain.m */,
 				0ADE97BB1D767B93005781C1 /* WXApplicationCacheDomain.h */,
@@ -655,6 +661,7 @@
 				0ADE97A81D767B6F005781C1 /* WXDOMDomainController.h in Headers */,
 				0A0102E31D35E25300F0D592 /* WXProfilerDomainController.h in Headers */,
 				0ADE97D71D767B93005781C1 /* WXDatabaseDomain.h in Headers */,
+				0AFE81D61D8102B800C99208 /* WXPageDomainUtility.h in Headers */,
 				0ADE97D11D767B93005781C1 /* WXConsoleTypes.h in Headers */,
 				0ADE97D91D767B93005781C1 /* WXDatabaseTypes.h in Headers */,
 				0A0298541D4B402400B4BC95 /* WXDevToolType.h in Headers */,
@@ -946,6 +953,7 @@
 				0ADE98141D767BA5005781C1 /* WXIndexedDBDomain.m in Sources */,
 				0ABDFC701D3C7B6900206418 /* WXDebugDomain.m in Sources */,
 				0ADE980A1D767BA5005781C1 /* WXDOMStorageDomain.m in Sources */,
+				0AFE81D71D8102B800C99208 /* WXPageDomainUtility.m in Sources */,
 				0ADE980C1D767BA5005781C1 /* WXDOMStorageTypes.m in Sources */,
 				0ADE98441D767BB7005781C1 /* WXWebGLTypes.m in Sources */,
 				0ADE97761D767B62005781C1 /* NSArray+WXRuntimePropertyDescriptor.m in Sources */,
