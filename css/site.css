@@ -416,6 +416,9 @@ body {
       float: left; }
     .download .content .line {
       margin-top: 55px; }
+      .download .content .line .icon > img {
+        width: 128px;
+        border-radius: 20px; }
       .download .content .line .intro {
         text-align: left;
         width: 314px;
