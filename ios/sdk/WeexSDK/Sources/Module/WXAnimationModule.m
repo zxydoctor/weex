@@ -53,11 +53,11 @@ WX_EXPORT_METHOD(@selector(transition:args:callback:))
         if ([property isEqualToString:@"transform"]) {
             NSString *transformOrigin = styles[@"transformOrigin"];
             WXTransform *wxTransform = [WXTransform new];
-            transform = [wxTransform getTransform:styles[property] withView:view withOrigin:transformOrigin];
+            transform = [wxTransform getTransform:styles[property] withView:view withOrigin:transformOrigin isTransformRotate:NO];
             rotateAngle = [wxTransform getRotateAngle];
             if (rotateAngle != 0) {
                 /**
-                 Rotate 360 not working on UIView block animation, have not found any more elegant solution than using CAAnimation
+                 Rotate >= 180 degree not working on UIView block animation, have not found any more elegant solution than using CAAnimation
                  See http://stackoverflow.com/questions/9844925/uiview-infinite-360-degree-rotation-animation
                  **/
                 isUsingCAAnimation = YES;
@@ -110,7 +110,13 @@ WX_EXPORT_METHOD(@selector(transition:args:callback:))
     if (isAnimateTransform || isAnimateFrame || isAnimateBackgroundColor || isAnimateOpacity) {
         [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionAllowUserInteraction  animations:^{
             if (isAnimateTransform && !CATransform3DEqualToTransform(transform, layer.transform)) {
-                layer.transform = transform;
+                /**
+                   Struggling with an issue regarding CGAffineTransform scale and translation where when I set a transform in an animation block on a view that already has a transform the view jumps a bit before animating.
+                   I assume it's a bug in Core Animation.
+                   Here comes the black magic: In the scale transformation, change the z parameter to anything different from 1.0, the jump is gone.
+                   See http://stackoverflow.com/questions/27931421/cgaffinetransform-scale-and-translation-jump-before-animation
+                 **/
+                layer.transform = CATransform3DScale(transform, 1, 1, 1.00001);
             }
             if (isAnimateBackgroundColor) {
                 layer.backgroundColor = backgroundColor;
