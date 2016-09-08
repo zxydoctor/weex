@@ -347,7 +347,7 @@ static NSString *const kWXDOMAttributeParsingRegex = @"[\"'](.*)[\"']";
     CGFloat scale = [WXPageDomainController defaultInstance].domain.screenScaleFactor;
     UIView *objectForNodeId;
     if ([WXDebugger isVDom]) {
-        NSString *nodeIdStr = [NSString stringWithFormat:@"%ld",[nodeId integerValue]];
+        NSString *nodeIdStr = [NSString stringWithFormat:@"%ld",(long)[nodeId integerValue]];
         objectForNodeId = [self.objectsForComponentRefs objectForKey:nodeIdStr];
     } else {
         objectForNodeId = [self.objectsForNodeIds objectForKey:nodeId];
