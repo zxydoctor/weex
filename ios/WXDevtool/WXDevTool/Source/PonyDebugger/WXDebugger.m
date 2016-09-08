@@ -502,7 +502,7 @@ void _WXLogObjectsImpl(NSString *severity, NSArray *arguments)
     [self _executionDebugAry];
 }
 
-- (void)callJSMethod:(NSString *)method args:(NSArray *)args {
+- (JSValue *)callJSMethod:(NSString *)method args:(NSArray *)args {
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     NSString *nonullMethod = method ? : @"";
     NSArray *nonullArgs = args ? : [NSArray array];
@@ -515,6 +515,7 @@ void _WXLogObjectsImpl(NSString *severity, NSArray *arguments)
     
     [_debugAry addObject:[WXUtility JSONString:dict]];
     [self _executionDebugAry];
+    return nil;
 }
 
 - (void)registerCallNative:(WXJSCallNative)callNative
