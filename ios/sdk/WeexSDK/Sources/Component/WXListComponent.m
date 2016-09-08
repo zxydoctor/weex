@@ -280,13 +280,31 @@
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    WXLogError(@"List:scrollViewWillBeginDragging");
+    [self printLog:@"List:scrollViewWillBeginDragging"];
 }
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    WXLogError(@"List:scrollViewDidEndDecelerating");
+    [self printLog:@"List:scrollViewDidEndDecelerating"];
 }
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    WXLogError(@"List:scrollViewDidEndDragging");
+    [self printLog:@"List:scrollViewDidEndDragging"];
+}
+
+- (void)printLog:(NSString *)logStr {
+    
+#ifdef NSLog
+#undef NSLog
+#define NSLog(...) NSLog(__VA_ARGS__)
+    NSLog(@" <Weex> %@", logStr);
+#undef NSLog
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#define NSLog(...) {}
+#endif
+#else
+    NSLog(@" <Weex> %@", logStr);
+#endif
+    
 }
 
 - (void)cellDidRemove:(WXCellComponent *)cell

@@ -436,11 +436,29 @@
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    WXLogError(@"ScrollView:scrollViewWillBeginDragging");
+    [self printLog:@"ScrollView:scrollViewWillBeginDragging"];
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    WXLogError(@"ScrollView:scrollViewDidEndDecelerating");
+    [self printLog:@"ScrollView:scrollViewDidEndDecelerating"];
+}
+
+- (void)printLog:(NSString *)logStr {
+    
+#ifdef NSLog
+#undef NSLog
+#define NSLog(...) NSLog(__VA_ARGS__)
+    NSLog(@" <Weex> %@", logStr);
+#undef NSLog
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#define NSLog(...) {}
+#endif
+#else
+    NSLog(@" <Weex> %@", logStr);
+#endif
+    
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
