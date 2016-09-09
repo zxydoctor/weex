@@ -105,7 +105,7 @@
                         for (int i = 0; i < property.count; i++) {
                             WXCSSCSSProperty *cssProperty = [[WXCSSCSSProperty alloc] init];
                             cssProperty.name = names[i];
-                            cssProperty.value = property[names[i]];
+                            cssProperty.value = [NSString stringWithFormat:@"%@px",[self _toPixelFromPoint:property[names[i]]]];
                             [cssText appendString:[NSString stringWithFormat:@"%@:%@;",cssProperty.name,cssProperty.value]];
                             [cssProperties addObject:[cssProperty WX_JSONObject]];
                         }
@@ -289,12 +289,10 @@
         NSString *top = @"";
         NSString *left = @"";
         if (position.count == 4) {
-            width = position[2];
-            height = position[3];
-            top = position[1];
-            left = position[0];
-            width = [NSString stringWithFormat:@"%lf",[width floatValue]/WXScreenResizeRadio()];
-            height = [NSString stringWithFormat:@"%lf",[height floatValue]/WXScreenResizeRadio()];
+            left = [self _toPixelFromPoint:position[0]];
+            top = [self _toPixelFromPoint:position[1]];
+            width = [self _toPixelFromPoint:position[2]];
+            height = [self _toPixelFromPoint:position[3]];
         }
         NSMutableArray *computedStyles = [[NSMutableArray alloc] init];
         NSArray *layout = @[@{@"name":@"width",@"value":width},
@@ -382,6 +380,11 @@
     callback(cssProperties,nil);
 }
 
+#pragma mark - utility
 
+- (NSString *)_toPixelFromPoint:(NSString *)point
+{
+    return [NSString stringWithFormat:@"%ld",(NSInteger)([point floatValue]/WXScreenResizeRadio())];
+}
 
 @end
