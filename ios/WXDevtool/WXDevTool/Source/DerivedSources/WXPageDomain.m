@@ -109,19 +109,11 @@ static NSString * const WXScreencastChangeNotification = @"WXScreencastChangeNot
 }
 
 
-- (void)screencastFormat:(NSString *)format Quality:(NSNumber *)quality maxWidth:(NSNumber *)maxWidth maxHeight:(NSNumber *)maxHeight
+- (void)screencastFormat:(NSString *)format Quality:(NSNumber *)quality scaleFactor:(CGFloat)scaleFactor
 {
     __weak typeof(self) weakSelf = self;
     WXPerformBlockOnScreencastThread(^{
         NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:1];
-        
-        CGRect rect = [WXPageDomainUtility getCurrentVC].view.frame;
-        CGFloat deviceWidth = rect.size.width;
-        CGFloat deviceHeight = rect.size.height;
-        CGFloat scaleFactorWidth = maxWidth.floatValue/deviceWidth;
-        CGFloat scaleFactorHeight = maxHeight.floatValue/deviceHeight;
-        CGFloat scaleFactor = (scaleFactorWidth < scaleFactorHeight) ? scaleFactorWidth : scaleFactorHeight;
-        self.screenScaleFactor = scaleFactor;
         UIImage *screenImage = [WXPageDomainUtility screencastDataScale:scaleFactor];
         NSData *imageData = UIImageJPEGRepresentation(screenImage, [quality floatValue]);
         NSString *codeImage = [imageData base64EncodedStringWithOptions:0];
@@ -143,8 +135,7 @@ static NSString * const WXScreencastChangeNotification = @"WXScreencastChangeNot
     if (self.startScreencast) {
         [self screencastFormat:self.startScreencast.format
                        Quality:self.startScreencast.quality
-                      maxWidth:self.startScreencast.maxHeight
-                     maxHeight:self.startScreencast.maxHeight];
+                      scaleFactor:self.screenScaleFactor];
     }
 }
 
@@ -358,14 +349,22 @@ static NSString * const WXScreencastChangeNotification = @"WXScreencastChangeNot
         }];
     } else if ([methodName isEqualToString:@"startScreencast"] && [self.delegate respondsToSelector:@selector(domain:startScreencastWithcallback:)]) {
         [self.delegate domain:self startScreencastWithcallback:^(id error) {
-            [self screencastFormat:[params objectForKey:@"format"] Quality:[params objectForKey:@"format"] maxWidth:[params objectForKey:@"maxWidth"] maxHeight:[params objectForKey:@"maxHeight"]];
+            NSNumber *maxWidth = [params objectForKey:@"maxWidth"];
+            NSNumber *maxHeight = [params objectForKey:@"maxHeight"];
             if (!self.startScreencast) {
                 self.startScreencast = [[WXStartScreencast alloc] init];
             }
             self.startScreencast.quality = [params objectForKey:@"quality"];
             self.startScreencast.format = [params objectForKey:@"format"];
-            self.startScreencast.maxWidth = [params objectForKey:@"maxWidth"];
-            self.startScreencast.maxHeight = [params objectForKey:@"maxHeight"];
+            
+            CGRect rect = [WXPageDomainUtility getCurrentVC].view.frame;
+            CGFloat deviceWidth = rect.size.width;
+            CGFloat deviceHeight = rect.size.height;
+            CGFloat scaleFactorWidth = maxWidth.floatValue/deviceWidth;
+            CGFloat scaleFactorHeight = maxHeight.floatValue/deviceHeight;
+            CGFloat scaleFactor = (scaleFactorWidth < scaleFactorHeight) ? scaleFactorWidth : scaleFactorHeight;
+            self.screenScaleFactor = scaleFactor;
+            [self screencastFormat:[params objectForKey:@"format"] Quality:[params objectForKey:@"format"] scaleFactor:scaleFactor];
             
             [self startObserving];
             responseCallback(nil, error);
