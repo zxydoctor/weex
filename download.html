@@ -4,12 +4,11 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport">
+        <meta name="viewport" content="width = device-width">
         <title>Weex</title>
         <link rel="icon" type="image/x-icon" href="img/favicon.ico">
         <link rel="stylesheet" href="css/vendor/foundation.min.css" />
         <link rel="stylesheet" href="css/site.css" />
-        <link rel="stylesheet" href="css/download.css"/>
     </head>
     
     <body>
@@ -89,28 +88,34 @@
                 </div>
             </div>
         </div>
-
         <div class="download">
             <div class="wrap">
                 <div class="content">
                     <div>Download</div>
                     <div class="line">
                         <div class="icon">
-                            <img src="img/weex_android_icon.png" alt="weex_android" />
+                            <img width="128" src="img/weexlog_180.png" alt="weex_android" />
                         </div>
                         <div class="intro">
                             <div>Weex Playground</div>
                             <div>Weex Native Runtime showcase & Weex we file preview with hot reload supported</div>
                             <div
                             class="qr">
-                                <!-- to update donwnload link , DO NOT modify this QR , update playground_download.html
-                                instead -->
+                                <!-- to update donwnload link , DO NOT modify this QR , update data source
+                                https://h5.m.taobao.com/js/weex/playground/app/info.js instead -->
                                 <img src="img/weex_download_qr.png" alt="playground qr" />
                         </div>
-                        <div class="link"> <a href="http://appdownload.alicdn.com/publish/weex_playgroud/latest/weex_playgroud_10006024.apk"><img src="img/android_download.png" alt="playground apk link" /></a> 
+                        <div class="link android">
+                            <!-- Android Apk link area , download address will set by script -->
+                            <img src="img/android_download.png" alt="playground apk link" />
                         </div>
-                        <div class="go-store" onclick="window.open('https://itunes.apple.com/cn/app/weex-playground/id1130862662?mt=8')">
+                        <div class="version android">latest version: <span>0.0.0</span>
+                        </div>
+                        <div class="go-store link ios">
+                            <!-- iOS App Store , App Store address will set by script -->
                             <img src="img/badge-download-on-the-app-store.svg">Weex Playground for iOS</div>
+                        <div class="version ios">latest version: <span>0.0.0</span>
+                        </div>
                     </div>
                     <div class="screen-shot">
                         <img src="img/playground_screenshot.png" alt="playground screenshot" />
@@ -120,24 +125,8 @@
             </div>
         </div>
         </div>
-        <div class="m-content">
-            <div class="m-content-item">Weex Playground</div>
-            <div class="m-content-item">Weex Native Runtime showcase &amp; Weex we file preview with hot reload supported</div>
-            <div class="m-content-screenshot">
-                <img src="img/playground_screenshot.png"/>
-            </div>
-            <div class="m-content-qr m-content-item">
-                <img src="img/weex_download_qr.png" alt="playground qr">
-            </div>
-            <div class="m-content-android m-content-item">
-                <img src="img/android_download.png" alt="playground apk link">
-            </div>
-            <div class="m-content-go-store m-content-item" onclick="window.open('https://itunes.apple.com/cn/app/weex-playground/id1130862662?mt=8')">
-                <img src="img/badge-download-on-the-app-store.svg"/>
-                <span>Weex Playground for iOS</span>
-            </div>
-        </div>
-        <div class="footer-nav">
+        <div class="footer-nav" ">
+
           <div class="copy-right "> 
               <p>
                   Released under <a href="http://www.apache.org/licenses/LICENSE-2.0.txt "> Apache License 2.0 </a>
@@ -149,9 +138,7 @@
               </p>
           </div>
       </div>
-        <div class="min-screen-screenshot min-screen-out">
-            <img src="img/playground_screenshot.png"/>
-        </div>
+        
     </body>
     <script src="js/vendor/jquery.min.js "></script>
 <script src="js/vendor/what-input.min.js "></script>
@@ -169,7 +156,9 @@
 
 </script>
 
-<script src="http://s95.cnzz.com/z_stat.php?id=1258852176&web_id=1258852176 " ></script>
+<script src="//s95.cnzz.com/z_stat.php?id=1258852176&web_id=1258852176 " ></script>
 
 
+    <script src="js/download.js "></script>
+    <script src="https://h5.m.taobao.com/js/weex/playground/app/info.js "></script>
 </html>

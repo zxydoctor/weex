@@ -1617,8 +1617,45 @@ contentLoaded(window,function(){
 <ul>
 <li><code>type</code>: <code>click</code></li>
 <li><code>target</code>: The target component where the event is triggered</li>
-<li><code>timestamp</code>: Timestamp when event is triggered.</li>
+<li><code>timestamp</code>: Timestamp when event is triggered.       </li>
 </ul>
+<h2 id="longpress-event">Longpress event</h2>
+<p>If a <code>longpress</code> event is bound to a component, the event will be triggered when the user long press on it.</p>
+<p><strong>Notes:</strong> The component <code>input</code> and <code>switch</code> do not currently support this event, please use <code>change</code> or <code>input</code> event instead.</p>
+<p><strong>event object</strong></p>
+<ul>
+<li><code>type</code>: <code>longpress</code></li>
+<li><code>target</code>: The target component where the event is triggered</li>
+<li><code>timestamp</code>: Timestamp when event is triggered.     </li>
+</ul>
+<p>e.g.     </p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">onlongpress</span>=<span class="hljs-string">&quot;longpress&quot;</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;click&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;border&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">text</span>&gt;</span>Long press<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-selector-class">.border</span>{
+        <span class="hljs-attribute">height</span>:<span class="hljs-number">80</span>;
+        <span class="hljs-attribute">border-width</span>:<span class="hljs-number">1</span>;
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-built_in">module</span>.exports ={
+        methods: {
+            longpress: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{
+                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;long:&apos;</span>, e);
+            },
+            click: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{
+                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;click:&apos;</span>, e);
+            }
+        }
+    };
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
 <h2 id="appear-event">Appear event</h2>
 <p>If a <code>appear</code> event is bound to a component inside a scroller, the event will be triggered when the component comes to be visible.</p>
 <p><strong>event object</strong></p>
@@ -1712,7 +1749,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Common Event","level":"1.3.4.3","depth":3,"next":{"title":"Special Element","level":"1.3.4.4","depth":3,"path":"components/special-element.md","ref":"components/special-element.md","articles":[]},"previous":{"title":"Color","level":"1.3.4.2.2","depth":4,"path":"references/color-names.md","ref":"references/color-names.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/common-event.md","mtime":"2016-08-23T08:55:25.893Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-08-23T08:55:42.708Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Common Event","level":"1.3.4.3","depth":3,"next":{"title":"Special Element","level":"1.3.4.4","depth":3,"path":"components/special-element.md","ref":"components/special-element.md","articles":[]},"previous":{"title":"Color","level":"1.3.4.2.2","depth":4,"path":"references/color-names.md","ref":"references/color-names.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/common-event.md","mtime":"2016-09-11T16:13:50.878Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-09-11T16:14:06.881Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

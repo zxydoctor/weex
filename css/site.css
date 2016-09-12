@@ -15,7 +15,7 @@ body {
   height: 500px;
   width: 100%;
   min-width: 1200px;
-  background: url("../img/nav_background.jpg") no-repeat;
+  background: url("https://gw.alicdn.com/tps/TB1Cr55NXXXXXapXVXXXXXXXXXX-2000-800.jpg") no-repeat;
   background-position: 0px 0px;
   -webkit-background-size: cover;
   background-size: cover; }
@@ -416,6 +416,9 @@ body {
       float: left; }
     .download .content .line {
       margin-top: 55px; }
+      .download .content .line .icon > img {
+        width: 128px;
+        border-radius: 20px; }
       .download .content .line .intro {
         text-align: left;
         width: 314px;
@@ -437,9 +440,10 @@ body {
           .download .content .line .intro .qr img {
             width: 180px;
             height: 180px; }
-        .download .content .line .intro .link {
+        .download .content .line .intro .link.android {
+          cursor: pointer;
           margin-top: 19px; }
-          .download .content .line .intro .link img {
+          .download .content .line .intro .link.android img {
             width: 308px;
             height: 60px; }
         .download .content .line .intro .apple {
@@ -460,8 +464,8 @@ body {
       width: 100px;
       position: relative;
       margin-right: 12px; }
+  .download .version {
+    font-size: 14px; }
 
 a[title="站长统计"] {
   display: none; }
-
-

@@ -18,7 +18,7 @@ $header-height: 70px
   height: 500px
   width: 100%
   min-width: 1200px
-  background: url("../img/nav_background.jpg") no-repeat 
+  background: url("https://gw.alicdn.com/tps/TB1Cr55NXXXXXapXVXXXXXXXXXX-2000-800.jpg") no-repeat 
   background-position: 0px 0px
   -webkit-background-size: cover
   background-size: cover
@@ -464,6 +464,9 @@ $header-height: 70px
 
     .line
       margin-top: 55px
+      .icon>img
+        width: 128px
+        border-radius: 20px
       .intro
         text-align: left
         width: 314px
@@ -485,7 +488,8 @@ $header-height: 70px
           img
             width: 180px
             height: 180px
-        .link
+        .link.android
+          cursor: pointer
           margin-top: 19px
           img
             width: 308px
@@ -512,5 +516,8 @@ $header-height: 70px
       position: relative
       margin-right: 12px
   
+  .version
+    font-size: 14px
+      
 a[title="站长统计"]
   display: none
