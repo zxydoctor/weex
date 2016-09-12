@@ -384,7 +384,7 @@
 
 - (NSString *)_toPixelFromPoint:(NSString *)point
 {
-    return [NSString stringWithFormat:@"%ld",(long)([point floatValue]/WXScreenResizeRadio())];
+    return [NSString stringWithFormat:@"%ld",(long)([point floatValue] * 2)];
 }
 
 @end
