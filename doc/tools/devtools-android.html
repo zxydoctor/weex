@@ -1608,6 +1608,7 @@ contentLoaded(window,function(){
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="devtools-for-android">Devtools for Android</h1>
+<p><a href="https://github.com/weexteam/weex_devtools_android/releases" target="_blank"><img src="https://img.shields.io/github/release/weexteam/weex_devtools_android.svg" alt="GitHub release"></a>   <a href="https://www.codacy.com/app/weex_devtools/weex_devtools_android?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=weexteam/weex_devtools_android&amp;utm_campaign=Badge_Grade" target="_blank"><img src="https://api.codacy.com/project/badge/Grade/af0790bf45c9480fb0ec90ad834b89a3" alt="Codacy Badge"></a>     <a href="https://codeclimate.com/github/weexteam/weex_devtools_android" target="_blank"><img src="https://codeclimate.com/github/weexteam/weex_devtools_android/badges/gpa.svg" alt="Code Climate"></a> <a href="https://codeclimate.com/github/weexteam/weex_devtools_android" target="_blank"><img src="https://codeclimate.com/github/weexteam/weex_devtools_android/badges/issue_count.svg" alt="Issue Count"></a> <a href="https://github.com/weexteam/weex_devtools_android/issues" target="_blank"><img src="https://img.shields.io/github/issues/weexteam/weex_devtools_android.svg" alt="GitHub issues"></a>  <a href="https://bintray.com/alibabaweex/maven/weex_inspector/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/alibabaweex/maven/weex_inspector/images/download.svg" alt="Download"> </a></p>
 <p>Weex devtools is a custom devtools for weex that implements <a href="https://developer.chrome.com/devtools/docs/debugger-protocol" target="_blank">Chrome Debugging Protocol</a> inspired by <a href="https://github.com/facebook/stetho" target="_blank">Stetho</a>, it is designed to help you quickly inspect your app and debug your JS bundle source in a chrome web page.At present The devtools consist of two part : <code>Inspector</code> and <code>Debugger</code>. If you want it work well, you must install a <code>weex-devtool</code> as debug server.</p>
 <ul>
 <li><p><strong>Inspector</strong>
@@ -1639,7 +1640,7 @@ Debugger can be used to debug your bundle js source, you can set <code>Breakpoin
 <ul>
 <li><p><em>A - aar dependency from jcenter</em>.</p>
 <pre><code>dependencies {
-      compile &apos;com.taobao.android:weex_inspector:0.0.2.7&apos;
+      compile &apos;com.taobao.android:weex_inspector:0.0.8.1&apos;
 }
 </code></pre><p>I strongly recommend you use the latest version since both weex sdk and devtools are developed iteratively and rapidly. See the release version list <a href="https://github.com/weexteam/weex_devtools_android/releases" target="_blank">here</a>. All the release version will publish to the <a href="https://bintray.com/alibabaweex/maven/weex_inspector" target="_blank">jcenter repo</a>.</p>
 </li>
@@ -1650,6 +1651,32 @@ Debugger can be used to debug your bundle js source, you can set <code>Breakpoin
 }
 </code></pre></li>
 </ul>
+<h5 id="version-compatibility">Version compatibility</h5>
+<table>
+<thead>
+<tr>
+<th>weex sdk</th>
+<th>weex inspector</th>
+<th>debug server</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.8.0.1+</td>
+<td>0.0.8.1</td>
+<td>0.2.39+</td>
+</tr>
+<tr>
+<td>0.7.0+</td>
+<td>0.0.7.13</td>
+<td>0.2.38</td>
+</tr>
+<tr>
+<td>0.6.0+</td>
+<td>0.0.2.2</td>
+</tr>
+</tbody>
+</table>
 <h4 id="initialize-in-your-xxxapplication-file">Initialize in your XXXApplication file.</h4>
 <pre><code>    public class MyApplication extends Application {
       public void onCreate() {
@@ -1727,7 +1754,7 @@ client.networkInterceptors().add(new OkHttpInterceptor());
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Weex devtools (Android)","level":"1.5.2.1","depth":3,"next":{"title":"Weex devtools (IOS)","level":"1.5.2.2","depth":3,"path":"tools/devtools-ios.md","ref":"tools/devtools-ios.md","articles":[]},"previous":{"title":"Devtools","level":"1.5.2","depth":2,"path":"tools/devtools.md","ref":"tools/devtools.md","articles":[{"title":"Weex devtools (Android)","level":"1.5.2.1","depth":3,"path":"tools/devtools-android.md","ref":"tools/devtools-android.md","articles":[]},{"title":"Weex devtools (IOS)","level":"1.5.2.2","depth":3,"path":"tools/devtools-ios.md","ref":"tools/devtools-ios.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"tools/devtools-android.md","mtime":"2016-09-14T07:59:17.406Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-09-14T07:59:31.564Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Weex devtools (Android)","level":"1.5.2.1","depth":3,"next":{"title":"Weex devtools (IOS)","level":"1.5.2.2","depth":3,"path":"tools/devtools-ios.md","ref":"tools/devtools-ios.md","articles":[]},"previous":{"title":"Devtools","level":"1.5.2","depth":2,"path":"tools/devtools.md","ref":"tools/devtools.md","articles":[{"title":"Weex devtools (Android)","level":"1.5.2.1","depth":3,"path":"tools/devtools-android.md","ref":"tools/devtools-android.md","articles":[]},{"title":"Weex devtools (IOS)","level":"1.5.2.2","depth":3,"path":"tools/devtools-ios.md","ref":"tools/devtools-ios.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"tools/devtools-android.md","mtime":"2016-09-14T13:58:19.448Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-09-14T13:58:26.406Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
