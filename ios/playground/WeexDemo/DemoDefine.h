@@ -22,7 +22,7 @@
 
 #define BUNDLE_URL [NSString stringWithFormat:@"file://%@/bundlejs/index.js",[NSBundle mainBundle].bundlePath]
 
-#define UITEST_HOME_URL @"http://test?_wx_tpl=http://localhost:12580/test/build/TC__Home.js"
+#define UITEST_HOME_URL @"http://test?_wx_tpl=http://h5.waptest.taobao.com/app/weextc031/build/TC_Monitor_List_WithAppendTree.js"
 
 #define QRSCAN  @"com.taobao.WeexDemo.scan"
 #define WEEX_COLOR [UIColor colorWithRed:0.27 green:0.71 blue:0.94 alpha:1]
