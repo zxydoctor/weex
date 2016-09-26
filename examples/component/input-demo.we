@@ -9,11 +9,18 @@
         value=""
         onchange="onchange"
         oninput="oninput"
+        id="text"
       />
       <text>oninput: {{txtInput}}</text>
       <text>onchange: {{txtChange}}</text>
+      <div style="flex-direction:row;">
+        <wxc-button type="default" size="small" value="获取焦点" onclick="focus" style="margin-top:10px;width: 200px;border-color: #26a4f4;font-color: #26a4f4;border-width: 2px" id="button"></wxc-button>
+        <wxc-button type="default" size="small" value="失去焦点" onclick="blur" style="margin-top:10px;margin-left:20px;width: 200px;border-color: #26a4f4;font-color: #26a4f4;border-width: 2px"></wxc-button>
+      </div>
     </wxc-panel>
   </scroller>
+
+
 </template>
 
 <style>
@@ -39,6 +46,15 @@
       oninput: function(event) {
         this.txtInput = event.value;
         console.log('oninput', event.value);
+      },
+      focus:function () {
+        var input = require('@weex-module/view')
+        input.focus(this.$el("text").nodeId)
+      },
+
+      blur: function () {
+        var view = require('@weex-module/view')
+        view.blur(this.$el("text").nodeId)
       }
     }
   };

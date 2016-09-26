@@ -5,6 +5,7 @@ import stream from './stream'
 import modal from './modal'
 import animation from './animation'
 import webview from './webview'
+import view from './view'
 // import timer from './timer'
 import navigator from './navigator'
 import storage from './storage'
@@ -23,5 +24,6 @@ export default {
     Weex.install(navigator)
     Weex.install(storage)
     Weex.install(clipboard)
+    Weex.install(view)
   }
 }
