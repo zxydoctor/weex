@@ -1,0 +1,35 @@
+<template>
+  <wxc-panel>
+    <text style="font-size:40px;">Hello World.</text>
+    <div style="flex-direction:row;">
+      <wxc-button type="default" size="small" value="选择日期" onclick="pickdate" style="margin-top:10px;width: 200px;border-color: #26a4f4;font-color: #26a4f4;border-width: 2px" id="button"></wxc-button>
+      <wxc-button type="default" size="small" value="选择时间" onclick="picktime" style="margin-top:10px;margin-left:20px;width: 200px;border-color: #26a4f4;font-color: #26a4f4;border-width: 2px"></wxc-button>
+    </div>
+  </wxc-panel>
+</template>
+
+<style>
+
+</style>
+
+<script>
+  require('weex-components');
+  module.exports = {
+    data: {
+      txtInput: '',
+      txtChange: ''
+    },
+    methods: {
+      pickdate: function(event) {
+        var picker = require('@weex-module/datePicker');
+        picker.pick('time',{},function(ret){
+          console.log("here")
+        });
+      },
+      picktime: function(event) {
+        this.txtInput = event.value;
+        console.log('oninput', event.value);
+      }
+    }
+  };
+</script>

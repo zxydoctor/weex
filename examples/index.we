@@ -13,12 +13,14 @@
         // Support sub directory, e.g. 'new-fashion/index'
 
         // common
+
         {name: 'hello', title: 'Hello World'},
         {name: 'syntax/index', title: 'More Syntax'},
         {name: 'style/index', title: 'Common Style'},
         {name: 'animation', title: 'Animation'},
 
         // component
+        {name: 'component/datepicker-demo', title: 'datepikcer'},
         {name: 'component/text-demo', title: 'Text'},
         {name: 'component/image-demo', title: 'Image'},
         {name: 'component/input-demo', title: 'Input'},

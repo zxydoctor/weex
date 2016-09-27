@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define CURRENT_IP @"your computer device ip"
+#define CURRENT_IP @"30.10.212.24"
 
 #if TARGET_IPHONE_SIMULATOR
     #define DEMO_HOST @"127.0.0.1"
