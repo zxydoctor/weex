@@ -15,6 +15,7 @@ const view = {
     const comp = this.getComponentManager().getComponent(ref)
     comp.node.blur()
   }
+
 }
 
 const meta = {
