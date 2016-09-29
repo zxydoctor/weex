@@ -9,10 +9,17 @@
 #import "WXDatePickerModule.h"
 #import <UIKit/UIDatePicker.h>
 
+#define WXPickerHeight 266
+
 @interface WXDatePickerModule()
 
 @property(nonatomic,copy)WXModuleCallback callback;
 @property(nonatomic,strong)UIDatePicker *datePicker;
+@property(nonatomic,strong)UIView *backgroudView;
+@property(nonatomic,strong)UIView *datePickerView;
+@property(nonatomic)BOOL isAnimating;
+
+
 
 @end
 
@@ -23,29 +30,162 @@
 WX_EXPORT_METHOD(@selector(pick:option:callback:))
 
 
--(void)pick:(NSString *)type option:(NSDictionary *)option callback:(WXModuleCallback)callback
+-(void)pick:(NSString *)type option:(NSDictionary *)dateInfo callback:(WXModuleCallback)callback
 {
+    if(!self.backgroudView)
+    {
+        self.backgroudView = [self createBackgroudView];
+        UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideDatePicker)];
+        [self.backgroudView addGestureRecognizer:tapGesture];
+    }
     
-    datePicker=[[UIDatePicker alloc]init];
+    if(!self.datePickerView)
+    {
+        self.datePickerView = [self createDatePickerView];
+    }
+    
+    if(!datePicker)
+    {
+        datePicker = [[UIDatePicker alloc]init];
+    }
+    
+    
+
     datePicker.datePickerMode=UIDatePickerModeDate;
-    UIToolbar *toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
-    [toolBar setTintColor:[UIColor grayColor]];
-    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(confirm:)];
-    UIBarButtonItem *cancelBtn=[[UIBarButtonItem alloc]initWithTitle:@"cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel:)];
-    [toolBar setItems:[NSArray arrayWithObjects:cancelBtn,doneBtn, nil]];
+    CGRect pickerFrame = CGRectMake(0, 44, [UIScreen mainScreen].bounds.size.width, WXPickerHeight-44);
+    datePicker.backgroundColor = [UIColor whiteColor];
+    datePicker.frame = pickerFrame;
+    UIToolbar *toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44)];
+    [toolBar setBackgroundColor:[UIColor whiteColor]];
+    UIBarButtonItem* noSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    noSpace.width=10;
+    UIBarButtonItem* doneBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem* cancelBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+    [toolBar setItems:[NSArray arrayWithObjects:noSpace,cancelBtn,flexSpace,doneBtn,noSpace, nil]];
     self.callback = callback;
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [self.datePickerView addSubview:datePicker];
+    [self.datePickerView addSubview:toolBar];
+    [self.backgroudView addSubview:self.datePickerView];
+    [window addSubview:self.backgroudView];
+    [self configDatePicker:type dateInfo:dateInfo];
+    [self showDatePicker];
+
 }
 
+
+-(void)configDatePicker:(NSString *)type dateInfo:(NSDictionary *)dateInfo
+{
+    if(type && [type isEqualToString:@"time"])
+    {
+        self.datePicker.date = [self converDate:[dateInfo objectForKey:@"date"]];
+        self.datePicker.datePickerMode = UIDatePickerModeTime;
+    }else if(type && [type isEqualToString:@"date"])
+    {
+        self.datePicker.datePickerMode = UIDatePickerModeDate;
+        self.datePicker.date = [self converDate:[dateInfo objectForKey:@"date"]];
+        self.datePicker.minimumDate = [self converDate:[dateInfo objectForKey:@"minDate"]];
+        self.datePicker.maximumDate = [self converDate:[dateInfo objectForKey:@"maxDate"]];
+        
+    }
+    
+}
+
+// jsbridge 和 ponydebugbridge 转换的格式不一样，需要分开处理
+-(NSDate *)converDate:(id)date
+{
+    if(date && [date isKindOfClass:[NSString class]])
+    {
+        return [self stringToDate:date];
+    }
+    return date;
+    
+}
+
+-(UIView *)createBackgroudView
+{
+    UIView *view = [UIView new];
+    view.frame = [UIScreen mainScreen].bounds;
+    view.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
+    return view;
+}
+
+-(UIView *)createDatePickerView
+{
+    UIView *view = [UIView new];
+    view.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, WXPickerHeight);
+    view.backgroundColor = [UIColor whiteColor];
+    return view;
+}
+
+-(void)showDatePicker
+{
+    if(self.isAnimating)
+    {
+        return;
+    }
+    self.isAnimating = YES;
+    self.backgroudView.hidden = NO;
+    [UIView animateWithDuration:0.35f animations:^{
+        self.datePickerView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - WXPickerHeight, [UIScreen mainScreen].bounds.size.width, WXPickerHeight);
+        self.backgroudView.alpha = 1;
+    } completion:^(BOOL finished) {
+        self.isAnimating = NO;
+    }];
+}
+
+-(void)hideDatePicker
+{
+    if(self.isAnimating)
+    {
+        return;
+    }
+    self.isAnimating = YES;
+    [UIView animateWithDuration:0.35f animations:^{
+        self.datePickerView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, WXPickerHeight);
+        self.backgroudView.alpha = 0;
+    } completion:^(BOOL finished) {
+        self.backgroudView.hidden = YES;
+        self.isAnimating = NO;
+        [self.backgroudView removeFromSuperview];
+    }];
+}
 
 -(IBAction)cancel:(id)sender
 {
-    
+    [self hideDatePicker];
 }
 
--(IBAction)confirm:(id)sender
+-(IBAction)done:(id)sender
 {
+    [self hideDatePicker];
+
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    
+    NSDateComponents *comps  = [calendar components:unitFlags fromDate:self.datePicker.date];
+    [dic setValue:[NSNumber numberWithInteger:[comps year]] forKey:@"year"];
+    [dic setValue:[NSNumber numberWithInteger:[comps month]] forKey:@"month"];
+    [dic setValue:[NSNumber numberWithInteger:[comps day]] forKey:@"date"];
+    [dic setValue:[NSNumber numberWithInteger:[comps hour]] forKey:@"hour"];
+    [dic setValue:[NSNumber numberWithInteger:[comps minute]] forKey:@"minute"];
+    [dic setValue:[NSNumber numberWithBool:true] forKey:@"set"];
+
+    self.callback(dic);
+    self.callback = nil;
 }
 
+
+-(NSDate *)stringToDate:(NSString *)dateString
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    NSDate *date=[formatter dateFromString:dateString];
+    return date;
+}
 
 @end
