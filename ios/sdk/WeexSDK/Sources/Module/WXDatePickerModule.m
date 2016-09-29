@@ -50,7 +50,7 @@ WX_EXPORT_METHOD(@selector(pick:option:callback:))
     }
     
     
-
+    
     datePicker.datePickerMode=UIDatePickerModeDate;
     CGRect pickerFrame = CGRectMake(0, 44, [UIScreen mainScreen].bounds.size.width, WXPickerHeight-44);
     datePicker.backgroundColor = [UIColor whiteColor];
@@ -71,7 +71,7 @@ WX_EXPORT_METHOD(@selector(pick:option:callback:))
     [window addSubview:self.backgroudView];
     [self configDatePicker:type dateInfo:dateInfo];
     [self showDatePicker];
-
+    
 }
 
 
@@ -79,7 +79,11 @@ WX_EXPORT_METHOD(@selector(pick:option:callback:))
 {
     if(type && [type isEqualToString:@"time"])
     {
-        self.datePicker.date = [self converDate:[dateInfo objectForKey:@"date"]];
+        NSString *timeStr = [NSString stringWithFormat:@"%@:%@",[dateInfo objectForKey:@"hour"],[dateInfo objectForKey:@"minute"]];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+        [formatter setDateFormat:@"HH:mm"];
+        NSDate *date=[formatter dateFromString:timeStr];
+        self.datePicker.date = date;
         self.datePicker.datePickerMode = UIDatePickerModeTime;
     }else if(type && [type isEqualToString:@"date"])
     {
@@ -160,7 +164,7 @@ WX_EXPORT_METHOD(@selector(pick:option:callback:))
 -(IBAction)done:(id)sender
 {
     [self hideDatePicker];
-
+    
     NSMutableDictionary *dic = [NSMutableDictionary new];
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
@@ -169,12 +173,12 @@ WX_EXPORT_METHOD(@selector(pick:option:callback:))
     
     NSDateComponents *comps  = [calendar components:unitFlags fromDate:self.datePicker.date];
     [dic setValue:[NSNumber numberWithInteger:[comps year]] forKey:@"year"];
-    [dic setValue:[NSNumber numberWithInteger:[comps month]] forKey:@"month"];
+    [dic setValue:[NSNumber numberWithInteger:[comps month]-1] forKey:@"month"];
     [dic setValue:[NSNumber numberWithInteger:[comps day]] forKey:@"date"];
     [dic setValue:[NSNumber numberWithInteger:[comps hour]] forKey:@"hour"];
     [dic setValue:[NSNumber numberWithInteger:[comps minute]] forKey:@"minute"];
     [dic setValue:[NSNumber numberWithBool:true] forKey:@"set"];
-
+    
     self.callback(dic);
     self.callback = nil;
 }

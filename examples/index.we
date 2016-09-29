@@ -20,7 +20,6 @@
         {name: 'animation', title: 'Animation'},
 
         // component
-        {name: 'component/datepicker-demo', title: 'datepikcer'},
         {name: 'component/text-demo', title: 'Text'},
         {name: 'component/image-demo', title: 'Image'},
         {name: 'component/input-demo', title: 'Input'},
