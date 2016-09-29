@@ -88,10 +88,17 @@ WX_EXPORT_METHOD(@selector(pick:option:callback:))
     }else if(type && [type isEqualToString:@"date"])
     {
         self.datePicker.datePickerMode = UIDatePickerModeDate;
-        self.datePicker.date = [self converDate:[dateInfo objectForKey:@"date"]];
-        self.datePicker.minimumDate = [self converDate:[dateInfo objectForKey:@"minDate"]];
-        self.datePicker.maximumDate = [self converDate:[dateInfo objectForKey:@"maxDate"]];
         
+        self.datePicker.date = [self converDate:[dateInfo objectForKey:@"date"]];
+        if([dateInfo objectForKey:@"minDate"])
+        {
+            self.datePicker.minimumDate = [self converDate:[dateInfo objectForKey:@"minDate"]];
+        }
+        
+        if([dateInfo objectForKey:@"maxDate"])
+        {
+            self.datePicker.maximumDate = [self converDate:[dateInfo objectForKey:@"maxDate"]];
+        }
     }
     
 }
