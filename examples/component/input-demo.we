@@ -2,31 +2,31 @@
   <scroller>
     <wxc-panel title="input" type="primary">
       <input
-              type="text"
-              placeholder="Text Input"
-              class="input"
-              autofocus="true"
-              value=""
-              onchange="onchange"
-              oninput="oninput"
+        type="text"
+        placeholder="Text Input"
+        class="input"
+        autofocus="true"
+        value=""
+        onchange="onchange"
+        oninput="oninput"
       />
       <input
-              type="date"
-              placeholder="date Input"
-              class="date"
-              autofocus="false"
-              value="2016-10-12"
-              max="2017-10-12"
-              min="2015-10-12"
-              onchange="onchange"
+        type="date"
+        placeholder="date Input"
+        class="date"
+        autofocus="false"
+        value="2016-10-12"
+        max="2017-10-12"
+        min="2015-10-12"
+        onchange="onchange"
       />
       <input
-              type="time"
-              placeholder="time Input"
-              class="time"
-              autofocus="false"
-              value="10:13"
-              onchange="onchange"
+        type="time"
+        placeholder="time Input"
+        class="time"
+        autofocus="false"
+        value="10:13"
+        onchange="onchange"
       />
       <text>oninput: {{txtInput}}</text>
       <text>onchange: {{txtChange}}</text>
