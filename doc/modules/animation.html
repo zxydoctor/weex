@@ -1619,8 +1619,10 @@ contentLoaded(window,function(){
 <li><code>node</code><em>(Node)</em>: An element that will be animated.</li>
 <li><code>options</code><em>(object)</em>: Transition options. <ul>
 <li><code>styles</code><em>(object)</em>: Specify the names and values of styles to which a transition effect should be applied.<ul>
-<li><code>color</code><em>(string)</em>: the color of the element when the animaiton finished.</li>
-<li><code>transform</code><em>(object)</em>: transform fuction to be applied to the element. Following value is supported.<ul>
+<li><code>width</code><em>(length)</em>: the the width of the view when the animation finished.</li>
+<li><code>height</code><em>(length)</em>: the the height  of the view when the animation finished.</li>
+<li><code>color</code><em>(string)</em>: the color of the element when the animation finished.</li>
+<li><code>transform</code><em>(object)</em>: transform function to be applied to the element. Following value is supported.<ul>
 <li><code>translate/translateX/translateY</code><em>(string)</em>: translate the element to the new location. The value can be a pixel or percent</li>
 <li><code>rotate</code><em>(string)</em>: the unit is degree.</li>
 <li><code>scale</code><em>(string)</em>: scale up or scale down the element.</li>
@@ -1629,7 +1631,10 @@ contentLoaded(window,function(){
 </ul>
 </li>
 <li><code>duration</code><em>(number)</em>: Specify the number of milliseconds a transition animation should take to complete. By default, the value is 0ms, meaning that no animation will occur.</li>
-<li><code>timingFuncion</code><em>(string)</em>: Used to describe how the intermediate values of the styles being affected by a transition effect are calculated. By default, the value is <code>linear</code>, and can also be one of <code>ease-in</code>, <code>ease-out</code>, <code>ease-in-out</code>, <code>linear</code> or <code>cubic-bezier(x1, y1, x2, y2)</code>.</li>
+<li><code>timingFuncion</code><em>(string)</em>: Used to describe how the intermediate values of the styles being affected by a transition effect are calculated. By default, the value is <code>linear</code>, and can also be one of <code>ease-in</code>, <code>ease-out</code>, <code>ease-in-out</code>, <code>linear</code> or <code>cubic-bezier(x1, y1, x2, y2)</code>.<ul>
+<li>if<code>cubic-bezier(x1, y1, x2, y2)</code> is set, equation of  0&lt;=x1&lt;=x2&lt;=1 must be met. </li>
+</ul>
+</li>
 <li><code>delay</code><em>(number)</em>: Specify the amount of milliseconds to wait between a change being requested to a property that is to be transitioned and the start of the transition effect. By default, the value is 0ms.</li>
 </ul>
 </li>
@@ -1706,7 +1711,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"animation","level":"1.3.5.4","depth":3,"next":{"title":"webview","level":"1.3.5.5","depth":3,"path":"modules/webview.md","ref":"modules/webview.md","articles":[]},"previous":{"title":"modal","level":"1.3.5.3","depth":3,"path":"modules/modal.md","ref":"modules/modal.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"modules/animation.md","mtime":"2016-10-17T13:47:04.803Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-10-17T13:47:26.538Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"animation","level":"1.3.5.4","depth":3,"next":{"title":"webview","level":"1.3.5.5","depth":3,"path":"modules/webview.md","ref":"modules/webview.md","articles":[]},"previous":{"title":"modal","level":"1.3.5.3","depth":3,"path":"modules/modal.md","ref":"modules/modal.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus","heading-anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"heading-anchors":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"modules/animation.md","mtime":"2016-10-17T17:22:52.622Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-10-17T17:23:00.213Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
