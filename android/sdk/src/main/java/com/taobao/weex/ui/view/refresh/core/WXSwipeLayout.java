@@ -234,6 +234,8 @@ public class WXSwipeLayout extends FrameLayout implements NestedScrollingParent 
   public interface WXOnRefreshListener {
 
     void onRefresh();
+
+    void onPullingDown(float dy, int headerHeight, float maxHeight);
   }
 
   /**
@@ -267,7 +269,6 @@ public class WXSwipeLayout extends FrameLayout implements NestedScrollingParent 
   private WXRefreshView footerView;
   private View mTargetView;
 
-  private static final int REFRESH_VIEW_HEIGHT = 80;
   private static final int PULL_REFRESH = 0;
   private static final int LOAD_MORE = 1;
 
@@ -279,10 +280,14 @@ public class WXSwipeLayout extends FrameLayout implements NestedScrollingParent 
   volatile private boolean mRefreshing = false;
 
   // RefreshView Height
-  private float loadingViewHeight = 0;
+  private volatile float refreshViewHeight = 0;
+  private volatile float loadingViewHeight = 0;
 
   // RefreshView Over Flow Height
-  private float refreshViewFlowHeight = 0;
+  private volatile float refreshViewFlowHeight = 0;
+  private volatile float loadingViewFlowHeight = 0;
+
+  private static final float overFlow = 1.5f;
 
   // Drag Action
   private int mCurrentAction = -1;
@@ -321,9 +326,6 @@ public class WXSwipeLayout extends FrameLayout implements NestedScrollingParent 
     }
 
     parentHelper = new NestedScrollingParentHelper(this);
-
-    loadingViewHeight = dipToPx(context, REFRESH_VIEW_HEIGHT);
-    refreshViewFlowHeight = loadingViewHeight * (float)1.5;
 
     if (isInEditMode() && attrs == null) {
       return;
@@ -478,6 +480,7 @@ public class WXSwipeLayout extends FrameLayout implements NestedScrollingParent 
         mCurrentAction = -1;
       }
       headerView.setLayoutParams(lp);
+      onRefreshListener.onPullingDown(distanceY, lp.height, refreshViewFlowHeight);
       headerView.setProgressRotation(lp.height / refreshViewFlowHeight);
       moveTargetView(lp.height);
       return true;
@@ -487,15 +490,15 @@ public class WXSwipeLayout extends FrameLayout implements NestedScrollingParent 
       lp.height -= distanceY;
       if (lp.height < 0) {
         lp.height = 0;
-      } else if (lp.height > refreshViewFlowHeight) {
-        lp.height = (int) refreshViewFlowHeight;
+      } else if (lp.height > loadingViewFlowHeight) {
+        lp.height = (int) loadingViewFlowHeight;
       }
       if (lp.height == 0) {
         isConfirm = false;
         mCurrentAction = -1;
       }
       footerView.setLayoutParams(lp);
-      footerView.setProgressRotation(lp.height / refreshViewFlowHeight);
+      footerView.setProgressRotation(lp.height / loadingViewFlowHeight);
       moveTargetView(-lp.height);
       return true;
     }
@@ -523,7 +526,7 @@ public class WXSwipeLayout extends FrameLayout implements NestedScrollingParent 
     LayoutParams lp;
     if (mPullRefreshEnable && mCurrentAction == PULL_REFRESH) {
       lp = (LayoutParams) headerView.getLayoutParams();
-      if (lp.height >= loadingViewHeight) {
+      if (lp.height >= refreshViewHeight) {
         startRefresh(lp.height);
       } else if (lp.height > 0) {
         resetHeaderView(lp.height);
@@ -550,7 +553,7 @@ public class WXSwipeLayout extends FrameLayout implements NestedScrollingParent 
    */
   private void startRefresh(int headerViewHeight) {
     mRefreshing = true;
-    ValueAnimator animator = ValueAnimator.ofFloat(headerViewHeight, loadingViewHeight);
+    ValueAnimator animator = ValueAnimator.ofFloat(headerViewHeight, refreshViewHeight);
     animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
       @Override
       public void onAnimationUpdate(ValueAnimator animation) {
@@ -781,5 +784,23 @@ public class WXSwipeLayout extends FrameLayout implements NestedScrollingParent 
 
   public boolean isRefreshing() {
     return mRefreshing;
+  }
+
+  public void setRefreshHeight(int height) {
+    refreshViewHeight = height;
+    refreshViewFlowHeight = refreshViewHeight * overFlow;
+  }
+
+  public void setLoadingHeight(int height) {
+    loadingViewHeight = height;
+    loadingViewFlowHeight = loadingViewHeight * overFlow;
+  }
+
+  public void setRefreshBgColor(int color) {
+    headerView.setBackgroundColor(color);
+  }
+
+  public void setLoadingBgColor(int color) {
+    footerView.setBackgroundColor(color);
   }
 }

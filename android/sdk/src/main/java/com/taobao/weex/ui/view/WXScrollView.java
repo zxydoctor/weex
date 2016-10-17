@@ -219,6 +219,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ScrollView;
 
+import com.taobao.weex.common.WXThread;
 import com.taobao.weex.ui.component.WXComponent;
 import com.taobao.weex.ui.component.WXScroller;
 import com.taobao.weex.ui.view.gesture.WXGesture;
@@ -292,7 +293,7 @@ public class WXScrollView extends ScrollView implements Callback, IWXScroller,
 
   public void startScrollerTask() {
     if (mScrollerTask == null) {
-      mScrollerTask = new Handler(this);
+      mScrollerTask = new Handler(WXThread.secure(this));
     }
     mInitialPosition = getScrollY();
     mScrollerTask.sendEmptyMessageDelayed(0, mCheckTime);
@@ -383,6 +384,7 @@ public class WXScrollView extends ScrollView implements Callback, IWXScroller,
       MotionEvent down = MotionEvent.obtain(ev);
       down.setAction(MotionEvent.ACTION_DOWN);
       mHasNotDoneActionDown = false;
+      down.recycle();
     }
 
     if (ev.getAction() == MotionEvent.ACTION_DOWN) {
@@ -522,6 +524,9 @@ public class WXScrollView extends ScrollView implements Callback, IWXScroller,
   }
 
   private void showStickyView() {
+    if(mWAScroller == null){
+      return;
+    }
     View curStickyView = procSticky(mWAScroller.getStickMap());
 
     if (curStickyView != null) {
